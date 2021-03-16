@@ -6,13 +6,17 @@ interface ButtonWrapperProps {
 }
 
 export const ButtonWrapper = styled.div<ButtonWrapperProps>`
+  display: block;
   min-width: ${(props) => props.minWidth};
+  height: 45px;
   position: relative;
   overflow: hidden;
+  box-sizing: border-box;
+
+  text-align: center;
 
   background-color: ${(props) => props.theme.colors.semiDark};
   border-radius: ${(props) => props.theme.misc.borderRadius};
-  text-align: center;
 
   margin: ${(props) => props.margin?.join(' ') || '0'};
 
@@ -35,13 +39,17 @@ export const ButtonOverlay = styled.div<ButtonOverlayProps>`
 `;
 
 export const Button = styled.a`
-  display: inline-block;
+  display: block;
   position: relative;
+  width: 100%;
+  height: 100%;
+
+  text-align: center;
+  line-height: 2.8;
 
   color: ${(props) => props.theme.colors.text.light};
   font-weight: 600;
 
-  padding: 10px 28px;
   border-radius: ${(props) => props.theme.misc.borderRadius};
   transition: all 200ms ease-in-out;
 `;
