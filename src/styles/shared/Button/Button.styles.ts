@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 
-interface ButtonProps {}
+interface ButtonWrapperProps {
+  minWidth: string;
+  margin?: Array<string>;
+}
 
-export const ButtonWrapper = styled.div`
-  width: 150px;
+export const ButtonWrapper = styled.div<ButtonWrapperProps>`
+  min-width: ${(props) => props.minWidth};
   position: relative;
   overflow: hidden;
 
@@ -11,21 +14,27 @@ export const ButtonWrapper = styled.div`
   border-radius: ${(props) => props.theme.misc.borderRadius};
   text-align: center;
 
+  margin: ${(props) => props.margin?.join(' ') || '0'};
+
   &&:hover :first-child {
     width: 85%;
   }
 `;
 
-export const ButtonOverlay = styled.div`
+interface ButtonOverlayProps {
+  type: string;
+}
+
+export const ButtonOverlay = styled.div<ButtonOverlayProps>`
   width: 15%;
   height: 100%;
   position: absolute;
 
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors[props.type]};
   transition: width 200ms ease-in-out;
 `;
 
-export const Button = styled.a<ButtonProps>`
+export const Button = styled.a`
   display: inline-block;
   position: relative;
 
