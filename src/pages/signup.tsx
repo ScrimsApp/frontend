@@ -1,34 +1,42 @@
 import Link from 'next/link';
+
 import SignInput from '../components/SignInput/SignInput.component';
 
 import {
+  AccountLink,
+  AccountLinkWrapper,
   GradientLayer,
   SignDescription,
   SignForm,
   SignTitle,
   SignWrapper,
-  AccountLink,
-  AccountLinkWrapper,
 } from '../styles/pages/sign/Sign.styles';
-
 import {
   Button,
   ButtonOverlay,
   ButtonWrapper,
 } from '../styles/shared/Button/Button.styles';
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <SignWrapper>
       <GradientLayer />
 
       <SignForm>
-        <SignTitle>Welcome Back!</SignTitle>
-        <SignDescription>Sign in with your account</SignDescription>
+        <SignTitle>You are our guest!</SignTitle>
+        <SignDescription>Sign up your new account</SignDescription>
 
         <SignInput
           minWidth="100%"
-          colorType="primary"
+          colorType="secondary"
+          label="Nickname"
+          type="text"
+          margin={['0px', '0px', '36px', '0px']}
+        />
+
+        <SignInput
+          minWidth="100%"
+          colorType="secondary"
           label="E-mail"
           type="email"
           margin={['0px', '0px', '36px', '0px']}
@@ -36,21 +44,29 @@ const SignIn = () => {
 
         <SignInput
           minWidth="100%"
-          colorType="primary"
+          colorType="secondary"
+          label="Password"
+          type="password"
+          margin={['0px', '0px', '36px', '0px']}
+        />
+
+        <SignInput
+          minWidth="100%"
+          colorType="secondary"
           label="Confirm Password"
           type="password"
           margin={['0px', '0px', '36px', '0px']}
         />
 
         <ButtonWrapper minWidth="100%" margin={['0px', '0px', '36px', '0px']}>
-          <ButtonOverlay className="overlay" type="primary" sign />
-          <Button type="submit">Sign in</Button>
+          <ButtonOverlay className="overlay" type="secondary" sign />
+          <Button type="submit">Sign up</Button>
         </ButtonWrapper>
 
         <AccountLinkWrapper>
-          Dont’t have an account?
-          <Link passHref href="/signup">
-            <AccountLink> Register here</AccountLink>
+          Already have an account?
+          <Link passHref href="/signin">
+            <AccountLink> Sign in here</AccountLink>
           </Link>
         </AccountLinkWrapper>
       </SignForm>
@@ -58,4 +74,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
