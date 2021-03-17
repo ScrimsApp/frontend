@@ -37,7 +37,6 @@ const SignInput: FunctionComponent<InputProps> = ({
         colorType={colorType}
         value={value}
         onChange={(e) => handleInputValue(e.target.value)}
-        required
       />
       <InputLabel className={active ? 'input-filled' : ''}>{label}</InputLabel>
     </InputWrapper>

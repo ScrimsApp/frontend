@@ -43,6 +43,10 @@ a {
     text-decoration: none;
 }
 
+button {
+    color: ${(props) => props.theme.colors.text.light};
+}
+
 ol, ul {
 	list-style: none;
 }

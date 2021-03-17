@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { ButtonStyles } from '../../shared/Button/Button.styles';
+
 export const SignWrapper = styled.div`
   width: 100%;
   height: 100vh;

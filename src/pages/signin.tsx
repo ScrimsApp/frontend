@@ -43,7 +43,7 @@ const SignIn = () => {
         />
 
         <ButtonWrapper minWidth="100%" margin={['0px', '0px', '36px', '0px']}>
-          <ButtonOverlay className="overlay" type="primary" />
+          <ButtonOverlay className="overlay" type="primary" sign />
           <Button type="submit">Sign in</Button>
         </ButtonWrapper>
 

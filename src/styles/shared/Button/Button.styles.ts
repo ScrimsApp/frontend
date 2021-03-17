@@ -20,17 +20,24 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
 
   margin: ${(props) => props.margin?.join(' ') || '0'};
 
+  transition: width 200ms ease-in-out;
+
   &&:hover .overlay {
-    width: 85%;
+    width: 100%;
+  }
+
+  &&:active .overlay {
+    filter: brightness(80%);
   }
 `;
 
 interface ButtonOverlayProps {
   type: string;
+  sign?: boolean;
 }
 
 export const ButtonOverlay = styled.div<ButtonOverlayProps>`
-  width: 15%;
+  width: ${(props) => (props.sign ? '100%' : '15%')};
   height: 100%;
   position: absolute;
 
@@ -38,19 +45,30 @@ export const ButtonOverlay = styled.div<ButtonOverlayProps>`
   transition: width 200ms ease-in-out;
 `;
 
-export const Button = styled.a`
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
+export const ButtonStyles = `
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
 
-  text-align: center;
-  line-height: 2.8;
+    text-align: center;
+    line-height: 2.8;
 
-  color: ${(props) => props.theme.colors.text.light};
-  font-weight: 600;
+    color: ${(props) => props.theme.colors.text.light};
+    font-weight: 600;
 
-  border-radius: ${(props) => props.theme.misc.borderRadius};
-  transition: all 200ms ease-in-out;
-  cursor: pointer;
+    border-radius: ${(props) => props.theme.misc.borderRadius};
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+
+    background-color: transparent;
+    border: none;
+
+    &&:active {
+        filter: brightness(80%);
+    }
+`;
+
+export const Button = styled.button`
+  ${ButtonStyles}
 `;
