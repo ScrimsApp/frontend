@@ -23,17 +23,17 @@ const Home = () => {
         }}
       >
         <ButtonWrapper minWidth="30%" margin={['10px', '10px']}>
-          <ButtonOverlay type="primary" />
+          <ButtonOverlay className="overlay" type="primary" />
           <Button href="">Sign in</Button>
         </ButtonWrapper>
 
         <ButtonWrapper minWidth="30%" margin={['10px', '10px']}>
-          <ButtonOverlay type="secondary" />
+          <ButtonOverlay className="overlay" type="secondary" />
           <Button href="">Register</Button>
         </ButtonWrapper>
 
         <ButtonWrapper minWidth="30%" margin={['10px', '10px']}>
-          <ButtonOverlay type="tertiary" />
+          <ButtonOverlay className="overlay" type="tertiary" />
           <Button href="">Schedule</Button>
         </ButtonWrapper>
       </div>

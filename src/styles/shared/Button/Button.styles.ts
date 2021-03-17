@@ -20,7 +20,7 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
 
   margin: ${(props) => props.margin?.join(' ') || '0'};
 
-  &&:hover :first-child {
+  &&:hover .overlay {
     width: 85%;
   }
 `;
@@ -52,4 +52,5 @@ export const Button = styled.a`
 
   border-radius: ${(props) => props.theme.misc.borderRadius};
   transition: all 200ms ease-in-out;
+  cursor: pointer;
 `;
