@@ -47,6 +47,21 @@ button {
     color: ${(props) => props.theme.colors.text.light};
 }
 
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    border-radius: ${(props) => props.theme.misc.borderRadius};
+    -webkit-text-fill-color: ${(props) => props.theme.colors.text.light};
+    -webkit-box-shadow: ${(props) =>
+      `0 0 0px 1000px ${props.theme.colors.semiDark} inset`}; 
+  }
+
 ol, ul {
 	list-style: none;
 }

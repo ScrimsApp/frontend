@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { ChangeEvent, FunctionComponent, useEffect, useState } from 'react';
 
 import {
   Input,
@@ -7,11 +7,21 @@ import {
 } from '../../styles/shared/Input/Input.styles';
 
 interface InputProps {
+  name: string;
   minWidth: string;
   margin?: Array<string>;
   colorType: string;
   type: string;
   label: string;
+  value: string;
+  onChange: {
+    (e: React.ChangeEvent<any>): void;
+    <T_1 = string | React.ChangeEvent<any>>(
+      field: T_1
+    ): T_1 extends React.ChangeEvent<any>
+      ? void
+      : (e: string | React.ChangeEvent<any>) => void;
+  };
 }
 
 const SignInput: FunctionComponent<InputProps> = ({
@@ -20,23 +30,31 @@ const SignInput: FunctionComponent<InputProps> = ({
   colorType,
   type,
   label,
+  name,
+  value,
+  onChange,
 }) => {
   const [active, setActive] = useState(false);
-  const [value, setValue] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
-  const handleInputValue = (value: string) => {
-    setValue(value);
+  useEffect(() => {
+    inputValue ? setActive(true) : setActive(false);
+  }, [inputValue]);
 
-    value ? setActive(true) : setActive(false);
+  const handleInputValue = (event: ChangeEvent<HTMLInputElement>) => {
+    onChange(event);
+    setInputValue(event.target.value);
   };
 
   return (
     <InputWrapper margin={margin} minWidth={minWidth}>
       <Input
+        name={name}
         type={type}
         colorType={colorType}
         value={value}
-        onChange={(e) => handleInputValue(e.target.value)}
+        onChange={(event) => handleInputValue(event)}
+        autoComplete="off"
       />
       <InputLabel className={active ? 'input-filled' : ''}>{label}</InputLabel>
     </InputWrapper>
