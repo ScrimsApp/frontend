@@ -29,6 +29,7 @@ const SignUp = () => {
     onSubmit: (values) => {
       console.log(values);
     },
+    validateOnChange: false,
   });
 
   return (
