@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import Link from 'next/link';
 
 import SignInput from '../components/SignInput/SignInput.component';
+import { signUpContent } from '../content/signUp/signUp.content';
 
 import {
   AccountLink,
@@ -37,8 +38,8 @@ const SignUp = () => {
       <GradientLayer />
 
       <SignForm onSubmit={formik.handleSubmit}>
-        <SignTitle>You are our guest!</SignTitle>
-        <SignDescription>Sign up your new account</SignDescription>
+        <SignTitle>{signUpContent.title}</SignTitle>
+        <SignDescription>{signUpContent.description}</SignDescription>
 
         <SignInput
           name="nickname"

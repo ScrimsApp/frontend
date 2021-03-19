@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import Link from 'next/link';
 
 import SignInput from '../components/SignInput/SignInput.component';
+import { signInContent } from '../content/signIn/signIn.content';
 
 import {
   GradientLayer,
@@ -36,8 +37,8 @@ const SignIn = () => {
       <GradientLayer />
 
       <SignForm onSubmit={formik.handleSubmit}>
-        <SignTitle>Welcome Back!</SignTitle>
-        <SignDescription>Sign in with your account</SignDescription>
+        <SignTitle>{signInContent.title}</SignTitle>
+        <SignDescription>{signInContent.description}</SignDescription>
 
         <SignInput
           name="email"
