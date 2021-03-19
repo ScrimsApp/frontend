@@ -14,7 +14,7 @@ interface InputProps {
   type: string;
   label: string;
   value: string;
-  onChange: {
+  onChange?: {
     (e: React.ChangeEvent<any>): void;
     <T_1 = string | React.ChangeEvent<any>>(
       field: T_1
