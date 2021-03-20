@@ -72,7 +72,7 @@ export const SignTitle = styled.h1`
 export const SignDescription = styled.h2`
   font-size: 18px;
   color: ${(props) => props.theme.colors.text.light};
-  margin-bottom: 56px;
+  margin-bottom: 36px;
   font-weight: 500;
 `;
 
@@ -87,4 +87,13 @@ export const AccountLink = styled.a`
   text-align: center;
   font-weight: 600;
   color: ${(props) => props.theme.colors.text.light};
+`;
+
+export const ErrorLabel = styled.span`
+  display: inline-block;
+  width: 100%;
+  min-height: 20px;
+  font-weight: 600;
+  color: ${(props) => props.theme.colors.text.error};
+  margin-bottom: 20px;
 `;

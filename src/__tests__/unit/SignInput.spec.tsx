@@ -21,10 +21,18 @@ describe('SignInput UI Tests', () => {
   });
 
   test('Should render a input with name, label, type and value', async () => {
-    const { findByText } = render(<SignInput {...testProps} />);
+    const { findByText, findByDisplayValue, debug } = render(
+      <SignInput {...testProps} />
+    );
+
+    debug();
 
     const label = await findByText(testProps.label);
+    const input = await findByDisplayValue(testProps.value);
 
+    expect(input).toHaveAttribute('name', 'email');
     expect(label).toBeVisible();
+    expect(input).toHaveAttribute('type', 'email');
+    expect(input).toHaveValue(testProps.value);
   });
 });

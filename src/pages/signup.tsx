@@ -4,9 +4,12 @@ import Link from 'next/link';
 import SignInput from '../components/SignInput/SignInput.component';
 import { signUpContent } from '../content/signUp/signUp.content';
 
+import { signUpSchema } from '../utils/validation/signUp.schema';
+
 import {
   AccountLink,
   AccountLinkWrapper,
+  ErrorLabel,
   GradientLayer,
   SignDescription,
   SignForm,
@@ -31,6 +34,7 @@ const SignUp = () => {
       console.log(values);
     },
     validateOnChange: false,
+    validationSchema: signUpSchema,
   });
 
   return (
@@ -40,6 +44,10 @@ const SignUp = () => {
       <SignForm onSubmit={formik.handleSubmit}>
         <SignTitle>{signUpContent.title}</SignTitle>
         <SignDescription>{signUpContent.description}</SignDescription>
+
+        <ErrorLabel>
+          {Object.values(formik.errors).find((error) => error)}
+        </ErrorLabel>
 
         <SignInput
           name="nickname"

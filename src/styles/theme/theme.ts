@@ -13,6 +13,8 @@ const theme: DefaultTheme = {
       light: '#FFFFFF',
       backup: '#3C4045',
       dark: '#101424',
+      error: '#EE4E4E',
+      success: '#5AE868',
     },
   },
   fonts: {
