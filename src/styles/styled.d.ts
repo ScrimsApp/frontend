@@ -14,6 +14,8 @@ declare module 'styled-components' {
         light: string;
         backup: string;
         dark: string;
+        error: string;
+        success: string;
       };
     };
     fonts: {
