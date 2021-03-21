@@ -72,3 +72,8 @@ export const ButtonStyles = `
 export const Button = styled.button`
   ${ButtonStyles}
 `;
+
+export const LinkButton = styled.a`
+  ${ButtonStyles}
+  color: ${(props) => props.theme.colors.text.light};
+`;
