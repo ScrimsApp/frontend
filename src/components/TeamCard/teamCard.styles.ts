@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const TeamCardWrapper = styled.div`
-  width: 260px;
-  height: 260px;
+  width: 250px;
+  height: 250px;
   position: relative;
 
   border-radius: ${(props) => props.theme.misc.borderRadius};
