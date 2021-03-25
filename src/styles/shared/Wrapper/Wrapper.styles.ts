@@ -14,7 +14,8 @@ export const MainWrapper = styled.main`
   @media only screen and (max-width: 1200px) {
   }
 
-  @media only screen and (max-width: 720px) {
+  @media only screen and (max-width: 750px) {
+    padding: 56px 36px 0px 36px;
   }
 
   @media only screen and (max-width: 520px) {

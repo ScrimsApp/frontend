@@ -47,6 +47,42 @@ const Home = () => {
           date="03.25.21"
         />
       </MatchesWrapper>
+
+      <MatchesWrapper>
+        <MatchCard
+          title="TEAM Liquid"
+          description="Partidas em mapas diversos"
+          hashtags={['#r6', '#coastline', '#balatorta']}
+          time="9:00 PM"
+          date="03.25.21"
+        />
+
+        <MatchCard
+          title="TEAM Liquid"
+          description="Partidas em mapas diversos"
+          hashtags={['#r6', '#coastline', '#balatorta']}
+          time="9:00 PM"
+          date="03.25.21"
+        />
+
+        <MatchCard
+          title="TEAM Liquid"
+          description="Partidas em mapas diversos"
+          hashtags={['#r6', '#coastline', '#balatorta']}
+          time="9:00 PM"
+          date="03.25.21"
+        />
+
+        <MatchCard
+          title="TEAM Liquid"
+          description="Partidas em mapas diversos"
+          hashtags={['#r6', '#coastline', '#balatorta']}
+          time="9:00 PM"
+          date="03.25.21"
+        />
+      </MatchesWrapper>
+
+      <SectionTitle>Recent joined teams</SectionTitle>
     </MainWrapper>
   );
 };
