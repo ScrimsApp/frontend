@@ -5,7 +5,9 @@ import MatchCard from '../components/MatchCard/MatchCard.component';
 import {
   MatchesWrapper,
   SectionTitle,
+  TeamsWrapper,
 } from '../styles/pages/index/index.styles';
+import TeamCard from '../components/TeamCard/TeamCard.component';
 
 const Home = () => {
   return (
@@ -83,6 +85,28 @@ const Home = () => {
       </MatchesWrapper>
 
       <SectionTitle>Recent joined teams</SectionTitle>
+
+      <TeamsWrapper>
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
+
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
+
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
+
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
+      </TeamsWrapper>
     </MainWrapper>
   );
 };

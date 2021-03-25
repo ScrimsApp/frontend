@@ -35,16 +35,13 @@ export const CardWrapper = styled.div`
   @media only screen and (max-width: 620px) {
     width: 60%;
     height: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media only screen and (max-width: 530px) {
     width: 300px;
     height: 320px;
-  }
-
-  @media only screen and (max-width: 750px) {
-    margin-left: auto;
-    margin-right: auto;
   }
 `;
 
