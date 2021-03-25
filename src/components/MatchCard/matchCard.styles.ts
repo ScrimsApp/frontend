@@ -1,16 +1,48 @@
 import styled from 'styled-components';
 
 export const CardWrapper = styled.div`
-  width: 260px;
+  width: 290px;
   height: 320px;
 
   display: flex;
   flex-flow: column;
 
-  margin: 0px auto 36px auto;
+  margin: 0px 0 36px 0;
 
   border-radius: ${(props) => props.theme.misc.borderRadius};
   overflow: hidden;
+
+  @media only screen and (max-width: 1440px) {
+    width: 260px;
+    height: 300px;
+  }
+
+  @media only screen and (max-width: 1300px) {
+    width: 240px;
+    height: 270px;
+  }
+
+  @media only screen and (max-width: 1180px) {
+    width: 40%;
+    height: 270px;
+  }
+
+  @media only screen and (max-width: 840px) {
+    width: 45%;
+    height: 270px;
+  }
+
+  @media only screen and (max-width: 620px) {
+    width: 60%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media only screen and (max-width: 530px) {
+    width: 300px;
+    height: 320px;
+  }
 `;
 
 export const CardImage = styled.img`

@@ -48,6 +48,12 @@ export const Nav = styled.nav`
 
     background-color: ${(props) => props.theme.colors.light};
     border-radius: 12px;
+    z-index: 10;
+  }
+
+  @media only screen and (max-width: 750px) {
+    width: 90%;
+    left: 5%;
   }
 `;
 
@@ -111,5 +117,9 @@ export const NavIcon = styled.div`
 
   @media only screen and (min-width: 920px) {
     display: none;
+  }
+
+  @media only screen and (max-width: 750px) {
+    right: 36px;
   }
 `;
