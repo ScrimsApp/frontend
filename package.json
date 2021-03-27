@@ -9,6 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "formik": "^2.2.6",
     "next": "10.0.8",
     "react": "17.0.1",
