@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://rickandmortyapi.com/api',
+  baseURL: 'http://127.0.0.1:8000/api',
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: false,
-  timeout: 3000,
+  //   withCredentials: true,
+  //   timeout: 3000,
 });

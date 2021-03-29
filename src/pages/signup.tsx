@@ -1,5 +1,7 @@
-import { useFormik } from 'formik';
 import Link from 'next/link';
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useFormik } from 'formik';
 
 import SignInput from '../components/SignInput/SignInput.component';
 import { signUpContent } from '../content/signUp/signUp.content';
@@ -22,7 +24,12 @@ import {
   ButtonWrapper,
 } from '../styles/shared/Button/Button.styles';
 
+import { api } from '../config/api';
+
 const SignUp = () => {
+  const [responseError, setResponseError] = useState('');
+  const router = useRouter();
+
   const formik = useFormik({
     initialValues: {
       nickname: '',
@@ -30,12 +37,25 @@ const SignUp = () => {
       password: '',
       confirmPassword: '',
     },
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit: (values) => handleSignUp(values),
     validateOnChange: false,
     validationSchema: signUpSchema,
   });
+
+  const handleSignUp = async (values: any) => {
+    const response = await api.post('/auth/register', {
+      name: values.nickname,
+      email: values.email,
+      password: values.password,
+      password_confirmation: values.password,
+    });
+
+    const { status } = response;
+
+    status === 201
+      ? router.push('signin')
+      : setResponseError('Something went wrong!');
+  };
 
   return (
     <SignWrapper>
@@ -46,7 +66,7 @@ const SignUp = () => {
         <SignDescription>{signUpContent.description}</SignDescription>
 
         <ErrorLabel>
-          {Object.values(formik.errors).find((error) => error)}
+          {Object.values(formik.errors).find((error) => error) || responseError}
         </ErrorLabel>
 
         <SignInput
