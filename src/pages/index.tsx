@@ -1,20 +1,22 @@
 import Navbar from '../components/Navbar/Navbar.component';
 import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
 
-import MatchCard from '../components/MatchCard/MatchCard.component';
 import {
   MatchesWrapper,
   SectionTitle,
   TeamsWrapper,
 } from '../styles/pages/index/index.styles';
+import MatchCard from '../components/MatchCard/MatchCard.component';
 import TeamCard from '../components/TeamCard/TeamCard.component';
+
+import { homeContent } from '../content/home/home.content';
 
 const Home = () => {
   return (
     <MainWrapper>
       <Navbar />
 
-      <SectionTitle>Comming up matches</SectionTitle>
+      <SectionTitle>{homeContent.matches}</SectionTitle>
 
       <MatchesWrapper>
         <MatchCard
@@ -82,7 +84,7 @@ const Home = () => {
         />
       </MatchesWrapper>
 
-      <SectionTitle>Recent joined teams</SectionTitle>
+      <SectionTitle>{homeContent.teams}</SectionTitle>
 
       <TeamsWrapper>
         <TeamCard
