@@ -25,6 +25,7 @@ import {
 } from '../styles/shared/Button/Button.styles';
 
 import { api } from '../config/api';
+import { SignUpResponse } from '../types/responses/SignUpResponse.type';
 
 const SignUp = () => {
   const [responseError, setResponseError] = useState('');
@@ -32,10 +33,10 @@ const SignUp = () => {
 
   const formik = useFormik({
     initialValues: {
-      nickname: '',
+      name: '',
       email: '',
       password: '',
-      confirmPassword: '',
+      password_confirmation: '',
     },
     onSubmit: (values) => handleSignUp(values),
     validateOnChange: false,
@@ -43,14 +44,16 @@ const SignUp = () => {
   });
 
   const handleSignUp = async (values: any) => {
-    const response = await api.post('/auth/register', {
-      name: values.nickname,
+    const response = await api.post<SignUpResponse>('/auth/register', {
+      name: values.name,
       email: values.email,
       password: values.password,
-      password_confirmation: values.password,
+      password_confirmation: values.password_confirmation,
     });
 
-    const { status } = response;
+    const { data, status } = response;
+
+    console.log(data);
 
     status === 201
       ? router.push('signin')
@@ -70,13 +73,13 @@ const SignUp = () => {
         </ErrorLabel>
 
         <SignInput
-          name="nickname"
+          name="name"
           minWidth="100%"
           colorType="secondary"
           label="Nickname"
           type="text"
           margin={['0px', '0px', '36px', '0px']}
-          value={formik.values.nickname}
+          value={formik.values.name}
           onChange={formik.handleChange}
         />
 
@@ -103,13 +106,13 @@ const SignUp = () => {
         />
 
         <SignInput
-          name="confirmPassword"
+          name="password_confirmation"
           minWidth="100%"
           colorType="secondary"
           label="Confirm Password"
           type="password"
           margin={['0px', '0px', '36px', '0px']}
-          value={formik.values.confirmPassword}
+          value={formik.values.password_confirmation}
           onChange={formik.handleChange}
         />
 
