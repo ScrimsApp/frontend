@@ -26,6 +26,7 @@ import {
 } from '../styles/shared/Button/Button.styles';
 
 import { api } from '../config/api';
+import { SignInResponse } from '../types/responses/SignInResponse.type';
 
 const SignIn = () => {
   const [responseError, setResponseError] = useState('');
@@ -42,7 +43,7 @@ const SignIn = () => {
   });
 
   const handleSignIn = async (values: any) => {
-    const response = await api.post('/auth/login', {
+    const response = await api.post<SignInResponse>('/auth/login', {
       email: values.email,
       password: values.password,
     });

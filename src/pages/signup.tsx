@@ -25,6 +25,7 @@ import {
 } from '../styles/shared/Button/Button.styles';
 
 import { api } from '../config/api';
+import { SignUpResponse } from '../types/responses/SignUpResponse.type';
 
 const SignUp = () => {
   const [responseError, setResponseError] = useState('');
@@ -43,14 +44,16 @@ const SignUp = () => {
   });
 
   const handleSignUp = async (values: any) => {
-    const response = await api.post('/auth/register', {
+    const response = await api.post<SignUpResponse>('/auth/register', {
       name: values.nickname,
       email: values.email,
       password: values.password,
       password_confirmation: values.password,
     });
 
-    const { status } = response;
+    const { data, status } = response;
+
+    console.log(data);
 
     status === 201
       ? router.push('signin')
