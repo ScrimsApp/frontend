@@ -2,9 +2,9 @@
  * @jest-environment jsdom
  */
 
-import { render } from '../testUtils';
+import { render } from '../../testUtils';
 
-import SignInput from '../../components/SignInput/SignInput.component';
+import SignInput from '../../../components/SignInput/SignInput.component';
 
 describe('SignInput UI Tests', () => {
   let testProps;
