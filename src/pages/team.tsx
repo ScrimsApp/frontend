@@ -28,9 +28,19 @@ const Team: FunctionComponent = () => {
         <MatchesWrapper />
 
         <TeamMembersWrapper>
-          <TeamMemberCard />
+          <TeamMemberCard
+            image="https://sm.ign.com/ign_br/screenshot/default/morty_ep2e.jpg"
+            playerName="Morty"
+            description1="Joined in 03.26.2021"
+            description2="5 matches played"
+          />
 
-          <TeamMemberCard />
+          <TeamMemberCard
+            image="https://i.pinimg.com/originals/ac/51/52/ac5152b9f7f50781b2b01e35463fc4e6.jpg"
+            playerName="Rick"
+            description1="Joined in 03.29.2021"
+            description2="2 matches played"
+          />
         </TeamMembersWrapper>
 
         <PlayersRequests />

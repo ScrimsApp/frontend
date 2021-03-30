@@ -9,19 +9,22 @@ import {
   SideOption,
   RemoveButton,
 } from './teamMemberCard.styles';
+import { TeamMemberCardProps } from './types';
 
-const TeamMemberCard: FunctionComponent = () => {
+const TeamMemberCard: FunctionComponent<TeamMemberCardProps> = ({
+  image,
+  playerName,
+  description1,
+  description2,
+}) => {
   return (
     <TeamMemberCardWrapper>
-      <TeamMemberImage
-        src="https://i2.wp.com/androidmag.de/wp-content/uploads/2016/02/Pocket-Mortys-Logo.png?fit=300%2C300&ssl=1"
-        alt="Team member"
-      />
+      <TeamMemberImage src={image} alt={playerName} />
 
       <TeamMemberInfo>
-        <TeamMemberName>vinisaveg</TeamMemberName>
-        <TeamMemberDescription>Joined in 03.26.2021</TeamMemberDescription>
-        <TeamMemberDescription>5 matches played</TeamMemberDescription>
+        <TeamMemberName>{playerName}</TeamMemberName>
+        <TeamMemberDescription>{description1}</TeamMemberDescription>
+        <TeamMemberDescription>{description2}</TeamMemberDescription>
       </TeamMemberInfo>
 
       <SideOption backgroundColor="#ED5353">
