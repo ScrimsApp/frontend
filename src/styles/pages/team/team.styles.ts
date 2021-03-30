@@ -21,7 +21,7 @@ export const TeamInfoWrapper = styled.section`
   display: flex;
 
   width: 60%;
-  height: 500px;
+  height: 400px;
 
   margin-bottom: 56px;
 
@@ -58,9 +58,10 @@ export const TeamMembersWrapper = styled.section`
   flex-direction: column;
 
   width: 60%;
-  height: 444px;
+  height: 544px;
 
-  margin-top: -500px;
+  padding-top: 36px;
+  margin-top: -600px;
   margin-bottom: 56px;
 
   background-color: #1f2333;
@@ -70,6 +71,41 @@ export const TeamMembersWrapper = styled.section`
   @media only screen and (max-width: 1050px) {
     width: 100%;
     margin-top: 0;
+  }
+`;
+
+export const TeamMembersTitle = styled.h2`
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0px 0px 36px 15px;
+`;
+
+export const TeamMembers = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  overflow-y: scroll;
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #2a2d3a;
+    border-radius: 12px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3f56;
   }
 `;
 

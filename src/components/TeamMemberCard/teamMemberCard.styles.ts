@@ -14,7 +14,8 @@ const initial = keyframes`
 
 export const TeamMemberCardWrapper = styled.div`
   width: 100%;
-  height: 180px;
+  height: 160px;
+  min-height: 160px;
 
   position: relative;
 
