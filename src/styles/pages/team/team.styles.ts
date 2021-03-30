@@ -29,6 +29,8 @@ export const TeamInfoWrapper = styled.section`
   box-sizing: border-box;
   border-radius: 12px;
 
+  overflow: hidden;
+
   @media only screen and (max-width: 1050px) {
     width: 100%;
   }
@@ -70,7 +72,7 @@ export const TeamMembersWrapper = styled.section`
   }
 `;
 
-export const PlayersInvitations = styled.section`
+export const PlayersRequests = styled.section`
   display: flex;
 
   width: 100%;
