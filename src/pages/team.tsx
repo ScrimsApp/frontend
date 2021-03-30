@@ -11,7 +11,9 @@ import {
   TeamMembersWrapper,
   PlayersRequests,
 } from '../styles/pages/team/team.styles';
+
 import TeamInfoCard from '../components/TeamInfoCard/TeamInfoCard.component';
+import TeamMemberCard from '../components/TeamMemberCard/TeamMemberCard.component';
 
 const Team: FunctionComponent = () => {
   return (
@@ -25,7 +27,11 @@ const Team: FunctionComponent = () => {
 
         <MatchesWrapper />
 
-        <TeamMembersWrapper />
+        <TeamMembersWrapper>
+          <TeamMemberCard />
+
+          <TeamMemberCard />
+        </TeamMembersWrapper>
 
         <PlayersRequests />
       </TeamWrapper>
