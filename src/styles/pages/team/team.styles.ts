@@ -109,11 +109,16 @@ export const TeamMembers = styled.div`
   }
 `;
 
-export const PlayersRequests = styled.section`
+export const PlayersRequestsWrapper = styled.section`
   display: flex;
+  flex-direction: column;
 
   width: 100%;
-  height: 400px;
+  height: auto;
+
+  padding-top: 36px;
+  padding-bottom: 36px;
+  margin-bottom: 36px;
 
   background-color: #1f2333;
   box-sizing: border-box;
@@ -121,5 +126,25 @@ export const PlayersRequests = styled.section`
 
   @media only screen and (max-width: 1050px) {
     width: 100%;
+  }
+`;
+
+export const PlayersRequestsTitle = styled(TeamMembersTitle)``;
+
+export const PlayersRequests = styled.div`
+  width: 100%;
+  /* height: 100%; */
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 0px 15px;
+
+  box-sizing: border-box;
+
+  @media only screen and (max-width: 1050px) {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 `;

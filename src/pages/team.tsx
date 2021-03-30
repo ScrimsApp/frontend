@@ -9,13 +9,16 @@ import {
   TeamInfoWrapper,
   MatchesWrapper,
   TeamMembersWrapper,
-  PlayersRequests,
+  PlayersRequestsWrapper,
   TeamMembersTitle,
   TeamMembers,
+  PlayersRequestsTitle,
+  PlayersRequests,
 } from '../styles/pages/team/team.styles';
 
 import TeamInfoCard from '../components/TeamInfoCard/TeamInfoCard.component';
 import TeamMemberCard from '../components/TeamMemberCard/TeamMemberCard.component';
+import PlayerRequestCard from '../components/PlayerRequestCard/PlayerRequestCard.component';
 
 const Team: FunctionComponent = () => {
   return (
@@ -72,7 +75,31 @@ const Team: FunctionComponent = () => {
           </TeamMembers>
         </TeamMembersWrapper>
 
-        <PlayersRequests />
+        <PlayersRequestsWrapper>
+          <PlayersRequestsTitle>Players requests</PlayersRequestsTitle>
+
+          <PlayersRequests>
+            <PlayerRequestCard
+              playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
+              playerName="Poppybutthole"
+            />
+
+            <PlayerRequestCard
+              playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
+              playerName="Poppybutthole"
+            />
+
+            <PlayerRequestCard
+              playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
+              playerName="Poppybutthole"
+            />
+
+            <PlayerRequestCard
+              playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
+              playerName="Poppybutthole"
+            />
+          </PlayersRequests>
+        </PlayersRequestsWrapper>
       </TeamWrapper>
     </MainWrapper>
   );
