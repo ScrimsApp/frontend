@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
 
 import Navbar from '../components/Navbar/Navbar.component';
 
@@ -7,7 +7,10 @@ import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
 import {
   TeamWrapper,
   TeamInfoWrapper,
-  MatchesWrapper,
+  MatchesScheduleWrapper,
+  MatchesSchedule,
+  Options,
+  MatchesScheduleTitle,
   TeamMembersWrapper,
   PlayersRequestsWrapper,
   TeamMembersTitle,
@@ -19,8 +22,18 @@ import {
 import TeamInfoCard from '../components/TeamInfoCard/TeamInfoCard.component';
 import TeamMemberCard from '../components/TeamMemberCard/TeamMemberCard.component';
 import PlayerRequestCard from '../components/PlayerRequestCard/PlayerRequestCard.component';
+import Schedule from '../components/Schedule/Schedule.component';
+import MatchInvitations from '../components/MatchInvitations/MatchInvitations.component';
 
 const Team: FunctionComponent = () => {
+  const [isMatchActive, setIsMatchActive] = useState(true);
+  const [isScheduleActive, setIsScheduleActive] = useState(false);
+
+  const handleMatchScheduleActive = () => {
+    setIsMatchActive(!isMatchActive);
+    setIsScheduleActive(!isScheduleActive);
+  };
+
   return (
     <MainWrapper>
       <Navbar />
@@ -39,7 +52,28 @@ const Team: FunctionComponent = () => {
           />
         </TeamInfoWrapper>
 
-        <MatchesWrapper />
+        <MatchesScheduleWrapper>
+          <Options>
+            <MatchesScheduleTitle
+              className={isMatchActive ? 'active' : ''}
+              onClick={handleMatchScheduleActive}
+            >
+              Match invitations
+            </MatchesScheduleTitle>
+            <MatchesScheduleTitle
+              className={isScheduleActive ? 'active' : ''}
+              onClick={handleMatchScheduleActive}
+            >
+              Schedule
+            </MatchesScheduleTitle>
+          </Options>
+
+          <MatchesSchedule>
+            <MatchInvitations visible={isMatchActive} />
+
+            <Schedule visible={isScheduleActive} />
+          </MatchesSchedule>
+        </MatchesScheduleWrapper>
 
         <TeamMembersWrapper>
           <TeamMembersTitle>Team members</TeamMembersTitle>

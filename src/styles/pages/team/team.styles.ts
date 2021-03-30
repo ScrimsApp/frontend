@@ -36,21 +36,82 @@ export const TeamInfoWrapper = styled.section`
   }
 `;
 
-export const MatchesWrapper = styled.section`
+export const scrollStyles = `
+    overflow-y: scroll;
+
+    /* width */
+    ::-webkit-scrollbar {
+    width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+    background: transparent;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+    background: #2a2d3a;
+    border-radius: 12px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+    background: #3a3f56;
+    }
+`;
+
+export const MatchesScheduleWrapper = styled.section`
   display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 
   width: 35%;
   height: 1000px;
 
+  padding-top: 36px;
   margin-bottom: 56px;
 
   background-color: #1f2333;
   box-sizing: border-box;
   border-radius: 12px;
+  overflow: hidden;
 
   @media only screen and (max-width: 1050px) {
     width: 100%;
   }
+
+  .active {
+    font-size: 28px;
+    font-weight: bold;
+    color: ${(props) => props.theme.colors.text.light};
+  }
+`;
+
+export const MatchesSchedule = styled.div`
+  width: 100%;
+  display: flex;
+
+  overflow-y: auto;
+`;
+
+export const Options = styled.div`
+  display: flex;
+  width: 100%;
+
+  justify-content: space-around;
+  align-items: center;
+
+  margin: 0px 15px 36px 15px;
+`;
+
+export const MatchesScheduleTitle = styled.h2`
+  font-size: 18px;
+  font-weight: bold;
+  color: ${(props) => props.theme.colors.text.backup};
+
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
 `;
 
 export const TeamMembersWrapper = styled.section`
@@ -85,28 +146,7 @@ export const TeamMembers = styled.div`
   flex-direction: column;
   width: 100%;
 
-  overflow-y: scroll;
-
-  /* width */
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #2a2d3a;
-    border-radius: 12px;
-  }
-
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #3a3f56;
-  }
+  ${scrollStyles}
 `;
 
 export const PlayersRequestsWrapper = styled.section`
