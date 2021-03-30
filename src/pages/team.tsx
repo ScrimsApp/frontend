@@ -22,7 +22,16 @@ const Team: FunctionComponent = () => {
 
       <TeamWrapper>
         <TeamInfoWrapper>
-          <TeamInfoCard />
+          <TeamInfoCard
+            teamImage="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
+            teamName="TEAM Liquid"
+            about="This team is the best team
+          in the entire universe my
+          dear friend."
+            description="7 matches played"
+            description2="7 members"
+            description3="Founded in March 26 2021"
+          />
         </TeamInfoWrapper>
 
         <MatchesWrapper />

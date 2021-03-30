@@ -8,27 +8,30 @@ import {
   TeamAbout,
   TeamDescription,
 } from './teamInfoCard.styles';
+import { TeamInfoCardProps } from './types';
 
-const TeamInfoCard: FunctionComponent = () => {
+const TeamInfoCard: FunctionComponent<TeamInfoCardProps> = ({
+  teamImage,
+  teamName,
+  about,
+  description,
+  description2,
+  description3,
+}) => {
   return (
     <TeamInfoWrapper>
-      <TeamImage
-        src="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
-        alt="Team"
-      />
+      <TeamImage src={teamImage} alt={teamName} />
 
       <TeamInfoContent>
-        <TeamName>TEAM Liquid</TeamName>
+        <TeamName>{teamName}</TeamName>
 
-        <TeamAbout>
-          This team is the best team in the entire universe my dear friend.
-        </TeamAbout>
+        <TeamAbout>{about}</TeamAbout>
 
-        <TeamDescription>7 matches played</TeamDescription>
+        <TeamDescription>{description}</TeamDescription>
 
-        <TeamDescription>7 members</TeamDescription>
+        <TeamDescription>{description2}</TeamDescription>
 
-        <TeamDescription>Founded in March 26 2021</TeamDescription>
+        <TeamDescription>{description3}</TeamDescription>
       </TeamInfoContent>
     </TeamInfoWrapper>
   );
