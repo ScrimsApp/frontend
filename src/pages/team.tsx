@@ -24,6 +24,7 @@ import TeamMemberCard from '../components/TeamMemberCard/TeamMemberCard.componen
 import PlayerRequestCard from '../components/PlayerRequestCard/PlayerRequestCard.component';
 import Schedule from '../components/Schedule/Schedule.component';
 import MatchInvitations from '../components/MatchInvitations/MatchInvitations.component';
+// import TeamTip from '../components/TeamTip/TeamTip.component';
 
 const Team: FunctionComponent = () => {
   const [isMatchActive, setIsMatchActive] = useState(true);
@@ -135,6 +136,8 @@ const Team: FunctionComponent = () => {
           </PlayersRequests>
         </PlayersRequestsWrapper>
       </TeamWrapper>
+
+      {/* <TeamTip /> */}
     </MainWrapper>
   );
 };
