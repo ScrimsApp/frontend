@@ -29,5 +29,42 @@ export const PlayerRequestCardWrapper = styled(TeamCardWrapper)`
   }
 `;
 export const PlayerRequestCardImage = styled(TeamCardImage)``;
-export const PlayerNameWrapper = styled(TeamNameWrapper)``;
-export const PlayerName = styled(TeamName)``;
+export const PlayerNameWrapper = styled(TeamNameWrapper)`
+  padding: 0px !important;
+`;
+export const PlayerName = styled(TeamName)`
+  width: 70%;
+
+  margin-left: 15px;
+`;
+
+export const Options = styled.div`
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-right: 15px;
+`;
+export const OptionButton = styled.div`
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: filter 200ms ease-in-out;
+
+  background-color: #9161ff;
+
+  cursor: pointer;
+
+  &&:active {
+    filter: brightness(80%);
+  }
+
+  svg {
+    width: 50%;
+  }
+`;

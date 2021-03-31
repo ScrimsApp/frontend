@@ -97,7 +97,7 @@ export const MatchesSchedule = styled.div`
 
 export const Options = styled.div`
   display: flex;
-  width: 100%;
+  width: 90%;
 
   justify-content: space-around;
   align-items: center;
