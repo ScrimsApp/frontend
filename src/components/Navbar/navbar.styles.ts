@@ -29,11 +29,19 @@ export const Nav = styled.nav`
     border-bottom: 1px solid ${(props) => props.theme.colors.primary};
   }
 
+  .show-on-mobile {
+    display: none;
+  }
+
   @media only screen and (max-width: 920px) {
     .active {
       color: ${(props) => props.theme.colors.text.dark};
       transform: scale(1.2);
       border-bottom: 1px solid ${(props) => props.theme.colors.primary};
+    }
+
+    .show-on-mobile {
+      display: block;
     }
 
     position: absolute;

@@ -27,34 +27,42 @@ const Navbar: FunctionComponent = () => {
 
       <Nav className={isNavOpen ? '' : 'hide'}>
         <Link passHref href="/">
-          <NavItem className="active">Home</NavItem>
+          <NavItem className="">Home</NavItem>
         </Link>
 
         <Link passHref href="/team">
-          <NavItem>Team</NavItem>
+          <NavItem className="active">My team</NavItem>
         </Link>
 
-        <Link passHref href="/signin">
-          <NavItem>Schedule</NavItem>
+        <Link passHref href="/teams">
+          <NavItem className="">Teams</NavItem>
+        </Link>
+
+        <Link passHref href="/match">
+          <NavItem className="">Match</NavItem>
         </Link>
 
         {/* If logged in -> MOBILE*/}
-        {/* <Link passHref href="/signin">
-          <NavUserItem>Username</NavUserItem>
+        {/* <Link passHref href="/profile">
+          <NavUserItem className="show-on-mobile">Username</NavUserItem>
         </Link> */}
 
-        {/* If logged in*/}
-        <Link passHref href="/logout">
-          <NavItem>Logout</NavItem>
-        </Link>
+        {/* If NOT logged in -> MOBILE*/}
+        {/* <Link passHref href="/signin">
+          <NavUserItem className="show-on-mobile">Sign in</NavUserItem>
+        </Link> */}
       </Nav>
 
       <ButtonWrapper className="hide" minWidth="15%">
         <ButtonOverlay className="overlay" type="primary" />
-        <Link passHref href="/signin">
-          {/* <LinkButton>Sign in</LinkButton> */}
 
-          {/* If logged in -> DESKTOP*/}
+        {/* If NOT logged in -> DESKTOP*/}
+        {/* <Link passHref href="/signin">
+          <LinkButton>Sign in</LinkButton>
+        </Link> */}
+
+        {/* If logged in -> DESKTOP*/}
+        <Link passHref href="/profile">
           <LinkButton>Username</LinkButton>
         </Link>
       </ButtonWrapper>
