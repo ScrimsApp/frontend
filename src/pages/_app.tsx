@@ -7,16 +7,20 @@ import GlobalStyle from '../styles/global/global';
 
 import theme from '../styles/theme/theme';
 
+import GlobalContextProvider from '../context/GlobalContext.';
+
 const App: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <Head>
-        <title>Scrims App</title>
-      </Head>
+    <GlobalContextProvider>
+      <ThemeProvider theme={theme}>
+        <Head>
+          <title>Scrims App</title>
+        </Head>
 
-      <Component {...pageProps} />
-      <GlobalStyle />
-    </ThemeProvider>
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </ThemeProvider>
+    </GlobalContextProvider>
   );
 };
 
