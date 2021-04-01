@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const NavbarWrapper = styled.header`
   width: 100%;
@@ -17,6 +17,29 @@ export const NavbarWrapper = styled.header`
     }
   }
 `;
+
+const navItemAnimation = keyframes`
+  0%{
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(0.9);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+
+  75% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1.2);
+  }
+`;
+
 export const Nav = styled.nav`
   width: 60%;
   display: flex;
@@ -24,9 +47,9 @@ export const Nav = styled.nav`
   align-items: center;
 
   .active {
+    animation: ${navItemAnimation} 200ms linear forwards;
     color: ${(props) => props.theme.colors.text.light};
     transform: scale(1.2);
-    border-bottom: 1px solid ${(props) => props.theme.colors.primary};
   }
 
   .show-on-mobile {
@@ -37,7 +60,6 @@ export const Nav = styled.nav`
     .active {
       color: ${(props) => props.theme.colors.text.dark};
       transform: scale(1.2);
-      border-bottom: 1px solid ${(props) => props.theme.colors.primary};
     }
 
     .show-on-mobile {

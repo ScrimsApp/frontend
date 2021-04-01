@@ -1,5 +1,6 @@
 import { FunctionComponent, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import {
   LinkButton,
@@ -16,6 +17,7 @@ import {
 
 const Navbar: FunctionComponent = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { pathname } = useRouter();
 
   const handleNavOpen = () => {
     setIsNavOpen(!isNavOpen);
@@ -27,19 +29,25 @@ const Navbar: FunctionComponent = () => {
 
       <Nav className={isNavOpen ? '' : 'hide'}>
         <Link passHref href="/">
-          <NavItem className="">Home</NavItem>
+          <NavItem className={pathname === '/' ? 'active' : ''}>Home</NavItem>
         </Link>
 
         <Link passHref href="/team">
-          <NavItem className="active">My team</NavItem>
+          <NavItem className={pathname === '/team' ? 'active' : ''}>
+            My team
+          </NavItem>
         </Link>
 
         <Link passHref href="/teams">
-          <NavItem className="">Teams</NavItem>
+          <NavItem className={pathname === '/teams' ? 'active' : ''}>
+            Teams
+          </NavItem>
         </Link>
 
         <Link passHref href="/match">
-          <NavItem className="">Match</NavItem>
+          <NavItem className={pathname === '/match' ? 'active' : ''}>
+            Match
+          </NavItem>
         </Link>
 
         {/* If logged in -> MOBILE*/}
