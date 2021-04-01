@@ -67,7 +67,11 @@ const CreateTeam = () => {
         />
 
         <ButtonWrapper minWidth="100%" margin={['0px', '0px', '36px', '0px']}>
-          <ButtonOverlay className="overlay" type="secondary" />
+          <ButtonOverlay
+            sign={formik.values.teamImage != null ? true : false}
+            className="overlay"
+            type="secondary"
+          />
           <FileInput
             type="file"
             onChange={(event) =>
