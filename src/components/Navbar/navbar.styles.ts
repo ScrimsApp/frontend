@@ -94,6 +94,7 @@ export const NavItem = styled.a`
   font-weight: 600;
 
   transition: all 200ms ease-in-out;
+  cursor: pointer;
 
   &&:hover {
     color: ${(props) => props.theme.colors.text.light};
