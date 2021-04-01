@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useFormik } from 'formik';
 
 import {
   CreateTeamForm,
@@ -21,11 +22,21 @@ import {
 const CreateTeam = () => {
   const router = useRouter();
 
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      description: '',
+      teamImage: null,
+    },
+    onSubmit: (values) => console.log(values),
+    validateOnChange: false,
+  });
+
   return (
     <CreateTeamWrapper>
       <CreateTeamGradientLayer />
 
-      <CreateTeamForm>
+      <CreateTeamForm onSubmit={formik.handleSubmit}>
         <BackArrow onClick={() => router.back()}>&#8592;</BackArrow>
         <CreateTeamTitle>Create your team</CreateTeamTitle>
 
@@ -40,7 +51,8 @@ const CreateTeam = () => {
           label="Team name"
           type="text"
           margin={['0px', '0px', '36px', '0px']}
-          value=""
+          value={formik.values.name}
+          onChange={formik.handleChange}
         />
 
         <SignInput
@@ -50,12 +62,19 @@ const CreateTeam = () => {
           label="Description"
           type="text"
           margin={['0px', '0px', '36px', '0px']}
-          value=""
+          value={formik.values.description}
+          onChange={formik.handleChange}
         />
 
         <ButtonWrapper minWidth="100%" margin={['0px', '0px', '36px', '0px']}>
           <ButtonOverlay className="overlay" type="secondary" />
-          <FileInput type="file" />
+          <FileInput
+            type="file"
+            onChange={(event) =>
+              formik.setFieldValue('teamImage', event.currentTarget.files[0])
+            }
+            name="teamImage"
+          />
           <Button type="button">Upload Team Banner</Button>
         </ButtonWrapper>
 
