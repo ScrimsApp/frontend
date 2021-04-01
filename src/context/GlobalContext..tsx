@@ -1,11 +1,33 @@
-import { createContext } from 'react';
+import { createContext, useEffect, useState } from 'react';
 
 import { GlobalContextType } from './context.types';
 
 export const GlobalContext = createContext({} as GlobalContextType);
 
+import { User } from '../types/user/User.type';
+
 const GlobalContextProvider = ({ children }) => {
-  return <GlobalContext.Provider value={{}}>{children}</GlobalContext.Provider>;
+  const [user, setUser] = useState<User>({} as User);
+
+  useEffect(() => {
+    // Get User data from LocalStorage
+
+    setUser({
+      name: 'vinisaveg',
+      id: '1',
+      token: '1234567890',
+    });
+  }, []);
+
+  const logoutUser = () => {
+    setUser({} as User);
+  };
+
+  return (
+    <GlobalContext.Provider value={{ userContext: { user, logoutUser } }}>
+      {children}
+    </GlobalContext.Provider>
+  );
 };
 
 export default GlobalContextProvider;

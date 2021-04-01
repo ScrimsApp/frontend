@@ -1,11 +1,13 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useContext, useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import {
   LinkButton,
   ButtonOverlay,
   ButtonWrapper,
 } from '../../styles/shared/Button/Button.styles';
+
 import {
   NavbarWrapper,
   Nav,
@@ -14,8 +16,14 @@ import {
   NavIcon,
 } from './navbar.styles';
 
-const Navbar: FunctionComponent = () => {
+import { GlobalContext } from '../../context/GlobalContext.';
+
+const Navbar: FunctionComponent = ({ ...props }) => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { pathname } = useRouter();
+
+  const { userContext } = useContext(GlobalContext);
+  const { user, logoutUser } = userContext;
 
   const handleNavOpen = () => {
     setIsNavOpen(!isNavOpen);
@@ -27,44 +35,56 @@ const Navbar: FunctionComponent = () => {
 
       <Nav className={isNavOpen ? '' : 'hide'}>
         <Link passHref href="/">
-          <NavItem className="">Home</NavItem>
+          <NavItem className={pathname === '/' ? 'active' : ''}>Home</NavItem>
         </Link>
 
         <Link passHref href="/team">
-          <NavItem className="active">My team</NavItem>
+          <NavItem className={pathname === '/team' ? 'active' : ''}>
+            My team
+          </NavItem>
         </Link>
 
         <Link passHref href="/teams">
-          <NavItem className="">Teams</NavItem>
+          <NavItem className={pathname === '/teams' ? 'active' : ''}>
+            Teams
+          </NavItem>
         </Link>
 
         <Link passHref href="/match">
-          <NavItem className="">Match</NavItem>
+          <NavItem className={pathname === '/match' ? 'active' : ''}>
+            Match
+          </NavItem>
         </Link>
 
-        {/* If logged in -> MOBILE*/}
-        {/* <Link passHref href="/profile">
-          <NavUserItem className="show-on-mobile">Username</NavUserItem>
-        </Link> */}
+        {user.name ? (
+          <NavItem onClick={() => logoutUser()}>Logout</NavItem>
+        ) : null}
 
-        {/* If NOT logged in -> MOBILE*/}
-        {/* <Link passHref href="/signin">
-          <NavUserItem className="show-on-mobile">Sign in</NavUserItem>
-        </Link> */}
+        {/* If logged in -> MOBILE*/}
+        {user.name ? (
+          <Link passHref href="/profile">
+            <NavUserItem className="show-on-mobile">{user.name}</NavUserItem>
+          </Link>
+        ) : (
+          <Link passHref href="/signin">
+            <NavUserItem className="show-on-mobile">Sign in</NavUserItem>
+          </Link>
+        )}
       </Nav>
 
       <ButtonWrapper className="hide" minWidth="15%">
         <ButtonOverlay className="overlay" type="primary" />
 
         {/* If NOT logged in -> DESKTOP*/}
-        {/* <Link passHref href="/signin">
-          <LinkButton>Sign in</LinkButton>
-        </Link> */}
-
-        {/* If logged in -> DESKTOP*/}
-        <Link passHref href="/profile">
-          <LinkButton>Username</LinkButton>
-        </Link>
+        {user.name ? (
+          <Link passHref href="/profile">
+            <LinkButton>{user.name}</LinkButton>
+          </Link>
+        ) : (
+          <Link passHref href="/signin">
+            <LinkButton>Sign in</LinkButton>
+          </Link>
+        )}
       </ButtonWrapper>
 
       <NavIcon onClick={handleNavOpen} />
