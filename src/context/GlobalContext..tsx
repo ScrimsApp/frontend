@@ -11,22 +11,29 @@ const GlobalContextProvider = ({ children }) => {
 
   useEffect(() => {
     // Get User data from LocalStorage
+    const userInfo = window.localStorage.getItem('user');
+    console.log(userInfo);
 
-    setUser({
-      name: 'vinisaveg',
-      id: '1',
-      token: '1234567890',
-      teamId: '1',
-      isTeamLeader: true,
-    });
+    if (userInfo) {
+      const userInfoParsed = JSON.parse(userInfo);
+      setUser(userInfoParsed);
+    }
   }, []);
 
   const logoutUser = () => {
     setUser({} as User);
+    window.localStorage.setItem('user', '');
+  };
+
+  const storeUserInfo = (user: User) => {
+    // Store User data on LocalStorage
+    window.localStorage.setItem('user', JSON.stringify(user));
   };
 
   return (
-    <GlobalContext.Provider value={{ userContext: { user, logoutUser } }}>
+    <GlobalContext.Provider
+      value={{ userContext: { user, logoutUser, storeUserInfo } }}
+    >
       {children}
     </GlobalContext.Provider>
   );
