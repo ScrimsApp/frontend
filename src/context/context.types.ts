@@ -1,4 +1,5 @@
 import { User } from '../types/user/User.type';
+
 export interface GlobalContextType {
   userContext?: UserContext;
 }
@@ -6,4 +7,5 @@ export interface GlobalContextType {
 export interface UserContext {
   user?: User;
   logoutUser?: () => void;
+  storeUserInfo?: (user: User) => void;
 }

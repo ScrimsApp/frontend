@@ -20,14 +20,3 @@ export const MatchesWrapper = styled.section`
 
   padding: 0px 0px 0px 0px;
 `;
-
-export const TeamsWrapper = styled.section`
-  width: 100%;
-  height: auto;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-flow: row wrap;
-
-  padding: 0px 0px 20px 0px;
-`;

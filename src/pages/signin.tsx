@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useFormik } from 'formik';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useContext, useState } from 'react';
 
 import SignInput from '../components/SignInput/SignInput.component';
 import { signInContent } from '../content/signIn/signIn.content';
@@ -27,10 +26,12 @@ import {
 
 import { api } from '../config/api';
 import { SignInResponse } from '../types/responses/SignInResponse.type';
+import { GlobalContext } from '../context/GlobalContext.';
 
 const SignIn = () => {
   const [responseError, setResponseError] = useState('');
-  const router = useRouter();
+  const { userContext } = useContext(GlobalContext);
+  const { storeUserInfo } = userContext;
 
   const formik = useFormik({
     initialValues: {
@@ -52,8 +53,16 @@ const SignIn = () => {
 
     console.log(data);
 
+    storeUserInfo({
+      name: data.username,
+      id: data.user_id,
+      token: data.access_token,
+      teamId: '1',
+      isTeamLeader: true,
+    });
+
     status === 200
-      ? router.push('/')
+      ? (window.location.href = '/')
       : setResponseError('Something went wrong!');
   };
 

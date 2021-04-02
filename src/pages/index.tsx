@@ -4,10 +4,8 @@ import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
 import {
   MatchesWrapper,
   SectionTitle,
-  TeamsWrapper,
 } from '../styles/pages/index/index.styles';
 import MatchCard from '../components/MatchCard/MatchCard.component';
-import TeamCard from '../components/TeamCard/TeamCard.component';
 
 import { homeContent } from '../content/home/home.content';
 
@@ -83,30 +81,6 @@ const Home = () => {
           date="03.25.21"
         />
       </MatchesWrapper>
-
-      <SectionTitle>{homeContent.teams}</SectionTitle>
-
-      <TeamsWrapper>
-        <TeamCard
-          teamName="TEAM Liquid"
-          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-        />
-
-        <TeamCard
-          teamName="TEAM Liquid"
-          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-        />
-
-        <TeamCard
-          teamName="TEAM Liquid"
-          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-        />
-
-        <TeamCard
-          teamName="TEAM Liquid"
-          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-        />
-      </TeamsWrapper>
     </MainWrapper>
   );
 };

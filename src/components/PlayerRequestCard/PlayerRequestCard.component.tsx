@@ -51,9 +51,9 @@ const PlayerRequestCard: FunctionComponent<PlayerRequestCardProps> = ({
                 x2="3.83392"
                 y2="20.8705"
                 stroke="#ED5353"
-                stroke-width="4.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <line
                 x1="3.83237"
@@ -61,9 +61,9 @@ const PlayerRequestCard: FunctionComponent<PlayerRequestCardProps> = ({
                 x2="20.9984"
                 y2="20.8179"
                 stroke="#ED5353"
-                stroke-width="4.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </OptionButton>
