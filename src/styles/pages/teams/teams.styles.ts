@@ -4,7 +4,7 @@ import { scrollStyles } from '../team/team.styles';
 
 export const TeamsWrapper = styled.section`
   width: 100%;
-  height: auto;
+  height: 700px;
 
   display: flex;
   flex-direction: column;
@@ -12,6 +12,9 @@ export const TeamsWrapper = styled.section`
   align-items: center;
 
   box-sizing: border-box;
+  overflow: hidden;
+
+  ${scrollStyles}
 `;
 
 export const SectionTitle = styled.h2`
