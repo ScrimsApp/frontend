@@ -15,6 +15,10 @@ export const TeamWrapper = styled.div`
   @media only screen and (max-width: 1050px) {
     flex-direction: column;
   }
+
+  .hide {
+    display: none !important;
+  }
 `;
 
 export const TeamInfoWrapper = styled.section`
