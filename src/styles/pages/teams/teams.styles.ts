@@ -4,21 +4,19 @@ import { scrollStyles } from '../team/team.styles';
 
 export const TeamsWrapper = styled.section`
   width: 100%;
-  height: 700px;
+  height: auto;
+  max-height: 700px;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-
-  padding-top: 126px;
 
   box-sizing: border-box;
 
   ${scrollStyles}
 
   @media only screen and (max-width: 640px) {
-    padding-top: 346px;
   }
 `;
 

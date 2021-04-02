@@ -1,12 +1,13 @@
 import Navbar from '../components/Navbar/Navbar.component';
 
 import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
-import TeamsCard from '../components/TeamsCard/TeamsCard.component';
 import {
   RecentJoinedTeamsWrapper,
   SectionTitle,
   TeamsWrapper,
 } from '../styles/pages/teams/teams.styles';
+
+import TeamsCard from '../components/TeamsCard/TeamsCard.component';
 import TeamCard from '../components/TeamCard/TeamCard.component';
 
 const Teams = () => {
