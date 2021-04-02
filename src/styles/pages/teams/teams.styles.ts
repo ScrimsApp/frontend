@@ -11,10 +11,15 @@ export const TeamsWrapper = styled.section`
   justify-content: center;
   align-items: center;
 
+  padding-top: 126px;
+
   box-sizing: border-box;
-  overflow: hidden;
 
   ${scrollStyles}
+
+  @media only screen and (max-width: 640px) {
+    padding-top: 346px;
+  }
 `;
 
 export const SectionTitle = styled.h2`
@@ -25,4 +30,15 @@ export const SectionTitle = styled.h2`
   color: ${(props) => props.theme.colors.text.light};
 
   margin: 56px 0px 36px 0px;
+`;
+
+export const RecentJoinedTeamsWrapper = styled.section`
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: row wrap;
+
+  padding: 0px 0px 20px 0px;
 `;

@@ -1,8 +1,13 @@
 import Navbar from '../components/Navbar/Navbar.component';
 
-import { TeamsWrapper, SectionTitle } from '../styles/pages/index/index.styles';
 import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
 import TeamsCard from '../components/TeamsCard/TeamsCard.component';
+import {
+  RecentJoinedTeamsWrapper,
+  SectionTitle,
+  TeamsWrapper,
+} from '../styles/pages/teams/teams.styles';
+import TeamCard from '../components/TeamCard/TeamCard.component';
 
 const Teams = () => {
   return (
@@ -55,7 +60,40 @@ const Teams = () => {
           teamFoundedIn="Founded in March 29 2021"
           key="Fnatic"
         />
+
+        <TeamsCard
+          teamImage="https://i.ytimg.com/vi/qgoiQ3X4Rx4/maxresdefault.jpg"
+          teamName="Fnatic"
+          teamMembers="4 members"
+          teamMatchesPlayed="3 matches played"
+          teamFoundedIn="Founded in March 29 2021"
+          key="Fnatic"
+        />
       </TeamsWrapper>
+
+      <SectionTitle>Recent Joined Teams</SectionTitle>
+
+      <RecentJoinedTeamsWrapper>
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
+
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
+
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
+
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
+      </RecentJoinedTeamsWrapper>
     </MainWrapper>
   );
 };
