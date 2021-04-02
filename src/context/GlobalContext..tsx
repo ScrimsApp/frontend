@@ -16,6 +16,8 @@ const GlobalContextProvider = ({ children }) => {
       name: 'vinisaveg',
       id: '1',
       token: '1234567890',
+      teamId: '1',
+      isTeamLeader: true,
     });
   }, []);
 
