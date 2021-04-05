@@ -8,6 +8,7 @@ import GlobalStyle from '../styles/global/global';
 import theme from '../styles/theme/theme';
 
 import GlobalContextProvider from '../context/GlobalContext.';
+import NotificationPopUp from '../components/NotificationPopUp/NotificationPopUp.component';
 
 const App: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
   return (
@@ -19,6 +20,12 @@ const App: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
 
         <Component {...pageProps} />
         <GlobalStyle />
+
+        <NotificationPopUp
+          backgroundColor="#5ACA73"
+          title="Success"
+          message="You have created the notification pop up"
+        />
       </ThemeProvider>
     </GlobalContextProvider>
   );
