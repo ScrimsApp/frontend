@@ -4,7 +4,7 @@ export const TeamInfoWrapper = styled.div`
   width: 100%;
 
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
 
   @media only screen and (max-width: 600px) {
