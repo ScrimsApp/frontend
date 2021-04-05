@@ -27,6 +27,7 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
   hashtags,
   time,
   date,
+  captain,
 }) => {
   return (
     <CardWrapper>
@@ -52,12 +53,14 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
             <CardAssignDetail>Time: {time}</CardAssignDetail>
           </CardAssignDetailsWrapper>
 
-          <ButtonWrapper minWidth="80%">
-            <ButtonOverlay className="overlay" type="dark" />
-            <Link passHref href="/signin">
-              <LinkButton>Assign</LinkButton>
-            </Link>
-          </ButtonWrapper>
+          {captain ? (
+            <ButtonWrapper minWidth="80%">
+              <ButtonOverlay className="overlay" type="dark" />
+              <Link passHref href="/signin">
+                <LinkButton>Assign</LinkButton>
+              </Link>
+            </ButtonWrapper>
+          ) : null}
         </CardAssignWrapper>
       </CardInfo>
     </CardWrapper>

@@ -56,9 +56,9 @@ const SignIn = () => {
     storeUserInfo({
       name: data.username,
       id: data.user_id,
+      teamId: 0,
+      captain: data.captain,
       token: data.access_token,
-      teamId: '1',
-      isTeamLeader: true,
     });
 
     status === 200
@@ -93,7 +93,7 @@ const SignIn = () => {
           name="password"
           minWidth="100%"
           colorType="primary"
-          label="Confirm Password"
+          label="Password"
           type="password"
           margin={['0px', '0px', '36px', '0px']}
           value={formik.values.password}

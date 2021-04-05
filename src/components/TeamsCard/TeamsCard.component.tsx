@@ -19,6 +19,7 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   teamMembers,
   teamMatchesPlayed,
   teamFoundedIn,
+  teamId,
 }) => {
   return (
     <TeamsCardWrapper>
@@ -36,9 +37,11 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
         </TeamCardDescriptionsWrapper>
       </TeamsCardInfo>
 
-      <TeamsSideOption backgroundColor="#4767f9">
-        <JoinButton>Join</JoinButton>
-      </TeamsSideOption>
+      {!teamId ? (
+        <TeamsSideOption backgroundColor="#4767f9">
+          <JoinButton>Join</JoinButton>
+        </TeamsSideOption>
+      ) : null}
     </TeamsCardWrapper>
   );
 };

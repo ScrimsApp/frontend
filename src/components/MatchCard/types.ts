@@ -4,4 +4,5 @@ export interface MatchCardProps {
   hashtags: Array<string>;
   time: string;
   date: string;
+  captain: boolean;
 }
