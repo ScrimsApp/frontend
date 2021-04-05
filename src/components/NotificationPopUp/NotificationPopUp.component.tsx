@@ -1,4 +1,4 @@
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useContext, useEffect, useState } from 'react';
 
 import { NotificationPopUpProps } from './types';
 
@@ -9,37 +9,40 @@ import {
   CloseIcon,
 } from './notificationPopUp.styles';
 
-const NotificationPopUp: FunctionComponent<NotificationPopUpProps> = ({
-  backgroundColor,
-  title,
-  message,
-}) => {
-  const [hasNotification, setHasNotification] = useState(false);
-  // Get notification from context
+import { GlobalContext } from '../../context/GlobalContext.';
+
+const NotificationPopUp: FunctionComponent<NotificationPopUpProps> = () => {
+  const [hasNotificationToShow, setHasNotificationToShow] = useState(false);
+  const { notificationContext } = useContext(GlobalContext);
+  const {
+    notification,
+    hasNotification,
+    setNotificationStatus,
+  } = notificationContext;
 
   useEffect(() => {
-    if (!hasNotification) {
-      // is there any notification from context?
-      // setHasNotification(true)
-      // setTimeout(() => {
-      //     setHasNotification(false)
-      // }, 3000)
-      //   useEffect will always run when context notification change
+    if (hasNotification) {
+      setHasNotificationToShow(true);
+
+      setTimeout(() => {
+        setHasNotificationToShow(false);
+        setNotificationStatus(false);
+      }, 3000);
     }
-  }, []);
+  }, [notification]);
 
   const handleCloseNotification = () => {
-    setHasNotification(false);
+    setHasNotificationToShow(false);
   };
 
-  if (hasNotification) {
+  if (hasNotificationToShow) {
     return (
       <NotificationWrapper
-        display={hasNotification}
-        backgroundColor={backgroundColor}
+        display={hasNotificationToShow}
+        backgroundColor={notification.type}
       >
-        <NotificationTitle>{title}</NotificationTitle>
-        <NotificationMessage>{message}</NotificationMessage>
+        <NotificationTitle>{notification.title}</NotificationTitle>
+        <NotificationMessage>{notification.message}</NotificationMessage>
 
         <CloseIcon onClick={handleCloseNotification}>&#10006;</CloseIcon>
       </NotificationWrapper>

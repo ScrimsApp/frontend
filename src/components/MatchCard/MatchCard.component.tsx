@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from 'react';
 
 import { MatchCardProps } from './types';
 
@@ -21,6 +21,8 @@ import {
 } from '../../styles/shared/Button/Button.styles';
 import Link from 'next/link';
 
+import { GlobalContext } from '../../context/GlobalContext.';
+
 const MatchCard: FunctionComponent<MatchCardProps> = ({
   title,
   description,
@@ -29,6 +31,20 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
   date,
   captain,
 }) => {
+  const { notificationContext } = useContext(GlobalContext);
+  const { setNotificationStatus, setNewNotification } = notificationContext;
+
+  const handleAssign = () => {
+    //   Send API Request
+
+    setNotificationStatus(true);
+    setNewNotification({
+      type: 'success',
+      title: 'Success',
+      message: 'You have assigned to this match',
+    });
+  };
+
   return (
     <CardWrapper>
       <CardImage
@@ -54,9 +70,9 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
           </CardAssignDetailsWrapper>
 
           {captain ? (
-            <ButtonWrapper minWidth="80%">
+            <ButtonWrapper minWidth="80%" onClick={handleAssign}>
               <ButtonOverlay className="overlay" type="dark" />
-              <Link passHref href="/signin">
+              <Link passHref href="/team">
                 <LinkButton>Assign</LinkButton>
               </Link>
             </ButtonWrapper>

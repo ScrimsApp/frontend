@@ -17,6 +17,11 @@ declare module 'styled-components' {
         error: string;
         success: string;
       };
+      notification: {
+        success: string;
+        error: string;
+        info: string;
+      };
     };
     fonts: {
       primary: string;

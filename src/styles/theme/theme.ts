@@ -16,6 +16,11 @@ const theme: DefaultTheme = {
       error: '#EE4E4E',
       success: '#5AE868',
     },
+    notification: {
+      success: '#5ACA73',
+      error: '#C54545',
+      info: '#353A4F',
+    },
   },
   fonts: {
     primary: 'Source Sans Pro',

@@ -13,7 +13,7 @@ const initial = keyframes`
 `;
 
 interface NotificationWrapperProps {
-  backgroundColor: string;
+  backgroundColor: 'success' | 'error' | 'info';
   display: boolean;
 }
 
@@ -32,7 +32,8 @@ export const NotificationWrapper = styled.div<NotificationWrapperProps>`
 
   padding: 15px;
 
-  background-color: ${(props) => props.backgroundColor};
+  background-color: ${(props) =>
+    props.theme.colors.notification[props.backgroundColor]};
   border-radius: ${(props) => props.theme.misc.borderRadius};
   animation: ${initial} 400ms ease-in-out forwards;
 `;
