@@ -3,5 +3,5 @@ export interface User {
   id: number;
   token: string;
   teamId: string;
-  isTeamLeader: boolean;
+  captain: boolean;
 }

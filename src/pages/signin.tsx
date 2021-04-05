@@ -56,9 +56,9 @@ const SignIn = () => {
     storeUserInfo({
       name: data.username,
       id: data.user_id,
+      teamId: '',
+      captain: data.captain,
       token: data.access_token,
-      teamId: '1',
-      isTeamLeader: true,
     });
 
     status === 200
