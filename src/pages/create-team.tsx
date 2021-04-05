@@ -19,6 +19,11 @@ import {
   ButtonWrapper,
 } from '../styles/shared/Button/Button.styles';
 
+import { createTeamSchema } from '../utils/validation/team/createTeam.schema';
+import { api } from '../config/api';
+import { User } from '../types/user/User.type';
+import { CreateTeamResponse } from '../types/responses/team/CreateTeamResponse.type';
+
 const CreateTeam = () => {
   const router = useRouter();
 
@@ -28,9 +33,33 @@ const CreateTeam = () => {
       description: '',
       teamImage: null,
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => handleCreateTeam(values),
     validateOnChange: false,
+    validationSchema: createTeamSchema,
   });
+
+  const handleCreateTeam = async (values: any) => {
+    const userInfo: User = JSON.parse(window.localStorage.getItem('user'));
+
+    let formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('tag', values.description);
+    formData.append('image', values.teamImage);
+
+    const response = await api.post<CreateTeamResponse>('team', formData, {
+      headers: {
+        Authorization: 'Bearer ' + userInfo.token,
+      },
+    });
+
+    const { data, status } = response;
+
+    console.log(data);
+
+    status === 201
+      ? router.push('/team')
+      : console.log('Something went wrong!');
+  };
 
   return (
     <CreateTeamWrapper>
