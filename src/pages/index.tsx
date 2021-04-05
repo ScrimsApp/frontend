@@ -8,79 +8,93 @@ import {
 import MatchCard from '../components/MatchCard/MatchCard.component';
 
 import { homeContent } from '../content/home/home.content';
+import { useEffect, useState } from 'react';
+import Loading from '../components/Loading/Loading.component';
 
 const Home = () => {
+  const [isContentLoaded, setIsContentLoaded] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsContentLoaded(true);
+    }, 1000);
+  });
+
   return (
     <MainWrapper>
       <Navbar />
 
       <SectionTitle>{homeContent.matches}</SectionTitle>
 
-      <MatchesWrapper>
-        <MatchCard
-          title="TEAM Liquid"
-          description="Partidas em mapas diversos"
-          hashtags={['#r6', '#coastline', '#balatorta']}
-          time="9:00 PM"
-          date="03.25.21"
-        />
+      {isContentLoaded ? (
+        <MatchesWrapper>
+          <MatchCard
+            title="TEAM Liquid"
+            description="Partidas em mapas diversos"
+            hashtags={['#r6', '#coastline', '#balatorta']}
+            time="9:00 PM"
+            date="03.25.21"
+          />
 
-        <MatchCard
-          title="TEAM Liquid"
-          description="Partidas em mapas diversos"
-          hashtags={['#r6', '#coastline', '#balatorta']}
-          time="9:00 PM"
-          date="03.25.21"
-        />
+          <MatchCard
+            title="TEAM Liquid"
+            description="Partidas em mapas diversos"
+            hashtags={['#r6', '#coastline', '#balatorta']}
+            time="9:00 PM"
+            date="03.25.21"
+          />
 
-        <MatchCard
-          title="TEAM Liquid"
-          description="Partidas em mapas diversos"
-          hashtags={['#r6', '#coastline', '#balatorta']}
-          time="9:00 PM"
-          date="03.25.21"
-        />
+          <MatchCard
+            title="TEAM Liquid"
+            description="Partidas em mapas diversos"
+            hashtags={['#r6', '#coastline', '#balatorta']}
+            time="9:00 PM"
+            date="03.25.21"
+          />
 
-        <MatchCard
-          title="TEAM Liquid"
-          description="Partidas em mapas diversos"
-          hashtags={['#r6', '#coastline', '#balatorta']}
-          time="9:00 PM"
-          date="03.25.21"
-        />
+          <MatchCard
+            title="TEAM Liquid"
+            description="Partidas em mapas diversos"
+            hashtags={['#r6', '#coastline', '#balatorta']}
+            time="9:00 PM"
+            date="03.25.21"
+          />
 
-        <MatchCard
-          title="TEAM Liquid"
-          description="Partidas em mapas diversos"
-          hashtags={['#r6', '#coastline', '#balatorta']}
-          time="9:00 PM"
-          date="03.25.21"
-        />
+          <MatchCard
+            title="TEAM Liquid"
+            description="Partidas em mapas diversos"
+            hashtags={['#r6', '#coastline', '#balatorta']}
+            time="9:00 PM"
+            date="03.25.21"
+          />
 
-        <MatchCard
-          title="TEAM Liquid"
-          description="Partidas em mapas diversos"
-          hashtags={['#r6', '#coastline', '#balatorta']}
-          time="9:00 PM"
-          date="03.25.21"
-        />
+          <MatchCard
+            title="TEAM Liquid"
+            description="Partidas em mapas diversos"
+            hashtags={['#r6', '#coastline', '#balatorta']}
+            time="9:00 PM"
+            date="03.25.21"
+          />
 
-        <MatchCard
-          title="TEAM Liquid"
-          description="Partidas em mapas diversos"
-          hashtags={['#r6', '#coastline', '#balatorta']}
-          time="9:00 PM"
-          date="03.25.21"
-        />
+          <MatchCard
+            title="TEAM Liquid"
+            description="Partidas em mapas diversos"
+            hashtags={['#r6', '#coastline', '#balatorta']}
+            time="9:00 PM"
+            date="03.25.21"
+          />
 
-        <MatchCard
-          title="TEAM Liquid"
-          description="Partidas em mapas diversos"
-          hashtags={['#r6', '#coastline', '#balatorta']}
-          time="9:00 PM"
-          date="03.25.21"
-        />
-      </MatchesWrapper>
+          <MatchCard
+            title="TEAM Liquid"
+            description="Partidas em mapas diversos"
+            hashtags={['#r6', '#coastline', '#balatorta']}
+            time="9:00 PM"
+            date="03.25.21"
+          />
+        </MatchesWrapper>
+      ) : (
+        <Loading />
+      )}
     </MainWrapper>
   );
 };
