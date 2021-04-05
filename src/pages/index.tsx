@@ -1,3 +1,5 @@
+import { useContext, useEffect, useState } from 'react';
+
 import Navbar from '../components/Navbar/Navbar.component';
 import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
 
@@ -8,11 +10,14 @@ import {
 import MatchCard from '../components/MatchCard/MatchCard.component';
 
 import { homeContent } from '../content/home/home.content';
-import { useEffect, useState } from 'react';
+
 import Loading from '../components/Loading/Loading.component';
+import { GlobalContext } from '../context/GlobalContext.';
 
 const Home = () => {
   const [isContentLoaded, setIsContentLoaded] = useState(false);
+  const { userContext } = useContext(GlobalContext);
+  const { user } = userContext;
 
   useEffect(() => {
     setTimeout(() => {
@@ -34,6 +39,7 @@ const Home = () => {
             hashtags={['#r6', '#coastline', '#balatorta']}
             time="9:00 PM"
             date="03.25.21"
+            captain={user.captain}
           />
 
           <MatchCard
@@ -42,6 +48,7 @@ const Home = () => {
             hashtags={['#r6', '#coastline', '#balatorta']}
             time="9:00 PM"
             date="03.25.21"
+            captain={user.captain}
           />
 
           <MatchCard
@@ -50,6 +57,7 @@ const Home = () => {
             hashtags={['#r6', '#coastline', '#balatorta']}
             time="9:00 PM"
             date="03.25.21"
+            captain={user.captain}
           />
 
           <MatchCard
@@ -58,6 +66,7 @@ const Home = () => {
             hashtags={['#r6', '#coastline', '#balatorta']}
             time="9:00 PM"
             date="03.25.21"
+            captain={user.captain}
           />
 
           <MatchCard
@@ -66,6 +75,7 @@ const Home = () => {
             hashtags={['#r6', '#coastline', '#balatorta']}
             time="9:00 PM"
             date="03.25.21"
+            captain={user.captain}
           />
 
           <MatchCard
@@ -74,6 +84,7 @@ const Home = () => {
             hashtags={['#r6', '#coastline', '#balatorta']}
             time="9:00 PM"
             date="03.25.21"
+            captain={user.captain}
           />
 
           <MatchCard
@@ -82,6 +93,7 @@ const Home = () => {
             hashtags={['#r6', '#coastline', '#balatorta']}
             time="9:00 PM"
             date="03.25.21"
+            captain={user.captain}
           />
 
           <MatchCard
@@ -90,6 +102,7 @@ const Home = () => {
             hashtags={['#r6', '#coastline', '#balatorta']}
             time="9:00 PM"
             date="03.25.21"
+            captain={user.captain}
           />
         </MatchesWrapper>
       ) : (
