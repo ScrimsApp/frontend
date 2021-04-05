@@ -1,4 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const initial = keyframes`
+  from {
+    transform: translateY(10%);
+    opacity: 0.3;
+  }
+
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+`;
 
 export const TeamCardWrapper = styled.div`
   width: 250px;
@@ -7,6 +19,9 @@ export const TeamCardWrapper = styled.div`
 
   border-radius: ${(props) => props.theme.misc.borderRadius};
   overflow: hidden;
+
+  transition: all 200ms ease-in-out;
+  animation: ${initial} 200ms linear forwards;
 
   @media only screen and (max-width: 1320px) {
     width: 230px;
