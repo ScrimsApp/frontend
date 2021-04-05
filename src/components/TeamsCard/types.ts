@@ -4,4 +4,5 @@ export interface TeamsCardsProps {
   teamMembers: string;
   teamMatchesPlayed: string;
   teamFoundedIn: string;
+  teamId: number;
 }

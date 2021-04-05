@@ -1,3 +1,5 @@
+import { useContext, useEffect, useState } from 'react';
+
 import Navbar from '../components/Navbar/Navbar.component';
 
 import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
@@ -9,11 +11,14 @@ import {
 
 import TeamsCard from '../components/TeamsCard/TeamsCard.component';
 import TeamCard from '../components/TeamCard/TeamCard.component';
-import { useEffect, useState } from 'react';
+
 import Loading from '../components/Loading/Loading.component';
+import { GlobalContext } from '../context/GlobalContext.';
 
 const Teams = () => {
   const [isContentLoaded, setIsContentLoaded] = useState(false);
+  const { userContext } = useContext(GlobalContext);
+  const { user } = userContext;
 
   useEffect(() => {
     setTimeout(() => {
@@ -36,6 +41,7 @@ const Teams = () => {
             teamMatchesPlayed="7 matches played"
             teamFoundedIn="Founded in March 26 2021"
             key="TEAM Liquid"
+            teamId={user.teamId}
           />
 
           <TeamsCard
@@ -45,6 +51,7 @@ const Teams = () => {
             teamMatchesPlayed="3 matches played"
             teamFoundedIn="Founded in March 29 2021"
             key="Fnatic"
+            teamId={user.teamId}
           />
 
           <TeamsCard
@@ -54,6 +61,7 @@ const Teams = () => {
             teamMatchesPlayed="7 matches played"
             teamFoundedIn="Founded in March 26 2021"
             key="Gorillaz eSports"
+            teamId={user.teamId}
           />
 
           <TeamsCard
@@ -63,6 +71,7 @@ const Teams = () => {
             teamMatchesPlayed="7 matches played"
             teamFoundedIn="Founded in March 26 2021"
             key="Dhara Team"
+            teamId={user.teamId}
           />
 
           <TeamsCard
@@ -72,6 +81,7 @@ const Teams = () => {
             teamMatchesPlayed="3 matches played"
             teamFoundedIn="Founded in March 29 2021"
             key="Fnatic"
+            teamId={user.teamId}
           />
 
           <TeamsCard
@@ -81,6 +91,7 @@ const Teams = () => {
             teamMatchesPlayed="3 matches played"
             teamFoundedIn="Founded in March 29 2021"
             key="Fnatic"
+            teamId={user.teamId}
           />
         </TeamsWrapper>
       ) : (
