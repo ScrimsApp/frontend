@@ -93,7 +93,7 @@ const SignIn = () => {
           name="password"
           minWidth="100%"
           colorType="primary"
-          label="Confirm Password"
+          label="Password"
           type="password"
           margin={['0px', '0px', '36px', '0px']}
           value={formik.values.password}
