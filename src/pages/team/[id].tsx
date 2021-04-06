@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { GetStaticProps } from 'next';
 
 import Navbar from '../../components/Navbar/Navbar.component';
 
@@ -14,64 +14,78 @@ import {
 import TeamInfoCard from '../../components/TeamInfoCard/TeamInfoCard.component';
 import TeamMemberCard from '../../components/TeamMemberCard/TeamMemberCard.component';
 
-const Team = () => {
-  const router = useRouter();
-  const { id } = router.query;
+import { TeamResponse } from '../../types/responses/team/TeamResponse.type';
+import { api } from '../../config/api';
+import { FunctionComponent } from 'react';
+import Loading from '../../components/Loading/Loading.component';
+
+interface TeamProps {
+  teamById: TeamResponse;
+}
+
+const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
+  let teamFoundedIndDate = new Date(teamById.created_at);
+
+  let formatedTeamFoundedIndDate = teamFoundedIndDate.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   return (
     <MainWrapper>
       <Navbar />
 
-      <TeamByIdWrapper>
-        <TeamByIdInfoWrapper>
-          <TeamInfoCard
-            teamImage="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
-            teamName="TEAM Liquid"
-            about="This team is the best team
-                    in the entire universe my
-                    dear friend."
-            description="7 matches played"
-            description2="7 members"
-            description3="Founded in March 26 2021"
-          />
-        </TeamByIdInfoWrapper>
-
-        <TeamByIdMembersWrapper>
-          <TeamByIdMembersTitle>Team Members</TeamByIdMembersTitle>
-
-          <TeamByIdMembers>
-            <TeamMemberCard
-              image="https://sm.ign.com/ign_br/screenshot/default/morty_ep2e.jpg"
-              playerName="Morty"
-              description1="Joined in 03.26.2021"
-              description2="5 matches played"
+      {teamById ? (
+        <TeamByIdWrapper>
+          <TeamByIdInfoWrapper>
+            <TeamInfoCard
+              teamImage="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
+              teamName={teamById.name}
+              about="This team is the best team
+                            in the entire universe my
+                            dear friend."
+              description="7 matches played"
+              description2={`${teamById.players.length || 1} members`}
+              description3={`Founded in ${formatedTeamFoundedIndDate}`}
             />
+          </TeamByIdInfoWrapper>
 
-            <TeamMemberCard
-              image="https://i.pinimg.com/originals/ac/51/52/ac5152b9f7f50781b2b01e35463fc4e6.jpg"
-              playerName="Rick"
-              description1="Joined in 03.29.2021"
-              description2="2 matches played"
-            />
+          <TeamByIdMembersWrapper>
+            <TeamByIdMembersTitle>Team Members</TeamByIdMembersTitle>
 
-            <TeamMemberCard
-              image="https://sm.ign.com/ign_br/screenshot/default/morty_ep2e.jpg"
-              playerName="Morty"
-              description1="Joined in 03.26.2021"
-              description2="5 matches played"
-            />
-
-            <TeamMemberCard
-              image="https://i.pinimg.com/originals/ac/51/52/ac5152b9f7f50781b2b01e35463fc4e6.jpg"
-              playerName="Rick"
-              description1="Joined in 03.29.2021"
-              description2="2 matches played"
-            />
-          </TeamByIdMembers>
-        </TeamByIdMembersWrapper>
-      </TeamByIdWrapper>
+            <TeamByIdMembers>
+              {teamById.players.map((player) => (
+                <TeamMemberCard
+                  key={player.name}
+                  image="https://sm.ign.com/ign_br/screenshot/default/morty_ep2e.jpg"
+                  playerName={player.name}
+                  description1={player.created_at}
+                  description2="5 matches played"
+                />
+              ))}
+            </TeamByIdMembers>
+          </TeamByIdMembersWrapper>
+        </TeamByIdWrapper>
+      ) : (
+        <Loading />
+      )}
     </MainWrapper>
   );
+};
+
+export const getServerSideProps: GetStaticProps = async ({ params }) => {
+  let id = params.id;
+
+  const teamById = await api
+    .get<TeamResponse>(`team/${id}`)
+    .then((res) => res.data);
+
+  return {
+    props: {
+      teamById,
+    },
+  };
 };
 
 export default Team;
