@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import Link from 'next/link';
 
 import {
@@ -10,12 +10,17 @@ import {
   BannerLayer,
 } from './teamTip.styles';
 
+import { GlobalContext } from '../../context/GlobalContext.';
+
 const TeamTip: FunctionComponent = () => {
+  const { userContext } = useContext(GlobalContext);
+  const { user } = userContext;
+
   return (
     <TeamTipWrapper>
       <CreateTeam>
         <BannerLayer imageUrl="https://i.pinimg.com/originals/12/fc/ba/12fcba783b1f27cfc4b09cbf6d8beb3c.jpg">
-          <Link href="/create-team" passHref>
+          <Link href={user.token ? '/create-team' : '/signin'} passHref>
             <OptionLink>
               <OptionTitle>Create your team </OptionTitle>
             </OptionLink>

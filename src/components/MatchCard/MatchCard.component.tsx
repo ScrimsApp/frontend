@@ -14,12 +14,12 @@ import {
   CardTitle,
   CardWrapper,
 } from './matchCard.styles';
+
 import {
   ButtonOverlay,
   ButtonWrapper,
   LinkButton,
 } from '../../styles/shared/Button/Button.styles';
-import Link from 'next/link';
 
 import { GlobalContext } from '../../context/GlobalContext.';
 
@@ -72,9 +72,7 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
           {captain ? (
             <ButtonWrapper minWidth="80%" onClick={handleAssign}>
               <ButtonOverlay className="overlay" type="dark" />
-              <Link passHref href="/team">
-                <LinkButton>Assign</LinkButton>
-              </Link>
+              <LinkButton>Assign</LinkButton>
             </ButtonWrapper>
           ) : null}
         </CardAssignWrapper>

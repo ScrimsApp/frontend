@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useFormik } from 'formik';
 
 import {
@@ -22,16 +22,22 @@ import {
 
 import { createTeamSchema } from '../utils/validation/team/createTeam.schema';
 import { api } from '../config/api';
-import { User } from '../types/user/User.type';
 import { CreateTeamResponse } from '../types/responses/team/CreateTeamResponse.type';
 
 import { GlobalContext } from '../context/GlobalContext.';
 import { ErrorLabel } from '../styles/pages/sign/Sign.styles';
 
 const CreateTeam = () => {
-  const { notificationContext } = useContext(GlobalContext);
+  const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
+  const { user } = userContext;
   const router = useRouter();
+
+  useEffect(() => {
+    if (!user.token) {
+      router.back();
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -45,30 +51,37 @@ const CreateTeam = () => {
   });
 
   const handleCreateTeam = async (values: any) => {
-    const userInfo: User = JSON.parse(window.localStorage.getItem('user'));
+    if (user.token) {
+      let formData = new FormData();
+      formData.append('name', values.name);
+      formData.append('tag', values.description);
+      formData.append('image', values.teamImage);
 
-    let formData = new FormData();
-    formData.append('name', values.name);
-    formData.append('tag', values.description);
-    formData.append('image', values.teamImage);
+      const response = await api.post<CreateTeamResponse>('team', formData, {
+        headers: {
+          Authorization: 'Bearer ' + user.token,
+          'Content-Type': 'multipart/form-data;',
+        },
+      });
 
-    const response = await api.post<CreateTeamResponse>('team', formData, {
-      headers: {
-        Authorization: 'Bearer ' + userInfo.token,
-        'Content-Type': 'multipart/form-data;',
-      },
-    });
+      const { data, status } = response;
 
-    const { data, status } = response;
+      setNotificationStatus(true);
+      setNewNotification({
+        type: status === 200 ? 'success' : 'error',
+        title: status === 200 ? 'Success' : 'Whoops',
+        message: data.message,
+      });
 
-    setNotificationStatus(true);
-    setNewNotification({
-      type: status === 200 ? 'success' : 'error',
-      title: status === 200 ? 'Success' : 'Whoops',
-      message: data.message,
-    });
-
-    status === 200 ? router.push('/team') : null;
+      status === 200 ? router.push('/team') : null;
+    } else {
+      setNotificationStatus(true);
+      setNewNotification({
+        type: 'error',
+        title: 'Whoops',
+        message: 'You should be logged in to create your team',
+      });
+    }
   };
 
   return (
