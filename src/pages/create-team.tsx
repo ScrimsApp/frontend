@@ -55,6 +55,7 @@ const CreateTeam = () => {
     const response = await api.post<CreateTeamResponse>('team', formData, {
       headers: {
         Authorization: 'Bearer ' + userInfo.token,
+        'Content-Type': 'multipart/form-data;',
       },
     });
 
@@ -62,12 +63,12 @@ const CreateTeam = () => {
 
     setNotificationStatus(true);
     setNewNotification({
-      type: status === 201 ? 'success' : 'error',
-      title: status === 201 ? 'Success' : 'Whoops',
+      type: status === 200 ? 'success' : 'error',
+      title: status === 200 ? 'Success' : 'Whoops',
       message: data.message,
     });
 
-    status === 201 ? router.push('/team') : null;
+    status === 200 ? router.push('/team') : null;
   };
 
   return (
