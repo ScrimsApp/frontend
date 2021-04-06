@@ -13,8 +13,10 @@ import {
   TeamCardDescriptionsWrapper,
 } from './teamsCard.styles';
 import { GlobalContext } from '../../context/GlobalContext.';
+import Link from 'next/link';
 
 const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
+  id,
   teamImage,
   teamName,
   teamMembers,
@@ -24,6 +26,14 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
 }) => {
   const { notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
+
+  let teamFoundedIndDate = new Date(teamFoundedIn);
+
+  let formatedTeamFoundedIndDate = teamFoundedIndDate.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   const handleJoin = () => {
     //   Send API Request
@@ -38,19 +48,23 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
 
   return (
     <TeamsCardWrapper>
-      <TeamsCardImage src={teamImage} key={teamName} alt={teamName} />
+      <Link href={`/team/${id}`}>
+        <TeamsCardImage src={teamImage} key={teamName} alt={teamName} />
+      </Link>
 
-      <TeamsCardInfo>
-        <TeamsCardName>{teamName}</TeamsCardName>
+      <Link href={`/team/${id}`}>
+        <TeamsCardInfo>
+          <TeamsCardName>{teamName}</TeamsCardName>
 
-        <TeamCardDescriptionsWrapper>
-          <TeamsCardDescription>{teamMembers}</TeamsCardDescription>
+          <TeamCardDescriptionsWrapper>
+            <TeamsCardDescription>{teamMembers}</TeamsCardDescription>
 
-          <TeamsCardDescription>{teamMatchesPlayed}</TeamsCardDescription>
+            <TeamsCardDescription>{teamMatchesPlayed}</TeamsCardDescription>
 
-          <TeamsCardDescription>{teamFoundedIn}</TeamsCardDescription>
-        </TeamCardDescriptionsWrapper>
-      </TeamsCardInfo>
+            <TeamsCardDescription>{`Founded in ${formatedTeamFoundedIndDate}`}</TeamsCardDescription>
+          </TeamCardDescriptionsWrapper>
+        </TeamsCardInfo>
+      </Link>
 
       {!teamId ? (
         <TeamsSideOption backgroundColor="#4767f9" onClick={handleJoin}>

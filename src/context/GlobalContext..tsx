@@ -6,6 +6,7 @@ export const GlobalContext = createContext({} as GlobalContextType);
 
 import { User } from '../types/user/User.type';
 import { Notification } from '../types/notification/Notification.type';
+import { api } from '../config/api';
 
 const GlobalContextProvider = ({ children }) => {
   const [user, setUser] = useState<User>({} as User);
@@ -17,7 +18,6 @@ const GlobalContextProvider = ({ children }) => {
   useEffect(() => {
     // Get User data from LocalStorage
     const userInfo = window.localStorage.getItem('user');
-    console.log(userInfo);
 
     if (userInfo) {
       const userInfoParsed = JSON.parse(userInfo);
@@ -25,7 +25,17 @@ const GlobalContextProvider = ({ children }) => {
     }
   }, []);
 
-  const logoutUser = () => {
+  const logoutUser = async () => {
+    await api.post(
+      'auth/logout',
+      {},
+      {
+        headers: {
+          Authorization: 'Bearer ' + user.token,
+        },
+      }
+    );
+
     setUser({} as User);
     window.localStorage.setItem('user', '');
   };

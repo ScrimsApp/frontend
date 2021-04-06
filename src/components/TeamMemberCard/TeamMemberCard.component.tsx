@@ -17,19 +17,23 @@ const TeamMemberCard: FunctionComponent<TeamMemberCardProps> = ({
   description1,
   description2,
 }) => {
+  let playerJoinedInDate = new Date(description1);
+
+  let formatedPlayerJoinedInDate = playerJoinedInDate.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
   return (
     <TeamMemberCardWrapper>
       <TeamMemberImage src={image} alt={playerName} />
 
       <TeamMemberInfo>
         <TeamMemberName>{playerName}</TeamMemberName>
-        <TeamMemberDescription>{description1}</TeamMemberDescription>
+        <TeamMemberDescription>{`Joined in ${formatedPlayerJoinedInDate}`}</TeamMemberDescription>
         <TeamMemberDescription>{description2}</TeamMemberDescription>
       </TeamMemberInfo>
-
-      <SideOption backgroundColor="#ED5353">
-        <RemoveButton>Remove</RemoveButton>
-      </SideOption>
     </TeamMemberCardWrapper>
   );
 };

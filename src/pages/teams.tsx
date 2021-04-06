@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { FunctionComponent } from 'react';
+import { GetServerSideProps } from 'next';
 
 import Navbar from '../components/Navbar/Navbar.component';
 
@@ -9,124 +10,65 @@ import {
   TeamsWrapper,
 } from '../styles/pages/teams/teams.styles';
 
-import TeamsCard from '../components/TeamsCard/TeamsCard.component';
 import TeamCard from '../components/TeamCard/TeamCard.component';
 
-import Loading from '../components/Loading/Loading.component';
-import { GlobalContext } from '../context/GlobalContext.';
+import TeamsCardWrapper from '../components/TeamsCardWrapper/TeamsCardWrapper.component';
 
-const Teams = () => {
-  const [isContentLoaded, setIsContentLoaded] = useState(false);
-  const { userContext } = useContext(GlobalContext);
-  const { user } = userContext;
+import { TeamResponse } from '../types/responses/team/TeamResponse.type';
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsContentLoaded(true);
-    }, 1000);
-  });
+import { api } from '../config/api';
 
+interface TeamsProps {
+  teams: Array<TeamResponse>;
+}
+
+const Teams: FunctionComponent<TeamsProps> = ({ teams }) => {
   return (
     <MainWrapper>
       <Navbar />
 
       <SectionTitle>Teams playing</SectionTitle>
-
-      {isContentLoaded ? (
-        <TeamsWrapper>
-          <TeamsCard
-            teamImage="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
-            teamName="TEAM Liquid"
-            teamMembers="7 members"
-            teamMatchesPlayed="7 matches played"
-            teamFoundedIn="Founded in March 26 2021"
-            key="TEAM Liquid"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://i.ytimg.com/vi/qgoiQ3X4Rx4/maxresdefault.jpg"
-            teamName="Fnatic"
-            teamMembers="4 members"
-            teamMatchesPlayed="3 matches played"
-            teamFoundedIn="Founded in March 29 2021"
-            key="Fnatic"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://image.freepik.com/vetores-gratis/modelo-de-logotipo-de-gorila_20684-117.jpg"
-            teamName="Gorillaz eSports"
-            teamMembers="7 members"
-            teamMatchesPlayed="7 matches played"
-            teamFoundedIn="Founded in March 26 2021"
-            key="Gorillaz eSports"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://images-platform.99static.com//nYcuWsS5ha7qMWso-ctDNuf8CFQ=/68x72:939x943/fit-in/500x500/99designs-contests-attachments/97/97584/attachment_97584402"
-            teamName="Dhara Team"
-            teamMembers="7 members"
-            teamMatchesPlayed="7 matches played"
-            teamFoundedIn="Founded in March 26 2021"
-            key="Dhara Team"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://i.ytimg.com/vi/qgoiQ3X4Rx4/maxresdefault.jpg"
-            teamName="Fnatic"
-            teamMembers="4 members"
-            teamMatchesPlayed="3 matches played"
-            teamFoundedIn="Founded in March 29 2021"
-            key="Fnatic"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://i.ytimg.com/vi/qgoiQ3X4Rx4/maxresdefault.jpg"
-            teamName="Fnatic"
-            teamMembers="4 members"
-            teamMatchesPlayed="3 matches played"
-            teamFoundedIn="Founded in March 29 2021"
-            key="Fnatic"
-            teamId={user.teamId}
-          />
-        </TeamsWrapper>
-      ) : (
-        <Loading />
-      )}
+      <TeamsWrapper>
+        <TeamsCardWrapper teams={teams} />
+      </TeamsWrapper>
 
       <SectionTitle>Recent Joined Teams</SectionTitle>
 
-      {isContentLoaded ? (
-        <RecentJoinedTeamsWrapper>
-          <TeamCard
-            teamName="TEAM Liquid"
-            teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-          />
+      <RecentJoinedTeamsWrapper>
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
 
-          <TeamCard
-            teamName="TEAM Liquid"
-            teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-          />
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
 
-          <TeamCard
-            teamName="TEAM Liquid"
-            teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-          />
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
 
-          <TeamCard
-            teamName="TEAM Liquid"
-            teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-          />
-        </RecentJoinedTeamsWrapper>
-      ) : (
-        <Loading />
-      )}
+        <TeamCard
+          teamName="TEAM Liquid"
+          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        />
+      </RecentJoinedTeamsWrapper>
     </MainWrapper>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const teams = await api
+    .get<Array<TeamResponse>>('team')
+    .then((res) => res.data);
+
+  return {
+    props: {
+      teams,
+    },
+  };
 };
 
 export default Teams;

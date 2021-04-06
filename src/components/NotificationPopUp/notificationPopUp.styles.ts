@@ -26,7 +26,7 @@ export const NotificationWrapper = styled.div<NotificationWrapperProps>`
   bottom: 36px;
 
   display: ${(props) => (props.display ? 'flex' : 'none')};
-  flex-flow: column wrap;
+  flex-flow: column;
   justify-content: center;
   align-items: flex-start;
 

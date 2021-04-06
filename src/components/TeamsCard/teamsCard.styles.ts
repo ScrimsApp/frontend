@@ -14,6 +14,12 @@ export const TeamsCardWrapper = styled(TeamMemberCardWrapper)`
   height: 110px;
   min-height: 110px;
 
+  transition: filter 200ms ease-in-out;
+
+  &&:hover {
+    filter: brightness(110%);
+  }
+
   @media only screen and (max-width: 690px) {
     height: 90px;
     min-height: 90px;
@@ -28,6 +34,8 @@ export const TeamsCardWrapper = styled(TeamMemberCardWrapper)`
 export const TeamsCardImage = styled(TeamMemberImage)`
   width: 80px;
   height: 80px;
+
+  cursor: pointer;
 
   @media only screen and (max-width: 690px) {
     width: 70px;
@@ -47,9 +55,12 @@ export const TeamsCardImage = styled(TeamMemberImage)`
 
 export const TeamsCardInfo = styled(TeamMemberInfo)`
   width: 100%;
+  height: 100%;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
+
+  cursor: pointer;
 
   @media only screen and (max-width: 640px) {
   }
@@ -92,6 +103,8 @@ export const TeamsCardDescription = styled(TeamMemberDescription)`
   }
 `;
 
-export const TeamsSideOption = styled(SideOption)``;
+export const TeamsSideOption = styled(SideOption)`
+  z-index: 5;
+`;
 
 export const JoinButton = styled(RemoveButton)``;
