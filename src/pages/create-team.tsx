@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useContext } from 'react';
 import { useFormik } from 'formik';
 
 import {
@@ -24,7 +25,12 @@ import { api } from '../config/api';
 import { User } from '../types/user/User.type';
 import { CreateTeamResponse } from '../types/responses/team/CreateTeamResponse.type';
 
+import { GlobalContext } from '../context/GlobalContext.';
+import { ErrorLabel } from '../styles/pages/sign/Sign.styles';
+
 const CreateTeam = () => {
+  const { notificationContext } = useContext(GlobalContext);
+  const { setNotificationStatus, setNewNotification } = notificationContext;
   const router = useRouter();
 
   const formik = useFormik({
@@ -54,11 +60,14 @@ const CreateTeam = () => {
 
     const { data, status } = response;
 
-    console.log(data);
+    setNotificationStatus(true);
+    setNewNotification({
+      type: status === 201 ? 'success' : 'error',
+      title: status === 201 ? 'Success' : 'Whoops',
+      message: data.message,
+    });
 
-    status === 201
-      ? router.push('/team')
-      : console.log('Something went wrong!');
+    status === 201 ? router.push('/team') : null;
   };
 
   return (
@@ -72,6 +81,10 @@ const CreateTeam = () => {
         <CreateTeamDescription>
           Fill in with the essential information of your team
         </CreateTeamDescription>
+
+        <ErrorLabel>
+          {Object.values(formik.errors).find((error) => error)}
+        </ErrorLabel>
 
         <SignInput
           name="name"
