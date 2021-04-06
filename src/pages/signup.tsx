@@ -53,8 +53,6 @@ const SignUp = () => {
 
     const { data, status } = response;
 
-    console.log(data);
-
     status === 201
       ? router.push('signin')
       : setResponseError('Something went wrong!');

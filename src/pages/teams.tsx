@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 
 import Navbar from '../components/Navbar/Navbar.component';
 
@@ -14,17 +14,22 @@ import TeamCard from '../components/TeamCard/TeamCard.component';
 
 import Loading from '../components/Loading/Loading.component';
 import { GlobalContext } from '../context/GlobalContext.';
+import useTeams from '../hooks/useTeams';
 
 const Teams = () => {
-  const [isContentLoaded, setIsContentLoaded] = useState(false);
-  const { userContext } = useContext(GlobalContext);
+  const { data, error, isLoading } = useTeams();
+  const { userContext, notificationContext } = useContext(GlobalContext);
+  const { setNotificationStatus, setNewNotification } = notificationContext;
   const { user } = userContext;
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsContentLoaded(true);
-    }, 1000);
-  });
+  if (error) {
+    setNotificationStatus(true);
+    setNewNotification({
+      type: 'success',
+      title: 'Success',
+      message: error,
+    });
+  }
 
   return (
     <MainWrapper>
@@ -32,65 +37,15 @@ const Teams = () => {
 
       <SectionTitle>Teams playing</SectionTitle>
 
-      {isContentLoaded ? (
+      {data ? (
         <TeamsWrapper>
           <TeamsCard
             teamImage="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
-            teamName="TEAM Liquid"
-            teamMembers="7 members"
+            teamName={data.name}
+            teamMembers={`${data.players?.length || 1} members`}
             teamMatchesPlayed="7 matches played"
             teamFoundedIn="Founded in March 26 2021"
-            key="TEAM Liquid"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://i.ytimg.com/vi/qgoiQ3X4Rx4/maxresdefault.jpg"
-            teamName="Fnatic"
-            teamMembers="4 members"
-            teamMatchesPlayed="3 matches played"
-            teamFoundedIn="Founded in March 29 2021"
-            key="Fnatic"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://image.freepik.com/vetores-gratis/modelo-de-logotipo-de-gorila_20684-117.jpg"
-            teamName="Gorillaz eSports"
-            teamMembers="7 members"
-            teamMatchesPlayed="7 matches played"
-            teamFoundedIn="Founded in March 26 2021"
-            key="Gorillaz eSports"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://images-platform.99static.com//nYcuWsS5ha7qMWso-ctDNuf8CFQ=/68x72:939x943/fit-in/500x500/99designs-contests-attachments/97/97584/attachment_97584402"
-            teamName="Dhara Team"
-            teamMembers="7 members"
-            teamMatchesPlayed="7 matches played"
-            teamFoundedIn="Founded in March 26 2021"
-            key="Dhara Team"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://i.ytimg.com/vi/qgoiQ3X4Rx4/maxresdefault.jpg"
-            teamName="Fnatic"
-            teamMembers="4 members"
-            teamMatchesPlayed="3 matches played"
-            teamFoundedIn="Founded in March 29 2021"
-            key="Fnatic"
-            teamId={user.teamId}
-          />
-
-          <TeamsCard
-            teamImage="https://i.ytimg.com/vi/qgoiQ3X4Rx4/maxresdefault.jpg"
-            teamName="Fnatic"
-            teamMembers="4 members"
-            teamMatchesPlayed="3 matches played"
-            teamFoundedIn="Founded in March 29 2021"
-            key="Fnatic"
+            key={data.name}
             teamId={user.teamId}
           />
         </TeamsWrapper>
@@ -100,7 +55,7 @@ const Teams = () => {
 
       <SectionTitle>Recent Joined Teams</SectionTitle>
 
-      {isContentLoaded ? (
+      {data ? (
         <RecentJoinedTeamsWrapper>
           <TeamCard
             teamName="TEAM Liquid"
