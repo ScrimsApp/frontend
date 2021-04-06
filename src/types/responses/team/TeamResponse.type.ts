@@ -5,6 +5,10 @@ export interface TeamResponse {
   name: string;
   tag: string;
   image: string;
+  team_id: number;
+  user_id: number;
   created_at: string;
+  updated_at: string;
   players: Array<Player>;
+  invites: Array<any>;
 }

@@ -18,7 +18,6 @@ const GlobalContextProvider = ({ children }) => {
   useEffect(() => {
     // Get User data from LocalStorage
     const userInfo = window.localStorage.getItem('user');
-    console.log(userInfo);
 
     if (userInfo) {
       const userInfoParsed = JSON.parse(userInfo);
