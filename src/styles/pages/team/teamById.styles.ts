@@ -20,7 +20,7 @@ export const TeamByIdMembersWrapper = styled(TeamMembersWrapper)`
   height: auto;
   max-height: 690px;
 
-  margin-top: 56px;
+  margin-top: 0px;
 `;
 export const TeamByIdMembersTitle = styled(TeamMembersTitle)``;
 export const TeamByIdMembers = styled(TeamMembers)``;
