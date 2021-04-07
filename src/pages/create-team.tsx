@@ -27,6 +27,8 @@ import { CreateTeamResponse } from '../types/responses/team/CreateTeamResponse.t
 import { GlobalContext } from '../context/GlobalContext.';
 import { ErrorLabel } from '../styles/pages/sign/Sign.styles';
 
+import { createTeamContent } from '../content/createTeam/createTeam.content';
+
 const CreateTeam = () => {
   const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
@@ -90,10 +92,10 @@ const CreateTeam = () => {
 
       <CreateTeamForm onSubmit={formik.handleSubmit}>
         <BackArrow onClick={() => router.back()}>&#8592;</BackArrow>
-        <CreateTeamTitle>Create your team</CreateTeamTitle>
+        <CreateTeamTitle>{createTeamContent.title}</CreateTeamTitle>
 
         <CreateTeamDescription>
-          Fill in with the essential information of your team
+          {createTeamContent.description}
         </CreateTeamDescription>
 
         <ErrorLabel>

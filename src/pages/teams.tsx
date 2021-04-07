@@ -18,6 +18,8 @@ import { TeamResponse } from '../types/responses/team/TeamResponse.type';
 
 import { api } from '../config/api';
 
+import { teamsContent } from '../content/teams/teams.content';
+
 interface TeamsProps {
   teams: Array<TeamResponse>;
 }
@@ -27,12 +29,12 @@ const Teams: FunctionComponent<TeamsProps> = ({ teams }) => {
     <MainWrapper>
       <Navbar />
 
-      <SectionTitle>Teams playing</SectionTitle>
+      <SectionTitle>{teamsContent.teamsTitle}</SectionTitle>
       <TeamsWrapper>
         <TeamsCardWrapper teams={teams} />
       </TeamsWrapper>
 
-      <SectionTitle>Recent Joined Teams</SectionTitle>
+      <SectionTitle>{teamsContent.joinedTeamsTitle}</SectionTitle>
 
       <RecentJoinedTeamsWrapper>
         <TeamCard
