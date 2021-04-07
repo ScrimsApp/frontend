@@ -6,4 +6,5 @@ export interface TeamsCardsProps {
   teamMatchesPlayed: string;
   teamFoundedIn: string;
   teamId: number;
+  isLoggedIn: boolean;
 }
