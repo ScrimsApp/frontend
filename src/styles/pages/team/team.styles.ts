@@ -38,6 +38,10 @@ export const TeamInfoWrapper = styled.section`
   @media only screen and (max-width: 1050px) {
     width: 100%;
   }
+
+  @media only screen and (max-width: 600px) {
+    height: auto;
+  }
 `;
 
 export const scrollStyles = `
