@@ -28,6 +28,8 @@ import Schedule from '../components/Schedule/Schedule.component';
 import MatchInvitations from '../components/MatchInvitations/MatchInvitations.component';
 import TeamTip from '../components/TeamTip/TeamTip.component';
 
+import { myTeamContent } from '../content/myTeam/myTeam.content';
+
 const Team: FunctionComponent = () => {
   const [isMatchActive, setIsMatchActive] = useState(true);
   const [isScheduleActive, setIsScheduleActive] = useState(false);
@@ -64,13 +66,13 @@ const Team: FunctionComponent = () => {
                 className={isMatchActive ? 'active' : ''}
                 onClick={handleMatchScheduleActive}
               >
-                Match invitations
+                {myTeamContent.matchesTitle}
               </MatchesScheduleTitle>
               <MatchesScheduleTitle
                 className={isScheduleActive ? 'active' : ''}
                 onClick={handleMatchScheduleActive}
               >
-                Schedule
+                {myTeamContent.scheduleTitle}
               </MatchesScheduleTitle>
             </Options>
 
@@ -82,7 +84,9 @@ const Team: FunctionComponent = () => {
           </MatchesScheduleWrapper>
 
           <TeamMembersWrapper>
-            <TeamMembersTitle>Team members</TeamMembersTitle>
+            <TeamMembersTitle>
+              {myTeamContent.teamMembersTitle}
+            </TeamMembersTitle>
 
             <TeamMembers>
               <TeamMemberCard
@@ -116,7 +120,9 @@ const Team: FunctionComponent = () => {
           </TeamMembersWrapper>
 
           <PlayersRequestsWrapper>
-            <PlayersRequestsTitle>Players requests</PlayersRequestsTitle>
+            <PlayersRequestsTitle>
+              {myTeamContent.playersRequestsTitle}
+            </PlayersRequestsTitle>
 
             <PlayersRequests>
               <PlayerRequestCard

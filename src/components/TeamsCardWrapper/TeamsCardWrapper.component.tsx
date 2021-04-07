@@ -43,6 +43,7 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
         teamFoundedIn={team.created_at}
         key={team.name}
         teamId={user.teamId}
+        isLoggedIn={!!user.token}
       />
     ));
   }

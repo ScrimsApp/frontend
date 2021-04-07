@@ -1,4 +1,5 @@
 import { FunctionComponent, useContext } from 'react';
+import Link from 'next/link';
 
 import { TeamsCardsProps } from './types';
 
@@ -13,7 +14,6 @@ import {
   TeamCardDescriptionsWrapper,
 } from './teamsCard.styles';
 import { GlobalContext } from '../../context/GlobalContext.';
-import Link from 'next/link';
 
 const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   id,
@@ -23,6 +23,7 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   teamMatchesPlayed,
   teamFoundedIn,
   teamId,
+  isLoggedIn,
 }) => {
   const { notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
@@ -38,12 +39,14 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   const handleJoin = () => {
     //   Send API Request
 
-    setNotificationStatus(true);
-    setNewNotification({
-      type: 'success',
-      title: 'Success',
-      message: 'You have sent a request to join the team',
-    });
+    if (isLoggedIn) {
+      setNotificationStatus(true);
+      setNewNotification({
+        type: 'success',
+        title: 'Success',
+        message: 'You have sent a request to join the team',
+      });
+    }
   };
 
   return (
@@ -68,7 +71,9 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
 
       {!teamId ? (
         <TeamsSideOption backgroundColor="#4767f9" onClick={handleJoin}>
-          <JoinButton>Join</JoinButton>
+          <Link href={isLoggedIn ? '' : '/signin'}>
+            <JoinButton>Join</JoinButton>
+          </Link>
         </TeamsSideOption>
       ) : null}
     </TeamsCardWrapper>
