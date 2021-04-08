@@ -16,6 +16,7 @@ const TeamMemberCard: FunctionComponent<TeamMemberCardProps> = ({
   playerName,
   description1,
   description2,
+  isCaptain,
 }) => {
   let playerJoinedInDate = new Date(description1);
 
@@ -24,6 +25,8 @@ const TeamMemberCard: FunctionComponent<TeamMemberCardProps> = ({
     month: 'long',
     day: 'numeric',
   });
+
+  const handleTeamMember = () => {};
 
   return (
     <TeamMemberCardWrapper>
@@ -34,6 +37,12 @@ const TeamMemberCard: FunctionComponent<TeamMemberCardProps> = ({
         <TeamMemberDescription>{`Joined in ${formatedPlayerJoinedInDate}`}</TeamMemberDescription>
         <TeamMemberDescription>{description2}</TeamMemberDescription>
       </TeamMemberInfo>
+
+      {isCaptain ? (
+        <SideOption backgroundColor="#ED5353">
+          <RemoveButton>Delete</RemoveButton>
+        </SideOption>
+      ) : null}
     </TeamMemberCardWrapper>
   );
 };

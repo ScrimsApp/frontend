@@ -101,6 +101,7 @@ export const MatchesSchedule = styled.div`
   display: flex;
 
   overflow-y: auto;
+  overflow-x: hidden;
 `;
 
 export const Options = styled.div`

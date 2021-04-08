@@ -16,6 +16,8 @@ import { MatchInvitationsProps } from './types';
 const MatchInvitations: FunctionComponent<MatchInvitationsProps> = ({
   visible,
 }) => {
+  const handleMatchInvitation = () => {};
+
   return (
     <MatchInvitationsWrapper visible={visible}>
       <MatchInvitationsCardWrapper>

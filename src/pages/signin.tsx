@@ -54,7 +54,7 @@ const SignIn = () => {
     storeUserInfo({
       name: data.username,
       id: data.user_id,
-      teamId: 0,
+      teamId: 1,
       captain: data.captain,
       token: data.access_token,
     });
