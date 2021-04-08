@@ -63,7 +63,7 @@ const Teams: FunctionComponent<TeamsProps> = ({ teams }) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const teams = await api
-    .get<Array<TeamResponse>>('team')
+    .get<Array<TeamResponse>>('teams')
     .then((res) => res.data);
 
   return {
