@@ -19,20 +19,24 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
 
   const fetcher = (url: string) => api.get(url).then((res) => res.data);
 
-  const { data, error } = useSWR<Array<TeamResponse>>(`team`, fetcher, {
-    initialData: teams,
-  });
+  const { data, error, isValidating } = useSWR<Array<TeamResponse>>(
+    `teams`,
+    fetcher,
+    {
+      initialData: teams,
+    }
+  );
 
   if (error) {
     setNotificationStatus(true);
     setNewNotification({
-      type: 'success',
-      title: 'Success',
+      type: 'error',
+      title: 'Error',
       message: error,
     });
   }
 
-  if (data) {
+  if (data.length > 0) {
     return data.map((team) => (
       <TeamsCard
         id={team.id}
@@ -48,7 +52,11 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
     ));
   }
 
-  return <Loading />;
+  if (isValidating) {
+    return <Loading />;
+  }
+
+  return <p>There are no teams yet :(</p>;
 };
 
 export default TeamsCardWrapper;
