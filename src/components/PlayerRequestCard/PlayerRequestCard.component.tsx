@@ -1,4 +1,5 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from 'react';
+
 import {
   PlayerRequestCardWrapper,
   PlayerRequestCardImage,
@@ -10,12 +11,46 @@ import {
 
 import { PlayerRequestCardProps } from './types';
 
+import { api } from '../../config/api';
+import { GlobalContext } from '../../context/GlobalContext.';
+import { PlayerRequestResponse } from '../../types/responses/team/PlayerRequestResponse.type';
+
 const PlayerRequestCard: FunctionComponent<PlayerRequestCardProps> = ({
   playerImage,
   playerName,
   isCaptain,
+  teamCaptainId,
+  inviteId,
 }) => {
-  const handlePlayerRequest = () => {};
+  const { userContext, notificationContext } = useContext(GlobalContext);
+  const { setNotificationStatus, setNewNotification } = notificationContext;
+  const { user } = userContext;
+
+  const handlePlayerRequest = async (option: 'accept' | 'decline') => {
+    let response = await api.post<PlayerRequestResponse>(
+      `invite/player/${option}`,
+      {
+        invite_id: inviteId,
+        user_id: teamCaptainId,
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + user.token,
+        },
+      }
+    );
+
+    const { data, status } = response;
+
+    if (data) {
+      setNotificationStatus(true);
+      setNewNotification({
+        type: status === 200 ? 'success' : 'error',
+        title: status === 200 ? 'Success' : 'Whoops',
+        message: data.message,
+      });
+    }
+  };
 
   return (
     <PlayerRequestCardWrapper>
@@ -26,7 +61,7 @@ const PlayerRequestCard: FunctionComponent<PlayerRequestCardProps> = ({
 
         {isCaptain ? (
           <Options>
-            <OptionButton>
+            <OptionButton onClick={() => handlePlayerRequest('accept')}>
               <svg
                 style={{ marginRight: '5px' }}
                 width="25"
@@ -42,7 +77,7 @@ const PlayerRequestCard: FunctionComponent<PlayerRequestCardProps> = ({
               </svg>
             </OptionButton>
 
-            <OptionButton>
+            <OptionButton onClick={() => handlePlayerRequest('decline')}>
               <svg
                 width="25"
                 height="25"

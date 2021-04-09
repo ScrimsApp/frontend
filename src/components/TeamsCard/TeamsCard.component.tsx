@@ -15,6 +15,9 @@ import {
 } from './teamsCard.styles';
 import { GlobalContext } from '../../context/GlobalContext.';
 
+import { api } from '../../config/api';
+import { JoinTeamResponse } from '../../types/responses/team/JoinTeamReponse.type';
+
 const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   id,
   teamImage,
@@ -22,11 +25,10 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   teamMembers,
   teamMatchesPlayed,
   teamFoundedIn,
-  teamId,
-  isLoggedIn,
 }) => {
-  const { notificationContext } = useContext(GlobalContext);
+  const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
+  const { user } = userContext;
 
   let teamFoundedIndDate = new Date(teamFoundedIn);
 
@@ -36,16 +38,31 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
     day: 'numeric',
   });
 
-  const handleJoin = () => {
-    //   Send API Request
+  const handleJoin = async () => {
+    if (user.token) {
+      let response = await api.post<JoinTeamResponse>(
+        '/invite/team',
+        {
+          type: 'player',
+          team_id: id,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + user.token,
+          },
+        }
+      );
 
-    if (isLoggedIn) {
-      setNotificationStatus(true);
-      setNewNotification({
-        type: 'success',
-        title: 'Success',
-        message: 'You have sent a request to join the team',
-      });
+      const { data, status } = response;
+
+      if (data) {
+        setNotificationStatus(true);
+        setNewNotification({
+          type: status === 200 ? 'success' : 'error',
+          title: status === 200 ? 'Success' : 'Whoops',
+          message: data.message,
+        });
+      }
     }
   };
 
@@ -69,9 +86,9 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
         </TeamsCardInfo>
       </Link>
 
-      {!teamId ? (
+      {!user.teamId ? (
         <TeamsSideOption backgroundColor="#4767f9" onClick={handleJoin}>
-          <Link href={isLoggedIn ? '' : '/signin'}>
+          <Link href={user.token ? '' : '/signin'}>
             <JoinButton>Join</JoinButton>
           </Link>
         </TeamsSideOption>
