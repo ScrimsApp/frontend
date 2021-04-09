@@ -2,6 +2,6 @@ export interface SignInResponse {
   access_token: string;
   user_id: number;
   username: string;
-  //   teamId: string;
+  team_id: number | null;
   captain: boolean;
 }
