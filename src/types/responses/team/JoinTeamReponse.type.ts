@@ -1,3 +1,3 @@
-export interface JoinTeamRespone {
+export interface JoinTeamResponse {
   message: string;
 }

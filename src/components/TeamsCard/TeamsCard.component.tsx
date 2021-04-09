@@ -15,6 +15,9 @@ import {
 } from './teamsCard.styles';
 import { GlobalContext } from '../../context/GlobalContext.';
 
+import { api } from '../../config/api';
+import { JoinTeamResponse } from '../../types/responses/team/JoinTeamReponse.type';
+
 const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   id,
   teamImage,
@@ -35,18 +38,31 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
     day: 'numeric',
   });
 
-  const handleJoin = () => {
-    //   Send API Request
-    //   post -> /team
-    //   team_id, type, bearer
-
+  const handleJoin = async () => {
     if (user.token) {
-      setNotificationStatus(true);
-      setNewNotification({
-        type: 'success',
-        title: 'Success',
-        message: 'You have sent a request to join the team',
-      });
+      let response = await api.post<JoinTeamResponse>(
+        '/invite/team',
+        {
+          type: 'player',
+          team_id: id,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + user.token,
+          },
+        }
+      );
+
+      const { data, status } = response;
+
+      if (data) {
+        setNotificationStatus(true);
+        setNewNotification({
+          type: status === 200 ? 'success' : 'error',
+          title: status === 200 ? 'Success' : 'Whoops',
+          message: data.message,
+        });
+      }
     }
   };
 
