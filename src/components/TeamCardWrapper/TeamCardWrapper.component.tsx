@@ -125,11 +125,16 @@ const TeamCardWrapper: FunctionComponent = () => {
           </PlayersRequestsTitle>
 
           <PlayersRequests>
-            <PlayerRequestCard
-              playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
-              playerName="Poppybutthole"
-              isCaptain={user.captain}
-            />
+            {data.invites.map((invite) => (
+              <PlayerRequestCard
+                key={invite.id}
+                playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
+                playerName={`Invite id ${invite.id}`}
+                isCaptain={user.captain}
+                teamCaptainId={data.user_id}
+                inviteId={invite.id}
+              />
+            ))}
           </PlayersRequests>
         </PlayersRequestsWrapper>
       </TeamWrapper>
