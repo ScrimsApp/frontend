@@ -13,9 +13,8 @@ import { GlobalContext } from '../../context/GlobalContext.';
 const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
   teams,
 }) => {
-  const { userContext, notificationContext } = useContext(GlobalContext);
+  const { notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
-  const { user } = userContext;
 
   const fetcher = (url: string) => api.get(url).then((res) => res.data);
 
@@ -46,8 +45,6 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
         teamMatchesPlayed="7 matches played"
         teamFoundedIn={team.created_at}
         key={team.name}
-        teamId={user.teamId}
-        isLoggedIn={!!user.token}
       />
     ));
   }

@@ -22,11 +22,10 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   teamMembers,
   teamMatchesPlayed,
   teamFoundedIn,
-  teamId,
-  isLoggedIn,
 }) => {
-  const { notificationContext } = useContext(GlobalContext);
+  const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
+  const { user } = userContext;
 
   let teamFoundedIndDate = new Date(teamFoundedIn);
 
@@ -38,8 +37,10 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
 
   const handleJoin = () => {
     //   Send API Request
+    //   post -> /team
+    //   team_id, type, bearer
 
-    if (isLoggedIn) {
+    if (user.token) {
       setNotificationStatus(true);
       setNewNotification({
         type: 'success',
@@ -69,9 +70,9 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
         </TeamsCardInfo>
       </Link>
 
-      {!teamId ? (
+      {!user.teamId ? (
         <TeamsSideOption backgroundColor="#4767f9" onClick={handleJoin}>
-          <Link href={isLoggedIn ? '' : '/signin'}>
+          <Link href={user.token ? '' : '/signin'}>
             <JoinButton>Join</JoinButton>
           </Link>
         </TeamsSideOption>
