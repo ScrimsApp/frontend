@@ -7,5 +7,5 @@ export const SectionTitle = styled.h2`
   font-weight: bold;
   color: ${(props) => props.theme.colors.text.light};
 
-  margin: 56px 0px 36px 0px;
+  margin: 56px 0px 0px 0px;
 `;

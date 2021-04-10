@@ -4,6 +4,7 @@ import { NextMatchProps } from './types';
 
 import TeamInfoCard from '../../components/TeamInfoCard/TeamInfoCard.component';
 import { NextMatchCardWrapper, NextMatchWrapper } from './nextMatch.styles';
+import CreateMatch from '../CreateMatch/CreateMatch.component';
 
 const NextMatch: FunctionComponent<NextMatchProps> = ({ data }) => {
   return (
@@ -20,6 +21,8 @@ const NextMatch: FunctionComponent<NextMatchProps> = ({ data }) => {
           isMatch={true}
         />
       </NextMatchCardWrapper>
+
+      <CreateMatch isCaptain={true} />
     </NextMatchWrapper>
   );
 };
