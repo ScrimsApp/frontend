@@ -16,7 +16,6 @@ import {
   PlayersRequests,
 } from '../../styles/pages/team/team.styles';
 
-import TeamInfoCard from '../TeamInfoCard/TeamInfoCard.component';
 import TeamMemberCard from '../TeamMemberCard/TeamMemberCard.component';
 import PlayerRequestCard from '../PlayerRequestCard/PlayerRequestCard.component';
 import Schedule from '../Schedule/Schedule.component';
