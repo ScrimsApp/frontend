@@ -23,6 +23,7 @@ import {
 import { createTeamSchema } from '../utils/validation/team/createTeam.schema';
 import { api } from '../config/api';
 import { CreateTeamResponse } from '../types/responses/team/CreateTeamResponse.type';
+import { saveImageOnFirebaseStorage } from '../utils/firebase/firebase.utils';
 
 import { GlobalContext } from '../context/GlobalContext.';
 import { ErrorLabel } from '../styles/pages/sign/Sign.styles';
@@ -54,17 +55,26 @@ const CreateTeam = () => {
 
   const handleCreateTeam = async (values: any) => {
     if (user.token) {
-      let formData = new FormData();
-      formData.append('name', values.name);
-      formData.append('tag', values.description);
-      formData.append('image', values.teamImage);
+      let teamImageUrl = await saveImageOnFirebaseStorage(
+        values.teamImage,
+        'teams'
+      );
 
-      const response = await api.post<CreateTeamResponse>('team', formData, {
-        headers: {
-          Authorization: 'Bearer ' + user.token,
-          'Content-Type': 'multipart/form-data;',
+      console.log(teamImageUrl);
+
+      const response = await api.post<CreateTeamResponse>(
+        'team',
+        {
+          name: values.name,
+          tag: values.description,
+          image: values.teamImage,
         },
-      });
+        {
+          headers: {
+            Authorization: 'Bearer ' + user.token,
+          },
+        }
+      );
 
       const { data, status } = response;
 
