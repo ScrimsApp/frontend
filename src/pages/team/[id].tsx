@@ -57,6 +57,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
             <TeamByIdMembers>
               {teamById.players.map((player) => (
                 <TeamMemberCard
+                  isCaptain={false}
                   key={player.name}
                   image="https://sm.ign.com/ign_br/screenshot/default/morty_ep2e.jpg"
                   playerName={player.name}

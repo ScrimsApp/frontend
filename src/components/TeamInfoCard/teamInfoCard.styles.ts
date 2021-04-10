@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const TeamInfoWrapper = styled.div`
   width: 100%;
+  position: relative;
 
   display: flex;
   justify-content: flex-start;
@@ -60,4 +61,44 @@ export const TeamDescription = styled.span`
   color: ${(props) => props.theme.colors.text.light};
 
   margin-bottom: 20px;
+`;
+
+interface SideOptionProps {
+  backgroundColor: string;
+}
+
+export const SideOption = styled.div<SideOptionProps>`
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  width: 25%;
+  height: 100%;
+
+  background-color: ${(props) => props.backgroundColor};
+
+  transition: all 200ms ease-in-out;
+  transform: translateX(90%);
+  cursor: pointer;
+  overflow: hidden;
+
+  &&:hover {
+    transform: translateX(0%);
+  }
+
+  &:active {
+    filter: brightness(80%);
+  }
+`;
+
+export const CancelButton = styled.a`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+  color: ${(props) => props.theme.colors.text.light};
+  text-transform: uppercase;
 `;
