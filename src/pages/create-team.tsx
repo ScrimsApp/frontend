@@ -55,26 +55,18 @@ const CreateTeam = () => {
 
   const handleCreateTeam = async (values: any) => {
     if (user.token) {
-      let teamImageUrl = await saveImageOnFirebaseStorage(
-        values.teamImage,
-        'teams'
-      );
+      let formData = new FormData();
 
-      console.log(teamImageUrl);
+      formData.append('name', values.name);
+      formData.append('tag', values.description);
+      formData.append('description', values.description);
+      formData.append('image', values.teamImage);
 
-      const response = await api.post<CreateTeamResponse>(
-        'team',
-        {
-          name: values.name,
-          tag: values.description,
-          image: values.teamImage,
+      const response = await api.post<CreateTeamResponse>('team', formData, {
+        headers: {
+          Authorization: 'Bearer ' + user.token,
         },
-        {
-          headers: {
-            Authorization: 'Bearer ' + user.token,
-          },
-        }
-      );
+      });
 
       const { data, status } = response;
 
