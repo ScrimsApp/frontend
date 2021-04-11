@@ -21,7 +21,7 @@ const TeamInfoCardWrapper: FunctionComponent<TeamInfoCardWrapperProps> = ({
 
   return (
     <TeamInfoCard
-      teamImage="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
+      teamImage={teamImage}
       teamName={teamName}
       about="This team is the best team
                     in the entire universe my

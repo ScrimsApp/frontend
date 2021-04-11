@@ -67,7 +67,7 @@ const TeamCardWrapper: FunctionComponent = () => {
         <TeamInfoWrapper>
           <TeamInfoCardWrapper
             key={data.name}
-            teamImage="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
+            teamImage={`http://localhost:8000/storage/${data.image}`}
             teamName={data.name}
             about="This team is the best team
                                             in the entire universe my

@@ -40,7 +40,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
         <TeamByIdWrapper>
           <TeamByIdInfoWrapper>
             <TeamInfoCard
-              teamImage="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
+              teamImage={`http://localhost:8000/storage/${teamById.image}`}
               teamName={teamById.name}
               about="This team is the best team
                             in the entire universe my
