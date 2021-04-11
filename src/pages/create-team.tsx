@@ -45,6 +45,7 @@ const CreateTeam = () => {
   const formik = useFormik({
     initialValues: {
       name: '',
+      tag: '',
       description: '',
       teamImage: null,
     },
@@ -59,7 +60,7 @@ const CreateTeam = () => {
 
       formData.append('name', values.name);
       formData.append('tag', values.description);
-      formData.append('description', values.description);
+      formData.append('description', values.tag);
       formData.append('image', values.teamImage);
 
       const response = await api.post<CreateTeamResponse>('team', formData, {
@@ -112,6 +113,17 @@ const CreateTeam = () => {
           type="text"
           margin={['0px', '0px', '36px', '0px']}
           value={formik.values.name}
+          onChange={formik.handleChange}
+        />
+
+        <SignInput
+          name="tag"
+          minWidth="100%"
+          colorType="primary"
+          label="Tag"
+          type="text"
+          margin={['0px', '0px', '36px', '0px']}
+          value={formik.values.tag}
           onChange={formik.handleChange}
         />
 
