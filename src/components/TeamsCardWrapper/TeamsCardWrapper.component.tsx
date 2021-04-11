@@ -39,7 +39,7 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
     return data.map((team) => (
       <TeamsCard
         id={team.id}
-        teamImage="https://cdn.ome.lt/9MZ6xKUur-xH3FuVtRP2IE_aViQ=/1200x630/smart/extras/conteudos/team-liquid.jpg"
+        teamImage={`http://localhost:8000/storage/${team.image}`}
         teamName={team.name}
         teamMembers={`${team.players?.length || 1} members`}
         teamMatchesPlayed="7 matches played"
