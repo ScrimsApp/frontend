@@ -59,8 +59,8 @@ const CreateTeam = () => {
       let formData = new FormData();
 
       formData.append('name', values.name);
-      formData.append('tag', values.description);
-      formData.append('description', values.tag);
+      formData.append('tag', values.tag);
+      formData.append('description', values.description);
       formData.append('image', values.teamImage);
 
       const response = await api.post<CreateTeamResponse>('team', formData, {
@@ -70,6 +70,9 @@ const CreateTeam = () => {
       });
 
       const { data, status } = response;
+
+      // Set the User Context teamId
+      console.log(data.team_id);
 
       setNotificationStatus(true);
       setNewNotification({
