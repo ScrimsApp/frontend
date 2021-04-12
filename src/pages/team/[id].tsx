@@ -42,9 +42,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
             <TeamInfoCard
               teamImage={`http://localhost:8000/storage/${teamById.image}`}
               teamName={teamById.name}
-              about="This team is the best team
-                            in the entire universe my
-                            dear friend."
+              about={teamById.description}
               description="7 matches played"
               description2={`${teamById.players.length || 1} members`}
               description3={`Founded in ${formatedTeamFoundedIndDate}`}

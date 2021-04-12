@@ -69,9 +69,7 @@ const TeamCardWrapper: FunctionComponent = () => {
             key={data.name}
             teamImage={`http://localhost:8000/storage/${data.image}`}
             teamName={data.name}
-            about="This team is the best team
-                                            in the entire universe my
-                                            dear friend."
+            about={data.description}
             description="7 matches played"
             description2={`${data.players?.length || 1} members`}
             description3={data.created_at}

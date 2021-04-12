@@ -5,6 +5,7 @@ export interface TeamResponse {
   id: number;
   name: string;
   tag: string;
+  description: string;
   image: string;
   team_id: number;
   user_id: number;

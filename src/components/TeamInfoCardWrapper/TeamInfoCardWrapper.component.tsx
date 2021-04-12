@@ -23,10 +23,8 @@ const TeamInfoCardWrapper: FunctionComponent<TeamInfoCardWrapperProps> = ({
     <TeamInfoCard
       teamImage={teamImage}
       teamName={teamName}
-      about="This team is the best team
-                    in the entire universe my
-                    dear friend."
-      description="7 matches played"
+      about={about}
+      description={description}
       description2={description2}
       description3={`Founded in ${formatedTeamFoundedIndDate}`}
     />
