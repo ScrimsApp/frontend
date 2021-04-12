@@ -1,3 +1,4 @@
+import { Invite } from '../../invite/Invite.type';
 import { Player } from '../../player/Player.type';
 
 export interface TeamResponse {
@@ -10,5 +11,5 @@ export interface TeamResponse {
   created_at: string;
   updated_at: string;
   players: Array<Player>;
-  invites: Array<any>;
+  invites: Array<Invite>;
 }
