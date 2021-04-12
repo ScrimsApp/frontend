@@ -23,7 +23,6 @@ import {
 import { createTeamSchema } from '../utils/validation/team/createTeam.schema';
 import { api } from '../config/api';
 import { CreateTeamResponse } from '../types/responses/team/CreateTeamResponse.type';
-import { saveImageOnFirebaseStorage } from '../utils/firebase/firebase.utils';
 
 import { GlobalContext } from '../context/GlobalContext.';
 import { ErrorLabel } from '../styles/pages/sign/Sign.styles';
@@ -33,7 +32,7 @@ import { createTeamContent } from '../content/createTeam/createTeam.content';
 const CreateTeam = () => {
   const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
-  const { user } = userContext;
+  const { user, updateUserInfo } = userContext;
   const router = useRouter();
 
   useEffect(() => {
@@ -71,9 +70,6 @@ const CreateTeam = () => {
 
       const { data, status } = response;
 
-      // Set the User Context teamId
-      console.log(data.team_id);
-
       setNotificationStatus(true);
       setNewNotification({
         type: status === 200 ? 'success' : 'error',
@@ -81,7 +77,10 @@ const CreateTeam = () => {
         message: data.message,
       });
 
-      status === 200 ? router.push('/team') : null;
+      if (status === 200) {
+        updateUserInfo({ ...user, teamId: data.team_id });
+        router.push('/team');
+      }
     } else {
       setNotificationStatus(true);
       setNewNotification({
