@@ -1,4 +1,5 @@
 import { FunctionComponent, useContext } from 'react';
+import { mutate } from 'swr';
 
 import {
   PlayerRequestCardWrapper,
@@ -49,6 +50,10 @@ const PlayerRequestCard: FunctionComponent<PlayerRequestCardProps> = ({
         title: status === 200 ? 'Success' : 'Whoops',
         message: data.message,
       });
+    }
+
+    if (status === 200) {
+      mutate('team');
     }
   };
 

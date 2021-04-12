@@ -45,7 +45,7 @@ const TeamCardWrapper: FunctionComponent = () => {
   const fetcher = (url: string) =>
     api.get(url, headerOptions).then((res) => res.data);
 
-  const { data, error } = useSWR<TeamResponse>('team', fetcher);
+  const { data, error, mutate } = useSWR<TeamResponse>('team', fetcher);
 
   const handleMatchScheduleActive = () => {
     setIsMatchActive(!isMatchActive);
@@ -69,9 +69,7 @@ const TeamCardWrapper: FunctionComponent = () => {
             key={data.name}
             teamImage={`http://localhost:8000/storage/${data.image}`}
             teamName={data.name}
-            about="This team is the best team
-                                            in the entire universe my
-                                            dear friend."
+            about={data.description}
             description="7 matches played"
             description2={`${data.players?.length || 1} members`}
             description3={data.created_at}
@@ -128,7 +126,7 @@ const TeamCardWrapper: FunctionComponent = () => {
               <PlayerRequestCard
                 key={invite.id}
                 playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
-                playerName={`Invite id ${invite.id}`}
+                playerName={invite.player.name}
                 isCaptain={user.captain}
                 teamCaptainId={data.user_id}
                 inviteId={invite.id}

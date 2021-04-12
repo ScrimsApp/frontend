@@ -16,7 +16,6 @@ const GlobalContextProvider = ({ children }) => {
   const [hasNotification, setHasNotification] = useState(false);
 
   useEffect(() => {
-    // Get User data from LocalStorage
     const userInfo = window.localStorage.getItem('user');
 
     if (userInfo) {
@@ -40,8 +39,12 @@ const GlobalContextProvider = ({ children }) => {
     window.localStorage.setItem('user', '');
   };
 
+  const updateUserInfo = (user: User) => {
+    storeUserInfo(user);
+    setUser(user);
+  };
+
   const storeUserInfo = (user: User) => {
-    // Store User data on LocalStorage
     window.localStorage.setItem('user', JSON.stringify(user));
   };
 
@@ -56,7 +59,7 @@ const GlobalContextProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
-        userContext: { user, logoutUser, storeUserInfo },
+        userContext: { user, logoutUser, storeUserInfo, updateUserInfo },
         notificationContext: {
           notification,
           hasNotification,
