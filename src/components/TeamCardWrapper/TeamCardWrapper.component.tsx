@@ -128,7 +128,7 @@ const TeamCardWrapper: FunctionComponent = () => {
                 playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
                 playerName={invite.player.name}
                 isCaptain={user.captain}
-                teamCaptainId={data.user_id}
+                playerId={invite.player.id}
                 inviteId={invite.id}
               />
             ))}
