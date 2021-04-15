@@ -2,6 +2,6 @@ export interface PlayerRequestCardProps {
   playerImage: string;
   playerName: string;
   isCaptain: boolean;
-  teamCaptainId: number;
+  playerId: number;
   inviteId: number;
 }

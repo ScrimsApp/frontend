@@ -20,7 +20,7 @@ const PlayerRequestCard: FunctionComponent<PlayerRequestCardProps> = ({
   playerImage,
   playerName,
   isCaptain,
-  teamCaptainId,
+  playerId,
   inviteId,
 }) => {
   const { userContext, notificationContext } = useContext(GlobalContext);
@@ -32,7 +32,7 @@ const PlayerRequestCard: FunctionComponent<PlayerRequestCardProps> = ({
       `invite/player/${option}`,
       {
         invite_id: inviteId,
-        user_id: teamCaptainId,
+        user_id: playerId,
       },
       {
         headers: {
