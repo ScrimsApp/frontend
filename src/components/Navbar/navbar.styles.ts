@@ -11,7 +11,7 @@ export const NavbarWrapper = styled.header`
     font-weight: bold;
   }
 
-  @media only screen and (max-width: 920px) {
+  @media only screen and (max-width: 1050px) {
     .hide {
       display: none;
     }
@@ -56,7 +56,7 @@ export const Nav = styled.nav`
     display: none;
   }
 
-  @media only screen and (max-width: 920px) {
+  @media only screen and (max-width: 1050px) {
     .active {
       color: ${(props) => props.theme.colors.text.dark};
       transform: scale(1.2);
@@ -100,7 +100,7 @@ export const NavItem = styled.a`
     color: ${(props) => props.theme.colors.text.light};
   }
 
-  @media only screen and (max-width: 920px) {
+  @media only screen and (max-width: 1050px) {
     margin: 0px 30px;
 
     color: ${(props) => props.theme.colors.text.backup};
@@ -146,7 +146,7 @@ export const NavIcon = styled.div`
     }
   }
 
-  @media only screen and (min-width: 920px) {
+  @media only screen and (min-width: 1050px) {
     display: none;
   }
 

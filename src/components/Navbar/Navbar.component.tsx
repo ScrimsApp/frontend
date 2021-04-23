@@ -50,6 +50,12 @@ const Navbar: FunctionComponent = ({ ...props }) => {
           </NavItem>
         </Link>
 
+        <Link passHref href="/players">
+          <NavItem className={pathname === '/players' ? 'active' : ''}>
+            Players
+          </NavItem>
+        </Link>
+
         <Link passHref href="/match">
           <NavItem className={pathname === '/match' ? 'active' : ''}>
             Match
