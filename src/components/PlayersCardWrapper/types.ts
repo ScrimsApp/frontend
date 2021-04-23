@@ -1,5 +1,5 @@
-import { Player } from '../../types/player/Player.type';
+import { PlayersResponse } from '../../types/responses/player/PlayersResponse.type';
 
 export interface PlayersCardWrapperProps {
-  players: Array<Player>;
+  players: PlayersResponse;
 }
