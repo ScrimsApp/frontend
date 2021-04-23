@@ -1,3 +1,5 @@
+import { FunctionComponent } from 'react';
+
 import Navbar from '../components/Navbar/Navbar.component';
 import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
 
@@ -6,7 +8,17 @@ import {
   PlayersWrapper,
 } from '../styles/pages/players/players.styles';
 
-const Players = () => {
+import { PlayersResponse } from '../types/responses/player/PlayersResponse.type';
+
+import PlayersCardWrapper from '../components/PlayersCardWrapper/PlayersCardWrapper.component';
+import { GetServerSideProps } from 'next';
+import { api } from '../config/api';
+
+interface PlayersProps {
+  players: PlayersResponse;
+}
+
+const Players: FunctionComponent<PlayersProps> = ({ players }) => {
   return (
     <MainWrapper>
       <Navbar />
@@ -14,10 +26,22 @@ const Players = () => {
       <PlayersSectionTitle>Players</PlayersSectionTitle>
 
       <PlayersWrapper>
-        <h1>PlayersCardWrapper</h1>
+        <PlayersCardWrapper players={players} />
       </PlayersWrapper>
     </MainWrapper>
   );
 };
 
 export default Players;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const players = await api
+    .get<PlayersResponse>('players')
+    .then((res) => res.data);
+
+  return {
+    props: {
+      players,
+    },
+  };
+};
