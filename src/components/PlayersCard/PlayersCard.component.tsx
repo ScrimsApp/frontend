@@ -46,10 +46,10 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
           <PlayersCardDescription>{`Joined in ${formatedPlayerJoinedDate}`}</PlayersCardDescription>
         </PlayersCardDescriptionsWrapper>
       </PlayersCardInfo>
-      {user.captain && !team_id ? (
+      {user.captain && team_id ? (
         <PlayersSideOption backgroundColor="#4767f9">
           <Link href={user.token ? '' : '/signin'}>
-            <InviteButton>Invite to Team</InviteButton>
+            <InviteButton>Invite</InviteButton>
           </Link>
         </PlayersSideOption>
       ) : null}
