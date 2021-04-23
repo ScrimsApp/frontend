@@ -37,8 +37,8 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
   const handleInvite = () => {};
 
   return (
-    <PlayersCardWrapper key={id}>
-      <PlayersCardImage src={image} />\
+    <PlayersCardWrapper>
+      <PlayersCardImage src={image} />
       <PlayersCardInfo>
         <PlayersCardName>{name}</PlayersCardName>
 
