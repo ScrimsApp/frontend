@@ -17,6 +17,7 @@ import {
 
 import SignInput from '../SignInput/SignInput.component';
 import { useFormik } from 'formik';
+import { createMatchSchema } from '../../utils/validation/match/createMatch.schema';
 
 const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
   const [formActive, setFormActive] = useState(false);
@@ -31,9 +32,22 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
       date: '',
       time: '',
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => handleCreateMatch(values),
     validateOnChange: false,
   });
+
+  const handleCreateMatch = async (values: any) => {
+    let date = new Date(values.date + ' ' + values.time);
+
+    let isDateValid = await createMatchSchema.isValid({
+      type: values.type,
+      date: values.date,
+      time: values.time,
+    });
+
+    console.log(isDateValid);
+    console.log(date);
+  };
 
   const handleCreateMatchButton = () => {
     if (formActive) {
