@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState, MouseEvent } from 'react';
 
 import { CreateMatchProps } from './types';
 
@@ -16,15 +16,39 @@ import {
 } from '../../styles/shared/Button/Button.styles';
 
 import SignInput from '../SignInput/SignInput.component';
+import { useFormik } from 'formik';
 
 const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
   const [formActive, setFormActive] = useState(false);
+
+  // "format" => $dados['format'],
+  // "date" => $dados['date'],
+  // "time" => $dados['time']
+
+  const formik = useFormik({
+    initialValues: {
+      type: '',
+      date: '',
+      time: '',
+    },
+    onSubmit: (values) => console.log(values),
+    validateOnChange: false,
+  });
+
+  const handleCreateMatchButton = () => {
+    if (formActive) {
+      formik.submitForm();
+    } else {
+      setFormActive(true);
+    }
+  };
+
   return (
     <CreateMatchWrapper>
       <CreateMatchTitle>Schedule a new match</CreateMatchTitle>
 
       <CreateMatchFormWrapper>
-        <CreateMatchForm active={formActive}>
+        <CreateMatchForm onSubmit={formik.handleSubmit} active={formActive}>
           <SignInput
             name="type"
             minWidth="100%"
@@ -32,8 +56,8 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
             label="Type"
             type="text"
             margin={['0px', '0px', '36px', '0px']}
-            onChange={() => {}}
-            value=""
+            onChange={formik.handleChange}
+            value={formik.values.type}
           />
 
           <SignInput
@@ -43,8 +67,8 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
             label="Date"
             type="text"
             margin={['0px', '0px', '36px', '0px']}
-            onChange={() => {}}
-            value=""
+            onChange={formik.handleChange}
+            value={formik.values.date}
           />
 
           <SignInput
@@ -54,8 +78,8 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
             label="Time"
             type="text"
             margin={['0px', '0px', '0px', '0px']}
-            onChange={() => {}}
-            value=""
+            onChange={formik.handleChange}
+            value={formik.values.time}
           />
         </CreateMatchForm>
 
@@ -63,7 +87,7 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
           <ButtonOverlay className="overlay" type="primary" sign />
           <Button
             type={formActive ? 'submit' : 'button'}
-            onClick={() => setFormActive(true)}
+            onClick={() => handleCreateMatchButton()}
           >
             Create match
           </Button>
