@@ -1,4 +1,4 @@
-import { FunctionComponent, useState, MouseEvent } from 'react';
+import { FunctionComponent, useState, MouseEvent, useContext } from 'react';
 
 import { CreateMatchProps } from './types';
 
@@ -18,13 +18,14 @@ import {
 import SignInput from '../SignInput/SignInput.component';
 import { useFormik } from 'formik';
 import { createMatchSchema } from '../../utils/validation/match/createMatch.schema';
+import { api } from '../../config/api';
+import { GlobalContext } from '../../context/GlobalContext.';
 
 const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
+  const { userContext, notificationContext } = useContext(GlobalContext);
+  const { user } = userContext;
+  const { setNewNotification, setNotificationStatus } = notificationContext;
   const [formActive, setFormActive] = useState(false);
-
-  // "format" => $dados['format'],
-  // "date" => $dados['date'],
-  // "time" => $dados['time']
 
   const formik = useFormik({
     initialValues: {
@@ -37,16 +38,42 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
   });
 
   const handleCreateMatch = async (values: any) => {
-    let date = new Date(values.date + ' ' + values.time);
+    // let date = new Date(`2021/${values.date} ${values.time}`);
 
     let isDateValid = await createMatchSchema.isValid({
       type: values.type,
-      date: values.date,
+      date: `2021/${values.date}`,
       time: values.time,
     });
 
-    console.log(isDateValid);
-    console.log(date);
+    if (isDateValid) {
+      let response = await api.post(
+        'match',
+        {
+          format: values.type,
+          date: `2021/${values.date}`,
+          time: values.time,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + user.token,
+          },
+        }
+      );
+
+      const { data, status } = response;
+
+      if (data) {
+        setNotificationStatus(true);
+        setNewNotification({
+          type: status === 200 ? 'success' : 'error',
+          title: status === 200 ? 'Success' : 'Whoops',
+          message: data.message,
+        });
+
+        setFormActive(false);
+      }
+    }
   };
 
   const handleCreateMatchButton = () => {
@@ -99,12 +126,16 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
 
         <ButtonWrapper minWidth="100%" margin={['0px', '0px', '0px', '0px']}>
           <ButtonOverlay className="overlay" type="primary" sign />
-          <Button
-            type={formActive ? 'submit' : 'button'}
-            onClick={() => handleCreateMatchButton()}
-          >
-            Create match
-          </Button>
+          {user.captain ? (
+            <Button
+              type={formActive ? 'submit' : 'button'}
+              onClick={() => handleCreateMatchButton()}
+            >
+              Create match
+            </Button>
+          ) : (
+            <Button type="button">Ask captain</Button>
+          )}
         </ButtonWrapper>
       </CreateMatchFormWrapper>
     </CreateMatchWrapper>
