@@ -35,44 +35,36 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
     },
     onSubmit: (values) => handleCreateMatch(values),
     validateOnChange: false,
+    validationSchema: createMatchSchema,
   });
 
   const handleCreateMatch = async (values: any) => {
     // let date = new Date(`2021/${values.date} ${values.time}`);
-
-    let isDateValid = await createMatchSchema.isValid({
-      type: values.type,
-      date: `2021/${values.date}`,
-      time: values.time,
-    });
-
-    if (isDateValid) {
-      let response = await api.post(
-        'match',
-        {
-          format: values.type,
-          date: `2021/${values.date}`,
-          time: values.time,
+    let response = await api.post(
+      'match',
+      {
+        format: values.type,
+        date: `2021/${values.date}`,
+        time: values.time,
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + user.token,
         },
-        {
-          headers: {
-            Authorization: 'Bearer ' + user.token,
-          },
-        }
-      );
-
-      const { data, status } = response;
-
-      if (data) {
-        setNotificationStatus(true);
-        setNewNotification({
-          type: status === 200 ? 'success' : 'error',
-          title: status === 200 ? 'Success' : 'Whoops',
-          message: data.message,
-        });
-
-        setFormActive(false);
       }
+    );
+
+    const { data, status } = response;
+
+    if (data) {
+      setNotificationStatus(true);
+      setNewNotification({
+        type: status === 200 ? 'success' : 'error',
+        title: status === 200 ? 'Success' : 'Whoops',
+        message: data.message,
+      });
+
+      setFormActive(false);
     }
   };
 
@@ -126,7 +118,7 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
 
         <ButtonWrapper minWidth="100%" margin={['0px', '0px', '0px', '0px']}>
           <ButtonOverlay className="overlay" type="primary" sign />
-          {user.captain ? (
+          {!user.captain ? (
             <Button
               type={formActive ? 'submit' : 'button'}
               onClick={() => handleCreateMatchButton()}
