@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { ErrorLabel } from '../../styles/pages/sign/Sign.styles';
+
 export const CreateMatchWrapper = styled.div`
   width: 35%;
   height: 100%;
@@ -28,8 +30,10 @@ export const CreateMatchTitle = styled.h3`
   font-weight: bold;
   font-size: 26px;
   color: #ffffff;
-  margin-bottom: 36px;
+  margin-bottom: 16px;
 `;
+
+export const CreateMatchErrorLabel = styled(ErrorLabel)``;
 
 export const CreateMatchFormWrapper = styled.div`
   width: 100%;

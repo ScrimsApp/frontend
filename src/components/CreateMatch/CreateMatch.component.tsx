@@ -5,6 +5,7 @@ import { CreateMatchProps } from './types';
 import {
   CreateMatchWrapper,
   CreateMatchTitle,
+  CreateMatchErrorLabel,
   CreateMatchForm,
   CreateMatchFormWrapper,
 } from './createMatch.styles';
@@ -79,6 +80,10 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
   return (
     <CreateMatchWrapper>
       <CreateMatchTitle>Schedule a new match</CreateMatchTitle>
+
+      <CreateMatchErrorLabel>
+        {Object.values(formik.errors).find((error) => error)}
+      </CreateMatchErrorLabel>
 
       <CreateMatchFormWrapper>
         <CreateMatchForm onSubmit={formik.handleSubmit} active={formActive}>
