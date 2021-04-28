@@ -24,6 +24,8 @@ import {
 import { GlobalContext } from '../../context/GlobalContext.';
 
 const MatchCard: FunctionComponent<MatchCardProps> = ({
+  id,
+  teamImage,
   title,
   description,
   hashtags,
@@ -46,10 +48,10 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
   };
 
   return (
-    <CardWrapper>
+    <CardWrapper key={id}>
       <CardImage
         alt="team"
-        src="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
+        src={`http://localhost:8000/storage/${teamImage}`}
       />
 
       <CardInfo>
@@ -59,7 +61,7 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
 
         <CardHashtagWrapper>
           {hashtags.map((hashtag) => (
-            <CardHashtag>{hashtag}</CardHashtag>
+            <CardHashtag key={hashtag}>{hashtag}</CardHashtag>
           ))}
         </CardHashtagWrapper>
 
