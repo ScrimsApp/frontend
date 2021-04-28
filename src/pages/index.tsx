@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { FunctionComponent } from 'react';
+import { GetServerSideProps } from 'next';
 
 import Navbar from '../components/Navbar/Navbar.component';
 import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
@@ -7,109 +8,42 @@ import {
   MatchesWrapper,
   SectionTitle,
 } from '../styles/pages/index/index.styles';
-import MatchCard from '../components/MatchCard/MatchCard.component';
 
 import { homeContent } from '../content/home/home.content';
 
-import Loading from '../components/Loading/Loading.component';
-import { GlobalContext } from '../context/GlobalContext.';
+import { api } from '../config/api';
+import { MatchesResponse } from '../types/responses/match/MatchesResponse.type';
 
-const Home = () => {
-  const [isContentLoaded, setIsContentLoaded] = useState(false);
-  const { userContext } = useContext(GlobalContext);
-  const { user } = userContext;
+import MatchesCardWrapper from '../components/MatchesCardWrapper/MatchesCardWrapper.component';
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsContentLoaded(true);
-    }, 1000);
-  });
+interface HomeProps {
+  matches: Array<MatchesResponse>;
+}
 
+const Home: FunctionComponent<HomeProps> = ({ matches }) => {
   return (
     <MainWrapper>
       <Navbar />
 
       <SectionTitle>{homeContent.matches}</SectionTitle>
 
-      {isContentLoaded ? (
-        <MatchesWrapper>
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-        </MatchesWrapper>
-      ) : (
-        <Loading />
-      )}
+      <MatchesWrapper>
+        <MatchesCardWrapper matches={matches} />
+      </MatchesWrapper>
     </MainWrapper>
   );
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const matches = await api
+    .get<Array<MatchesResponse>>('match')
+    .then((res) => res.data);
+
+  return {
+    props: {
+      matches,
+    },
+  };
+};
