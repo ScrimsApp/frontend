@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { FunctionComponent, useContext, useEffect, useState } from 'react';
+import { GetServerSideProps } from 'next';
 
 import Navbar from '../components/Navbar/Navbar.component';
 import { MainWrapper } from '../styles/shared/Wrapper/Wrapper.styles';
@@ -14,10 +15,19 @@ import { homeContent } from '../content/home/home.content';
 import Loading from '../components/Loading/Loading.component';
 import { GlobalContext } from '../context/GlobalContext.';
 
-const Home = () => {
+import { api } from '../config/api';
+import { MatchesResponse } from '../types/responses/match/MatchesResponse.type';
+
+interface HomeProps {
+  matches: Array<MatchesResponse>;
+}
+
+const Home: FunctionComponent<HomeProps> = ({ matches }) => {
   const [isContentLoaded, setIsContentLoaded] = useState(false);
   const { userContext } = useContext(GlobalContext);
   const { user } = userContext;
+
+  console.log(matches);
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,85 +41,21 @@ const Home = () => {
 
       <SectionTitle>{homeContent.matches}</SectionTitle>
 
-      {isContentLoaded ? (
-        <MatchesWrapper>
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-
-          <MatchCard
-            title="TEAM Liquid"
-            description="Partidas em mapas diversos"
-            hashtags={['#r6', '#coastline', '#balatorta']}
-            time="9:00 PM"
-            date="03.25.21"
-            captain={user.captain}
-          />
-        </MatchesWrapper>
-      ) : (
-        <Loading />
-      )}
+      <MatchesWrapper>{/* Matches Cards goes here... */}</MatchesWrapper>
     </MainWrapper>
   );
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const matches = await api
+    .get<Array<MatchesResponse>>('match')
+    .then((res) => res.data);
+
+  return {
+    props: {
+      matches,
+    },
+  };
+};
