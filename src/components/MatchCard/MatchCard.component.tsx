@@ -23,6 +23,9 @@ import {
 
 import { GlobalContext } from '../../context/GlobalContext.';
 
+import { api } from '../../config/api';
+import { InviteMatchResponse } from '../../types/responses/match/InviteMatchResponse.type';
+
 const MatchCard: FunctionComponent<MatchCardProps> = ({
   id,
   teamImage,
@@ -33,18 +36,34 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
   date,
   captain,
 }) => {
-  const { notificationContext } = useContext(GlobalContext);
+  const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
+  const { user } = userContext;
 
-  const handleAssign = () => {
+  const handleAssign = async () => {
     //   Send API Request
+    if (user.token) {
+      const response = await api.post<InviteMatchResponse>(
+        'invite/match',
+        {
+          match_id: id,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + user.token,
+          },
+        }
+      );
 
-    setNotificationStatus(true);
-    setNewNotification({
-      type: 'success',
-      title: 'Success',
-      message: 'You have assigned to this match',
-    });
+      const { data, status } = response;
+
+      setNotificationStatus(true);
+      setNewNotification({
+        type: status === 200 ? 'success' : 'error',
+        title: status === 200 ? 'Success' : 'Whoops',
+        message: data.message,
+      });
+    }
   };
 
   return (
