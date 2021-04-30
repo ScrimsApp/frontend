@@ -22,7 +22,9 @@ import {
 } from '../../styles/shared/Button/Button.styles';
 
 import { GlobalContext } from '../../context/GlobalContext.';
+
 import { api } from '../../config/api';
+import { InviteMatchResponse } from '../../types/responses/match/InviteMatchResponse.type';
 
 const MatchCard: FunctionComponent<MatchCardProps> = ({
   id,
@@ -41,7 +43,7 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
   const handleAssign = async () => {
     //   Send API Request
     if (user.token) {
-      const response = await api.post(
+      const response = await api.post<InviteMatchResponse>(
         'invite/match',
         {
           match_id: id,
