@@ -123,7 +123,7 @@ const CreateMatch: FunctionComponent<CreateMatchProps> = () => {
 
         <ButtonWrapper minWidth="100%" margin={['0px', '0px', '0px', '0px']}>
           <ButtonOverlay className="overlay" type="primary" sign />
-          {!user.captain ? (
+          {user.captain ? (
             <Button
               type={formActive ? 'submit' : 'button'}
               onClick={() => handleCreateMatchButton()}
