@@ -16,6 +16,7 @@ import {
 
 import { GlobalContext } from '../../context/GlobalContext.';
 import { api } from '../../config/api';
+import { InvitePlayerResponse } from '../../types/responses/player/InvitePlayerResponse.type';
 
 const PlayersCard: FunctionComponent<PlayersCardProps> = ({
   id,
@@ -38,7 +39,7 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
 
   const handleInvite = async () => {
     if (user.token) {
-      const response = await api.post(
+      const response = await api.post<InvitePlayerResponse>(
         'invite/player',
         {
           type: 'team',
