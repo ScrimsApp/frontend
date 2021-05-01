@@ -67,7 +67,7 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
   };
 
   return (
-    <CardWrapper key={id}>
+    <CardWrapper>
       <CardImage
         alt="team"
         src={`http://localhost:8000/storage/${teamImage}`}
