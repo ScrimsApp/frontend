@@ -38,6 +38,7 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
   if (data.length > 0) {
     return data.map((match) => (
       <MatchCard
+        key={match.id}
         id={match.id}
         teamImage={match.team_1.image}
         title={match.team_1.name}

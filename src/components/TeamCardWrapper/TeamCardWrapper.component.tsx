@@ -45,7 +45,7 @@ const TeamCardWrapper: FunctionComponent = () => {
   const fetcher = (url: string) =>
     api.get(url, headerOptions).then((res) => res.data);
 
-  const { data, error, mutate } = useSWR<TeamResponse>('team', fetcher);
+  const { data, error } = useSWR<TeamResponse>('team', fetcher);
 
   const handleMatchScheduleActive = () => {
     setIsMatchActive(!isMatchActive);
@@ -93,9 +93,15 @@ const TeamCardWrapper: FunctionComponent = () => {
           </Options>
 
           <MatchesSchedule>
-            <MatchInvitations visible={isMatchActive} />
+            <MatchInvitations
+              visible={isMatchActive}
+              matchInvites={data.invites_matches_receives}
+            />
 
-            <Schedule visible={isScheduleActive} />
+            <Schedule
+              visible={isScheduleActive}
+              matchesSchedule={data.matches_accepted}
+            />
           </MatchesSchedule>
         </MatchesScheduleWrapper>
 
@@ -123,7 +129,7 @@ const TeamCardWrapper: FunctionComponent = () => {
           </PlayersRequestsTitle>
 
           <PlayersRequests>
-            {data.invites.map((invite) => (
+            {data.invites_players?.map((invite) => (
               <PlayerRequestCard
                 key={invite.id}
                 playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"

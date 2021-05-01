@@ -78,7 +78,7 @@ const CreateTeam = () => {
       });
 
       if (status === 200) {
-        updateUserInfo({ ...user, teamId: data.team_id });
+        updateUserInfo({ ...user, teamId: data.team_id, captain: true });
         router.push('/team');
       }
     } else {
