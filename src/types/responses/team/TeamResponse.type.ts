@@ -1,4 +1,5 @@
 import { Invite } from '../../invite/Invite.type';
+import { Match } from '../../match/Match.type';
 import { Player } from '../../player/Player.type';
 
 export interface TeamResponse {
@@ -19,17 +20,34 @@ export interface TeamResponse {
   matches_created: Array<any>;
 }
 
-interface MatchInviteReceived {}
+export interface MatchInviteReceived {
+  id: number;
+  match: Match;
+  status: number;
+  team: {
+    description: any;
+    id: number;
+    image: string;
+    name: string;
+    tag: string;
+    user_id: 1;
+  };
+}
 
 interface MatchesScheduled {}
 
 interface MatchInviteSent {
-  created_at: string;
   id: number;
-  match: any;
+  match: Match;
   status: number;
-  team_2: number;
-  updated_at: string;
+  team: {
+    description: any;
+    id: number;
+    image: string;
+    name: string;
+    tag: string;
+    user_id: 1;
+  };
 }
 
 interface MatchCreated {}

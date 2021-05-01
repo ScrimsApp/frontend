@@ -93,7 +93,10 @@ const TeamCardWrapper: FunctionComponent = () => {
           </Options>
 
           <MatchesSchedule>
-            <MatchInvitations visible={isMatchActive} />
+            <MatchInvitations
+              visible={isMatchActive}
+              matchInvites={data.invites_matches_receives}
+            />
 
             <Schedule visible={isScheduleActive} />
           </MatchesSchedule>
