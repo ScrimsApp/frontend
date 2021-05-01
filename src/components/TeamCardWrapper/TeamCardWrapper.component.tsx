@@ -45,7 +45,7 @@ const TeamCardWrapper: FunctionComponent = () => {
   const fetcher = (url: string) =>
     api.get(url, headerOptions).then((res) => res.data);
 
-  const { data, error, mutate } = useSWR<TeamResponse>('team', fetcher);
+  const { data, error } = useSWR<TeamResponse>('team', fetcher);
 
   const handleMatchScheduleActive = () => {
     setIsMatchActive(!isMatchActive);
