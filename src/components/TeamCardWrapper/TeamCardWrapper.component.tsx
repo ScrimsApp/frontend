@@ -123,7 +123,7 @@ const TeamCardWrapper: FunctionComponent = () => {
           </PlayersRequestsTitle>
 
           <PlayersRequests>
-            {data.invites.map((invite) => (
+            {data.invites?.map((invite) => (
               <PlayerRequestCard
                 key={invite.id}
                 playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
