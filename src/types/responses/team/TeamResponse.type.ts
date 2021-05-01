@@ -34,7 +34,28 @@ export interface MatchInviteReceived {
   };
 }
 
-interface MatchesScheduled {}
+export interface MatchesScheduled {
+  data: string;
+  format: string;
+  id: number;
+  team_1: {
+    description: any;
+    id: number;
+    image: string;
+    name: string;
+    tag: string;
+    user_id: number;
+  };
+  team_2: {
+    description: any;
+    id: number;
+    image: string;
+    name: string;
+    tag: string;
+    user_id: number;
+  };
+  time: string;
+}
 
 interface MatchInviteSent {
   id: number;

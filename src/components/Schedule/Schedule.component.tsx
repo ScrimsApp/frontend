@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from 'react';
 
 import {
   ScheduleCardWrapper,
@@ -13,48 +13,51 @@ import {
 
 import { ScheduleProps } from './types';
 
-const Schedule: FunctionComponent<ScheduleProps> = ({ visible }) => {
-  const handleSchedule = () => {};
+import { GlobalContext } from '../../context/GlobalContext.';
+
+const Schedule: FunctionComponent<ScheduleProps> = ({
+  visible,
+  matchesSchedule,
+}) => {
+  const { userContext, notificationContext } = useContext(GlobalContext);
+  const { setNotificationStatus, setNewNotification } = notificationContext;
+  const { user } = userContext;
+
+  const handleSchedule = async (id: number) => {
+    if (user.token) {
+      console.log(id);
+    }
+  };
 
   return (
     <ScheduleWrapper visible={visible}>
-      <ScheduleCardWrapper>
-        <ScheduleCardImage
-          src="https://pbs.twimg.com/profile_images/922916646108442624/sNPFiaj-_400x400.jpg"
-          alt="G3 Sports"
-        />
+      {matchesSchedule.map((schedule) => (
+        <ScheduleCardWrapper>
+          <ScheduleCardImage
+            src={`http://localhost:8000/storage/${schedule.team_2.image}`}
+            alt={schedule.team_2.name}
+          />
 
-        <ScheduleInfo>
-          <ScheduleName>G3 Sports</ScheduleName>
+          <ScheduleInfo>
+            <ScheduleName>{schedule.team_2.name}</ScheduleName>
 
-          <ScheduleDescription>Partidas em mapas diversos</ScheduleDescription>
+            <ScheduleDescription>{schedule.format}</ScheduleDescription>
 
-          <ScheduleDescription>20.03.2021 7:00 PM</ScheduleDescription>
-        </ScheduleInfo>
+            <ScheduleDescription>
+              {schedule.data} {schedule.time}
+            </ScheduleDescription>
+          </ScheduleInfo>
 
-        <ScheduleSideOption backgroundColor="#ED5353">
-          <CancelButton>Cancel</CancelButton>
-        </ScheduleSideOption>
-      </ScheduleCardWrapper>
-
-      <ScheduleCardWrapper>
-        <ScheduleCardImage
-          src="https://pbs.twimg.com/profile_images/922916646108442624/sNPFiaj-_400x400.jpg"
-          alt="G3 Sports"
-        />
-
-        <ScheduleInfo>
-          <ScheduleName>G3 Sports</ScheduleName>
-
-          <ScheduleDescription>Partidas em mapas diversos</ScheduleDescription>
-
-          <ScheduleDescription>20.03.2021 7:00 PM</ScheduleDescription>
-        </ScheduleInfo>
-
-        <ScheduleSideOption backgroundColor="#ED5353">
-          <CancelButton>Cancel</CancelButton>
-        </ScheduleSideOption>
-      </ScheduleCardWrapper>
+          {user.captain ? (
+            <ScheduleSideOption
+              backgroundColor="#ED5353"
+              onClick={() => handleSchedule(schedule.id)}
+            >
+              <CancelButton>Cancel</CancelButton>
+            </ScheduleSideOption>
+          ) : null}
+        </ScheduleCardWrapper>
+      ))}
     </ScheduleWrapper>
   );
 };
