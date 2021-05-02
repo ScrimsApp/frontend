@@ -28,6 +28,7 @@ import { GlobalContext } from '../../context/GlobalContext.';
 import { TeamResponse } from '../../types/responses/team/TeamResponse.type';
 import { api } from '../../config/api';
 import Loading from '../Loading/Loading.component';
+import MatchInvitesSent from '../MatchInvitesSent/MatchInvitesSent.component';
 
 const TeamCardWrapper: FunctionComponent = () => {
   const [isMatchActive, setIsMatchActive] = useState(true);
@@ -127,9 +128,9 @@ const TeamCardWrapper: FunctionComponent = () => {
           </Options>
 
           <MatchesSchedule>
-            <MatchInvitations
+            <MatchInvitesSent
               visible={isMatchSentActive}
-              matchInvites={data.invites_matches_receives}
+              matchInvitesSent={data.invites_matches_sends}
             />
 
             <Schedule

@@ -58,18 +58,10 @@ export interface MatchesScheduled {
   team_adversary_image: string;
 }
 
-interface MatchInviteSent {
+export interface MatchInviteSent {
   id: number;
   match: Match;
   status: number;
-  team: {
-    description: any;
-    id: number;
-    image: string;
-    name: string;
-    tag: string;
-    user_id: 1;
-  };
 }
 
 interface MatchCreated {}
