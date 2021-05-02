@@ -56,7 +56,7 @@ const MatchInvitations: FunctionComponent<MatchInvitationsProps> = ({
 
   return (
     <MatchInvitationsWrapper visible={visible}>
-      {matchInvites.map((invite) => (
+      {matchInvites?.map((invite) => (
         <MatchInvitationsCardWrapper key={invite.id}>
           <MatchInvitationsCardImage
             src={`http://localhost:8000/storage/${invite.team.image}`}
