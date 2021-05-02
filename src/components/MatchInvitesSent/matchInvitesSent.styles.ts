@@ -6,8 +6,6 @@ import {
   MatchInvitationsInfo,
   MatchInvitationsName,
   MatchInvitationsDescription,
-  MatchInvitationsSideOption,
-  OptionButton,
 } from '../MatchInvitations/matchInvitations.styles';
 
 import { ScheduleSideOption, CancelButton } from '../Schedule/schedule.styles';
@@ -22,6 +20,5 @@ export const MatchInvitesSentName = styled(MatchInvitationsName)``;
 export const MatchInvitesSentDescription = styled(
   MatchInvitationsDescription
 )``;
-export const MatchInvitesSentSideOption = styled(MatchInvitationsSideOption)``;
 export const MatchInvitesSideOption = styled(ScheduleSideOption)``;
 export const MatchInvitesCancelButton = styled(CancelButton)``;

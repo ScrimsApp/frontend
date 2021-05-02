@@ -29,6 +29,7 @@ import { TeamResponse } from '../../types/responses/team/TeamResponse.type';
 import { api } from '../../config/api';
 import Loading from '../Loading/Loading.component';
 import MatchInvitesSent from '../MatchInvitesSent/MatchInvitesSent.component';
+import MatchesCreated from '../MatchesCreated/MatchesCreated.component';
 
 const TeamCardWrapper: FunctionComponent = () => {
   const [isMatchActive, setIsMatchActive] = useState(true);
@@ -133,9 +134,9 @@ const TeamCardWrapper: FunctionComponent = () => {
               matchInvitesSent={data.invites_matches_sends}
             />
 
-            <Schedule
+            <MatchesCreated
               visible={isMatchesCreatedActive}
-              matchesSchedule={data.matches_accepted}
+              matchesCreated={data.matches_created}
             />
           </MatchesSchedule>
         </MatchesScheduleWrapper>

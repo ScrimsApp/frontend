@@ -17,7 +17,7 @@ export interface TeamResponse {
   invites_matches_receives: Array<any>;
   matches_accepted: Array<any>;
   invites_matches_sends: Array<MatchInviteSent>;
-  matches_created: Array<any>;
+  matches_created: Array<MatchesCreated>;
 }
 
 export interface MatchInviteReceived {
@@ -64,4 +64,17 @@ export interface MatchInviteSent {
   status: number;
 }
 
-interface MatchCreated {}
+export interface MatchesCreated {
+  id: number;
+  data: string;
+  time: string;
+  format: string;
+  team_1: {
+    description: any;
+    id: number;
+    image: string;
+    name: string;
+    tag: string;
+    user_id: 1;
+  };
+}
