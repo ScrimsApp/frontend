@@ -32,6 +32,8 @@ import Loading from '../Loading/Loading.component';
 const TeamCardWrapper: FunctionComponent = () => {
   const [isMatchActive, setIsMatchActive] = useState(true);
   const [isScheduleActive, setIsScheduleActive] = useState(false);
+  const [isMatchSentActive, setIsMatchSentActive] = useState(true);
+  const [isMatchesCreatedActive, setIsMatchesCreatedActive] = useState(false);
   const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
   const { user } = userContext;
@@ -50,6 +52,11 @@ const TeamCardWrapper: FunctionComponent = () => {
   const handleMatchScheduleActive = () => {
     setIsMatchActive(!isMatchActive);
     setIsScheduleActive(!isScheduleActive);
+  };
+
+  const handleMatchesActive = () => {
+    setIsMatchSentActive(!isMatchSentActive);
+    setIsMatchesCreatedActive(!isMatchesCreatedActive);
   };
 
   if (error) {
@@ -100,6 +107,33 @@ const TeamCardWrapper: FunctionComponent = () => {
 
             <Schedule
               visible={isScheduleActive}
+              matchesSchedule={data.matches_accepted}
+            />
+          </MatchesSchedule>
+
+          <Options>
+            <MatchesScheduleTitle
+              className={isMatchSentActive ? 'active' : ''}
+              onClick={handleMatchesActive}
+            >
+              {myTeamContent.matchesSent}
+            </MatchesScheduleTitle>
+            <MatchesScheduleTitle
+              className={isMatchesCreatedActive ? 'active' : ''}
+              onClick={handleMatchesActive}
+            >
+              {myTeamContent.matchesCreated}
+            </MatchesScheduleTitle>
+          </Options>
+
+          <MatchesSchedule>
+            <MatchInvitations
+              visible={isMatchSentActive}
+              matchInvites={data.invites_matches_receives}
+            />
+
+            <Schedule
+              visible={isMatchesCreatedActive}
               matchesSchedule={data.matches_accepted}
             />
           </MatchesSchedule>
