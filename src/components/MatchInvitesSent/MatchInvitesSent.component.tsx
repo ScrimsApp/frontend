@@ -18,7 +18,7 @@ const MatchInvitesSent: FunctionComponent<MatchInvitesSentProps> = ({
 }) => {
   return (
     <MatchInvitesSentWrapper visible={visible}>
-      {matchInvitesSent.map((invite) => (
+      {matchInvitesSent?.map((invite) => (
         <MatchInvitesSentCardWrapper key={invite.id}>
           <MatchInvitesSentCardImage
             src={`http://localhost:8000/storage/${invite.match.team_1.image}`}

@@ -1,13 +1,9 @@
-import { FunctionComponent, useContext, useState } from 'react';
+import { FunctionComponent, useContext } from 'react';
 import useSWR from 'swr';
 
 import {
   TeamWrapper,
   TeamInfoWrapper,
-  MatchesScheduleWrapper,
-  MatchesSchedule,
-  Options,
-  MatchesScheduleTitle,
   TeamMembersWrapper,
   PlayersRequestsWrapper,
   TeamMembersTitle,
@@ -18,8 +14,7 @@ import {
 
 import TeamMemberCard from '../TeamMemberCard/TeamMemberCard.component';
 import PlayerRequestCard from '../PlayerRequestCard/PlayerRequestCard.component';
-import Schedule from '../Schedule/Schedule.component';
-import MatchInvitations from '../MatchInvitations/MatchInvitations.component';
+
 import TeamInfoCardWrapper from '../TeamInfoCardWrapper/TeamInfoCardWrapper.component';
 
 import { myTeamContent } from '../../content/myTeam/myTeam.content';
@@ -28,14 +23,9 @@ import { GlobalContext } from '../../context/GlobalContext.';
 import { TeamResponse } from '../../types/responses/team/TeamResponse.type';
 import { api } from '../../config/api';
 import Loading from '../Loading/Loading.component';
-import MatchInvitesSent from '../MatchInvitesSent/MatchInvitesSent.component';
-import MatchesCreated from '../MatchesCreated/MatchesCreated.component';
+import SideMatchesSchedule from '../SideMatchesSchedule/SideMatchesSchedule.component';
 
 const TeamCardWrapper: FunctionComponent = () => {
-  const [isMatchActive, setIsMatchActive] = useState(true);
-  const [isScheduleActive, setIsScheduleActive] = useState(false);
-  const [isMatchSentActive, setIsMatchSentActive] = useState(true);
-  const [isMatchesCreatedActive, setIsMatchesCreatedActive] = useState(false);
   const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
   const { user } = userContext;
@@ -50,16 +40,6 @@ const TeamCardWrapper: FunctionComponent = () => {
     api.get(url, headerOptions).then((res) => res.data);
 
   const { data, error } = useSWR<TeamResponse>('team', fetcher);
-
-  const handleMatchScheduleActive = () => {
-    setIsMatchActive(!isMatchActive);
-    setIsScheduleActive(!isScheduleActive);
-  };
-
-  const handleMatchesActive = () => {
-    setIsMatchSentActive(!isMatchSentActive);
-    setIsMatchesCreatedActive(!isMatchesCreatedActive);
-  };
 
   if (error) {
     setNotificationStatus(true);
@@ -85,61 +65,12 @@ const TeamCardWrapper: FunctionComponent = () => {
           />
         </TeamInfoWrapper>
 
-        <MatchesScheduleWrapper>
-          <Options>
-            <MatchesScheduleTitle
-              className={isMatchActive ? 'active' : ''}
-              onClick={handleMatchScheduleActive}
-            >
-              {myTeamContent.matchesTitle}
-            </MatchesScheduleTitle>
-            <MatchesScheduleTitle
-              className={isScheduleActive ? 'active' : ''}
-              onClick={handleMatchScheduleActive}
-            >
-              {myTeamContent.scheduleTitle}
-            </MatchesScheduleTitle>
-          </Options>
-
-          <MatchesSchedule>
-            <MatchInvitations
-              visible={isMatchActive}
-              matchInvites={data.invites_matches_receives}
-            />
-
-            <Schedule
-              visible={isScheduleActive}
-              matchesSchedule={data.matches_accepted}
-            />
-          </MatchesSchedule>
-
-          <Options>
-            <MatchesScheduleTitle
-              className={isMatchSentActive ? 'active' : ''}
-              onClick={handleMatchesActive}
-            >
-              {myTeamContent.matchesSent}
-            </MatchesScheduleTitle>
-            <MatchesScheduleTitle
-              className={isMatchesCreatedActive ? 'active' : ''}
-              onClick={handleMatchesActive}
-            >
-              {myTeamContent.matchesCreated}
-            </MatchesScheduleTitle>
-          </Options>
-
-          <MatchesSchedule>
-            <MatchInvitesSent
-              visible={isMatchSentActive}
-              matchInvitesSent={data.invites_matches_sends}
-            />
-
-            <MatchesCreated
-              visible={isMatchesCreatedActive}
-              matchesCreated={data.matches_created}
-            />
-          </MatchesSchedule>
-        </MatchesScheduleWrapper>
+        <SideMatchesSchedule
+          invites_matches_receives={data.invites_matches_receives}
+          invites_matches_sends={data.invites_matches_sends}
+          matches_accepted={data.matches_accepted}
+          matches_created={data.matches_created}
+        />
 
         <TeamMembersWrapper>
           <TeamMembersTitle>{myTeamContent.teamMembersTitle}</TeamMembersTitle>

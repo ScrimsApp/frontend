@@ -98,6 +98,7 @@ export const MatchesScheduleWrapper = styled.section`
 
 export const MatchesSchedule = styled.div`
   width: 100%;
+  height: 50%;
   display: flex;
 
   overflow-y: auto;

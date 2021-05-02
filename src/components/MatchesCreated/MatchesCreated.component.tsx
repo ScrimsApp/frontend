@@ -19,7 +19,7 @@ const MatchesCreated: FunctionComponent<MatchesCreatedProps> = ({
 }) => {
   return (
     <MatchesCreatedWrapper visible={visible}>
-      {matchesCreated.map((match) => (
+      {matchesCreated?.map((match) => (
         <MatchesCreatedCardWrapper key={match.id}>
           <MatchesCreatedCardImage
             alt={match.team_1.name}
