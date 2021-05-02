@@ -55,6 +55,7 @@ export interface MatchesScheduled {
     user_id: number;
   };
   time: string;
+  team_adversary_image: string;
 }
 
 interface MatchInviteSent {

@@ -34,7 +34,7 @@ const Schedule: FunctionComponent<ScheduleProps> = ({
       {matchesSchedule.map((schedule) => (
         <ScheduleCardWrapper>
           <ScheduleCardImage
-            src={`http://localhost:8000/storage/${schedule.team_2.image}`}
+            src={`http://localhost:8000/storage/${schedule.team_adversary_image}`}
             alt={schedule.team_2.name}
           />
 
