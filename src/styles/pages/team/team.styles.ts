@@ -103,6 +103,8 @@ export const MatchesSchedule = styled.div`
 
   overflow-y: auto;
   overflow-x: hidden;
+
+  margin-bottom: 20px;
 `;
 
 export const Options = styled.div`

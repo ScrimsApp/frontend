@@ -1,4 +1,5 @@
 import { FunctionComponent, useContext } from 'react';
+import { mutate } from 'swr';
 
 import {
   ScheduleCardWrapper,
@@ -14,6 +15,8 @@ import {
 import { ScheduleProps } from './types';
 
 import { GlobalContext } from '../../context/GlobalContext.';
+import { api } from '../../config/api';
+import { DeleteMatchResponse } from '../../types/responses/match/DeleteMatchResponse.type';
 
 const Schedule: FunctionComponent<ScheduleProps> = ({
   visible,
@@ -26,6 +29,31 @@ const Schedule: FunctionComponent<ScheduleProps> = ({
   const handleSchedule = async (id: number) => {
     if (user.token) {
       console.log(id);
+
+      const response = await api.post<DeleteMatchResponse>(
+        'match/delete',
+        {
+          match_id: id,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer' + user.token,
+          },
+        }
+      );
+
+      const { data, status } = response;
+
+      if (data) {
+        setNotificationStatus(true);
+        setNewNotification({
+          type: status === 200 ? 'success' : 'error',
+          title: status === 200 ? 'Success' : 'Whoops',
+          message: data.message,
+        });
+      }
+
+      status === 200 ? mutate('team') : null;
     }
   };
 
