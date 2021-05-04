@@ -3,6 +3,7 @@ import styled from 'styled-components';
 interface ButtonWrapperProps {
   minWidth: string;
   margin?: Array<string>;
+  brighter?: boolean;
 }
 
 export const ButtonWrapper = styled.div<ButtonWrapperProps>`
@@ -15,7 +16,8 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
 
   text-align: center;
 
-  background-color: ${(props) => props.theme.colors.semiDark};
+  background-color: ${(props) =>
+    props.brighter ? '#1f2846' : props.theme.colors.semiDark};
   border-radius: ${(props) => props.theme.misc.borderRadius};
 
   margin: ${(props) => props.margin?.join(' ') || '0'};

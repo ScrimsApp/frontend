@@ -3,6 +3,7 @@ import { FunctionComponent, useContext } from 'react';
 import { MatchCardProps } from './types';
 
 import {
+  AssignButtonWrapper,
   CardAssignDetail,
   CardAssignDetailsWrapper,
   CardAssignWrapper,
@@ -74,29 +75,29 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
       />
 
       <CardInfo>
-        <CardTitle>{title}</CardTitle>
-
-        <CardDescription>{description}</CardDescription>
-
         <CardHashtagWrapper>
           {hashtags.map((hashtag) => (
             <CardHashtag key={hashtag}>{hashtag}</CardHashtag>
           ))}
         </CardHashtagWrapper>
 
-        <CardAssignWrapper className="card-assign-detail">
-          <CardAssignDetailsWrapper>
-            <CardAssignDetail>Date: {date}</CardAssignDetail>
-            <CardAssignDetail>Time: {time}</CardAssignDetail>
-          </CardAssignDetailsWrapper>
+        <CardTitle>{title}</CardTitle>
 
-          {captain ? (
-            <ButtonWrapper minWidth="80%" onClick={handleAssign}>
-              <ButtonOverlay className="overlay" type="dark" />
+        <CardDescription>{description}</CardDescription>
+
+        <CardAssignDetailsWrapper>
+          <CardAssignDetail>{date}</CardAssignDetail>
+          <CardAssignDetail> {time}</CardAssignDetail>
+        </CardAssignDetailsWrapper>
+
+        {captain ? (
+          <AssignButtonWrapper>
+            <ButtonWrapper minWidth="50%" onClick={handleAssign} brighter>
+              <ButtonOverlay className="overlay" type="secondary" />
               <LinkButton>Assign</LinkButton>
             </ButtonWrapper>
-          ) : null}
-        </CardAssignWrapper>
+          </AssignButtonWrapper>
+        ) : null}
       </CardInfo>
     </CardWrapper>
   );

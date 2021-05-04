@@ -55,7 +55,7 @@ export const TeamAbout = styled.h2`
 `;
 
 export const TeamDescription = styled.span`
-  max-width: 80%;
+  max-width: 100%;
 
   font-size: 16px;
   color: ${(props) => props.theme.colors.text.light};
