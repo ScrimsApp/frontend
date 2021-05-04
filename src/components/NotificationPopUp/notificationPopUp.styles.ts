@@ -14,7 +14,7 @@ const initial = keyframes`
 
 interface NotificationWrapperProps {
   backgroundColor: 'success' | 'error' | 'info';
-  display: boolean;
+  show: boolean;
 }
 
 export const NotificationWrapper = styled.div<NotificationWrapperProps>`
@@ -25,7 +25,7 @@ export const NotificationWrapper = styled.div<NotificationWrapperProps>`
   right: 36px;
   bottom: 36px;
 
-  display: ${(props) => (props.display ? 'flex' : 'none')};
+  display: ${(props) => (props.show ? 'flex' : 'none')};
   flex-flow: column;
   justify-content: center;
   align-items: flex-start;

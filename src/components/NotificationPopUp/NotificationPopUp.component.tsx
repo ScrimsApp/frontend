@@ -38,7 +38,7 @@ const NotificationPopUp: FunctionComponent<NotificationPopUpProps> = () => {
   if (hasNotificationToShow) {
     return (
       <NotificationWrapper
-        display={hasNotificationToShow}
+        show={hasNotificationToShow}
         backgroundColor={notification.type}
       >
         <NotificationTitle>{notification.title}</NotificationTitle>
