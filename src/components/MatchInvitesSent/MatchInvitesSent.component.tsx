@@ -1,4 +1,10 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useContext } from 'react';
+import { mutate } from 'swr';
+
+import { api } from '../../config/api';
+import { GlobalContext } from '../../context/GlobalContext.';
+import { InviteMatchResponse } from '../../types/responses/match/InviteMatchResponse.type';
+
 import {
   MatchInvitesSentCardImage,
   MatchInvitesSentCardWrapper,
@@ -16,6 +22,39 @@ const MatchInvitesSent: FunctionComponent<MatchInvitesSentProps> = ({
   visible,
   matchInvitesSent,
 }) => {
+  const { notificationContext, userContext } = useContext(GlobalContext);
+  const { user } = userContext;
+  const { setNotificationStatus, setNewNotification } = notificationContext;
+
+  const handleCancelMatchInviteSent = async (id: number) => {
+    if (user.token) {
+      const response = await api.post<InviteMatchResponse>(
+        'invite/match/decline',
+        {
+          invite_id: id,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + user.token,
+          },
+        }
+      );
+
+      const { data, status } = response;
+
+      if (data) {
+        setNotificationStatus(true);
+        setNewNotification({
+          type: status === 200 ? 'success' : 'error',
+          title: status === 200 ? 'Success' : 'Whoops!',
+          message: data.message,
+        });
+      }
+
+      status === 200 ? mutate('team') : null;
+    }
+  };
+
   return (
     <MatchInvitesSentWrapper visible={visible}>
       {matchInvitesSent?.map((invite) => (
@@ -40,7 +79,11 @@ const MatchInvitesSent: FunctionComponent<MatchInvitesSentProps> = ({
           </MatchInvitesSentInfo>
 
           <MatchInvitesSideOption backgroundColor="#ED5353">
-            <MatchInvitesCancelButton>Cancel</MatchInvitesCancelButton>
+            <MatchInvitesCancelButton
+              onClick={() => handleCancelMatchInviteSent(invite.id)}
+            >
+              Cancel
+            </MatchInvitesCancelButton>
           </MatchInvitesSideOption>
         </MatchInvitesSentCardWrapper>
       ))}

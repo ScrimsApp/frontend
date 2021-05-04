@@ -71,7 +71,7 @@ const TeamMemberCard: FunctionComponent<TeamMemberCardProps> = ({
         <TeamMemberDescription>{description2}</TeamMemberDescription>
       </TeamMemberInfo>
 
-      {isCaptain ? (
+      {isCaptain && playerId != user.id ? (
         <SideOption backgroundColor="#ED5353" onClick={handleTeamMember}>
           <RemoveButton>Delete</RemoveButton>
         </SideOption>
