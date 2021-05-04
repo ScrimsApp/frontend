@@ -14,7 +14,7 @@ const TeamCard: FunctionComponent<TeamCardProps> = ({
 }) => {
   return (
     <TeamCardWrapper>
-      <TeamCardImage src={teamImage} alt="Team Logo" />
+      <TeamCardImage src={teamImage} alt={teamName} />
 
       <TeamNameWrapper>
         <TeamName>{teamName}</TeamName>
