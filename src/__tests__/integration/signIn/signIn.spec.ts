@@ -1,6 +1,6 @@
-import { api } from '../../../config/api';
+import requester from '../../requester';
+
 import { SignInRequest } from '../../../types/requests/SignInRequest.type';
-import { SignInResponse } from '../../../types/responses/SignInResponse.type';
 
 import { signInSchema } from '../../../utils/validation/signIn.schema';
 
@@ -21,7 +21,7 @@ describe('Sign In Page', () => {
   });
 
   test('Should sign in the user', async () => {
-    const response = await api.post<SignInResponse>('/auth/login', credentials);
+    const response = await requester.post('auth/login').send(credentials);
 
     const { status } = response;
 
