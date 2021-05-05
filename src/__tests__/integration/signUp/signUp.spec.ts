@@ -1,5 +1,7 @@
-import { api } from '../../../config/api';
+import requester from '../../requester';
+
 import { SignUpRequest } from '../../../types/requests/SignUpRequest.type';
+
 import { signUpSchema } from '../../../utils/validation/signUp.schema';
 
 describe('Sign Up Page', () => {
@@ -7,7 +9,7 @@ describe('Sign Up Page', () => {
 
   beforeEach(() => {
     userInfo = {
-      email: 'test@testing.com',
+      email: 'supertest@test.com',
       name: 'test',
       password: '12345678',
       password_confirmation: '12345678',
@@ -21,7 +23,7 @@ describe('Sign Up Page', () => {
   });
 
   test('Should sign up the user', async () => {
-    let response = await api.post('auth/register', userInfo);
+    let response = await requester.post('auth/register').send(userInfo);
 
     const { status } = response;
 
