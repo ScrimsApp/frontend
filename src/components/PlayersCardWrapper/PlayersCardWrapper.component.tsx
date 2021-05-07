@@ -18,7 +18,7 @@ const PlayersCardWrapper: FunctionComponent<PlayersCardWrapperProps> = ({
 
   const fetcher = (url: string) => api.get(url).then((res) => res.data);
 
-  const { data, error, isValidating } = useSWR<Array<PlayersResponse>>(
+  const { data, error, isValidating } = useSWR<PlayersResponse>(
     'players',
     fetcher,
     {
@@ -35,10 +35,10 @@ const PlayersCardWrapper: FunctionComponent<PlayersCardWrapperProps> = ({
     });
   }
 
-  if (data.length > 0) {
+  if (data.data?.length > 0) {
     return (
       <>
-        {data.map((player) => (
+        {data.data.map((player) => (
           <PlayersCard
             key={player.id}
             id={player.id}
