@@ -1,5 +1,5 @@
-import { TeamResponse } from '../../types/responses/team/TeamResponse.type';
+import { TeamsResponse } from '../../types/responses/team/TeamsResponse.type';
 
 export interface TeamsCardWrapperProps {
-  teams: Array<TeamResponse>;
+  teams: TeamsResponse;
 }
