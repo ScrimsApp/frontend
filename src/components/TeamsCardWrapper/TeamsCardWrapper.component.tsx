@@ -36,17 +36,21 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
   }
 
   if (data.length > 0) {
-    return data.map((team) => (
-      <TeamsCard
-        id={team.id}
-        teamImage={`http://localhost:8000/storage/${team.image}`}
-        teamName={team.name}
-        teamMembers={`${team.players?.length || 1} members`}
-        teamMatchesPlayed="7 matches played"
-        teamFoundedIn={team.created_at}
-        key={team.name}
-      />
-    ));
+    return (
+      <>
+        {data.map((team) => (
+          <TeamsCard
+            id={team.id}
+            teamImage={`http://localhost:8000/storage/${team.image}`}
+            teamName={team.name}
+            teamMembers={`${team.players?.length || 1} members`}
+            teamMatchesPlayed="7 matches played"
+            teamFoundedIn={team.created_at}
+            key={team.name}
+          />
+        ))}
+      </>
+    );
   }
 
   if (isValidating) {

@@ -36,19 +36,23 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
   }
 
   if (data.length > 0) {
-    return data.map((match) => (
-      <MatchCard
-        key={match.id}
-        id={match.id}
-        teamImage={match.team_1.image}
-        title={match.team_1.name}
-        description="Partidas em mapas diversos"
-        hashtags={[match.format, match.team_1.tag]}
-        time={match.time}
-        date={match.date}
-        captain={user.captain}
-      />
-    ));
+    return (
+      <>
+        {data.map((match) => (
+          <MatchCard
+            key={match.id}
+            id={match.id}
+            teamImage={match.team_1.image}
+            title={match.team_1.name}
+            description="Partidas em mapas diversos"
+            hashtags={[match.format, match.team_1.tag]}
+            time={match.time}
+            date={match.date}
+            captain={user.captain}
+          />
+        ))}
+      </>
+    );
   }
 
   if (isValidating) {

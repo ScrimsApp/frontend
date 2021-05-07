@@ -36,16 +36,20 @@ const PlayersCardWrapper: FunctionComponent<PlayersCardWrapperProps> = ({
   }
 
   if (data.length > 0) {
-    return data.map((player) => (
-      <PlayersCard
-        key={player.id}
-        id={player.id}
-        name={player.name}
-        image="https://pm1.narvii.com/6634/8d8abf66cd8164ec16c6288fa5d2c981439a0d72_hq.jpg"
-        created_at={player.created_at}
-        team_id={player.team_id}
-      />
-    ));
+    return (
+      <>
+        {data.map((player) => (
+          <PlayersCard
+            key={player.id}
+            id={player.id}
+            name={player.name}
+            image="https://pm1.narvii.com/6634/8d8abf66cd8164ec16c6288fa5d2c981439a0d72_hq.jpg"
+            created_at={player.created_at}
+            team_id={player.team_id}
+          />
+        ))}
+      </>
+    );
   }
 
   if (isValidating) {
