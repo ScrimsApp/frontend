@@ -15,7 +15,7 @@ import { GetServerSideProps } from 'next';
 import { api } from '../config/api';
 
 interface PlayersProps {
-  players: Array<PlayersResponse>;
+  players: PlayersResponse;
 }
 
 const Players: FunctionComponent<PlayersProps> = ({ players }) => {
@@ -36,7 +36,7 @@ export default Players;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const players = await api
-    .get<Array<PlayersResponse>>('players')
+    .get<PlayersResponse>('players')
     .then((res) => res.data);
 
   return {

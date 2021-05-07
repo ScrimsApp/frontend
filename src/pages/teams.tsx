@@ -14,14 +14,14 @@ import TeamCard from '../components/TeamCard/TeamCard.component';
 
 import TeamsCardWrapper from '../components/TeamsCardWrapper/TeamsCardWrapper.component';
 
-import { TeamResponse } from '../types/responses/team/TeamResponse.type';
+import { TeamsResponse } from '../types/responses/team/TeamsResponse.type';
 
 import { api } from '../config/api';
 
 import { teamsContent } from '../content/teams/teams.content';
 
 interface TeamsProps {
-  teams: Array<TeamResponse>;
+  teams: TeamsResponse;
 }
 
 const Teams: FunctionComponent<TeamsProps> = ({ teams }) => {
@@ -34,37 +34,20 @@ const Teams: FunctionComponent<TeamsProps> = ({ teams }) => {
         <TeamsCardWrapper teams={teams} />
       </TeamsWrapper>
 
-      <SectionTitle>{teamsContent.joinedTeamsTitle}</SectionTitle>
+      {/* <SectionTitle>{teamsContent.joinedTeamsTitle}</SectionTitle> */}
 
-      <RecentJoinedTeamsWrapper>
+      {/* <RecentJoinedTeamsWrapper>
         <TeamCard
           teamName="TEAM Liquid"
           teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
         />
-
-        <TeamCard
-          teamName="TEAM Liquid"
-          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-        />
-
-        <TeamCard
-          teamName="TEAM Liquid"
-          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-        />
-
-        <TeamCard
-          teamName="TEAM Liquid"
-          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-        />
-      </RecentJoinedTeamsWrapper>
+      </RecentJoinedTeamsWrapper> */}
     </MainWrapper>
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const teams = await api
-    .get<Array<TeamResponse>>('teams')
-    .then((res) => res.data);
+  const teams = await api.get<TeamsResponse>('teams').then((res) => res.data);
 
   return {
     props: {

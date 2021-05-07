@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import { TeamsCardWrapperProps } from './types';
 
 import { api } from '../../config/api';
-import { TeamResponse } from '../../types/responses/team/TeamResponse.type';
+import { TeamsResponse } from '../../types/responses/team/TeamsResponse.type';
 
 import TeamsCard from '../TeamsCard/TeamsCard.component';
 import Loading from '../Loading/Loading.component';
@@ -18,7 +18,7 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
 
   const fetcher = (url: string) => api.get(url).then((res) => res.data);
 
-  const { data, error, isValidating } = useSWR<Array<TeamResponse>>(
+  const { data, error, isValidating } = useSWR<TeamsResponse>(
     `teams`,
     fetcher,
     {
@@ -35,15 +35,15 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
     });
   }
 
-  if (data.length > 0) {
+  if (data?.data?.length > 0) {
     return (
       <>
-        {data.map((team) => (
+        {data.data.map((team) => (
           <TeamsCard
             id={team.id}
             teamImage={`http://localhost:8000/storage/${team.image}`}
             teamName={team.name}
-            teamMembers={`${team.players?.length || 1} members`}
+            teamMembers={`${1} members`}
             teamMatchesPlayed="7 matches played"
             teamFoundedIn={team.created_at}
             key={team.name}

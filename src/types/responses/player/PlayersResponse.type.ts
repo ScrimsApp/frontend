@@ -1,11 +1,9 @@
+import { Player } from '../../player/Player.type';
+
 export interface PlayersResponse {
-  id: number;
-  name: string;
-  email: string;
-  email_verified_at: any;
-  person_id: any;
-  image: any;
-  created_at: string;
-  updated_at: string;
-  team_id: number;
+  data: Array<Player>;
+
+  current_page: number;
+  last_page: number;
+  total: number;
 }
