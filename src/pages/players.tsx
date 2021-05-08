@@ -36,7 +36,7 @@ export default Players;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const players = await api
-    .get<PlayersResponse>('players')
+    .get<PlayersResponse>('players?page=1')
     .then((res) => res.data);
 
   return {
