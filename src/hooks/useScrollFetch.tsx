@@ -12,6 +12,7 @@ const useScrollFetch = (
   const [page, setPage] = useState(pageNumber);
   const [allData, setAllData] = useState(initialdata);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const observerRef = useRef(null);
 
@@ -24,19 +25,17 @@ const useScrollFetch = (
 
         if (!isLoading && ratio > 0.6 && allData.length < total) {
           const nextPage = page + 1;
-          setPage((prevPage) => {
-            if (prevPage < lastPage) {
-              return nextPage;
-            } else {
-              return prevPage;
-            }
-          });
+          setPage(nextPage);
 
-          setIsLoading(true);
-          const { data } = await api.get(`${url}?page=${nextPage}`);
-          setIsLoading(false);
+          try {
+            setIsLoading(true);
+            const { data } = await api.get(`${url}?page=${nextPage}`);
 
-          setAllData((prevData) => [...new Set([...prevData, ...data.data])]);
+            setAllData((prevData) => [...new Set([...prevData, ...data.data])]);
+            setIsLoading(false);
+          } catch (error) {
+            setError(error.message);
+          }
         }
       },
       {
@@ -55,6 +54,7 @@ const useScrollFetch = (
     allData,
     observerRef,
     isLoading,
+    error,
   };
 };
 
