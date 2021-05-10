@@ -10,7 +10,7 @@ import useScrollFetch from '../../hooks/useScrollFetch';
 const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
   teams,
 }) => {
-  const { allData, observerRef, isLoading } = useScrollFetch(
+  const { allData, observerRef, isLoading, error } = useScrollFetch(
     1,
     teams.last_page,
     teams.total,
@@ -32,13 +32,14 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
             key={team.name}
           />
         ))}
+
+        {isLoading && <Loading />}
+
+        {error && <div>Deu ruim!</div>}
+
         <div ref={observerRef} />
       </>
     );
-  }
-
-  if (isLoading) {
-    return <Loading />;
   }
 
   return <p>There are no registered teams yet :(</p>;
