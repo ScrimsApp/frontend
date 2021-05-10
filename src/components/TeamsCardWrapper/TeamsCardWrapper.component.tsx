@@ -14,6 +14,7 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
     1,
     teams.last_page,
     teams.total,
+    'teams',
     teams.data
   );
 

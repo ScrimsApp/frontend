@@ -6,6 +6,7 @@ const useScrollFetch = (
   pageNumber: number,
   lastPage: number,
   total: number,
+  url: string,
   initialdata: any
 ) => {
   const [page, setPage] = useState(pageNumber);
@@ -32,7 +33,7 @@ const useScrollFetch = (
           });
 
           setIsLoading(true);
-          const { data } = await api.get(`teams?page=${nextPage}`);
+          const { data } = await api.get(`${url}?page=${nextPage}`);
           setIsLoading(false);
 
           setAllData((prevData) => [...new Set([...prevData, ...data.data])]);
