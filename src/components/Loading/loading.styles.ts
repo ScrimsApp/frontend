@@ -11,9 +11,14 @@ const LoadingAnimation = keyframes`
     }
 `;
 
-export const LoadingWrapper = styled.div`
+interface LoadingWrapperProps {
+  fullPage?: boolean;
+}
+
+export const LoadingWrapper = styled.div<LoadingWrapperProps>`
+  position: relative;
   width: 100%;
-  height: 650px;
+  height: ${(props) => (props.fullPage ? '650px' : 'auto')};
   max-height: 50vh;
 
   display: flex;

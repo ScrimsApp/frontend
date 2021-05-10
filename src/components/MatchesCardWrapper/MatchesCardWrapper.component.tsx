@@ -56,7 +56,7 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
   }
 
   if (isValidating) {
-    return <Loading />;
+    return <Loading fullPage={true} />;
   }
 };
 

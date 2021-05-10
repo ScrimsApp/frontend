@@ -1,9 +1,11 @@
 import { FunctionComponent } from 'react';
 import { LoadingIcon, LoadingWrapper } from './loading.styles';
 
-const Loading: FunctionComponent = () => {
+import { LoadingProps } from './types';
+
+const Loading: FunctionComponent<LoadingProps> = ({ fullPage }) => {
   return (
-    <LoadingWrapper>
+    <LoadingWrapper fullPage={fullPage}>
       <LoadingIcon />
     </LoadingWrapper>
   );

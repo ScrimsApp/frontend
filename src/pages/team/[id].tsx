@@ -68,7 +68,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
           </TeamByIdMembersWrapper>
         </TeamByIdWrapper>
       ) : (
-        <Loading />
+        <Loading fullPage={true} />
       )}
     </MainWrapper>
   );

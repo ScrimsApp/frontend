@@ -6,11 +6,13 @@ const useScrollFetch = (
   pageNumber: number,
   lastPage: number,
   total: number,
+  url: string,
   initialdata: any
 ) => {
   const [page, setPage] = useState(pageNumber);
   const [allData, setAllData] = useState(initialdata);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const observerRef = useRef(null);
 
@@ -22,20 +24,22 @@ const useScrollFetch = (
         const ratio = entries[0].intersectionRatio;
 
         if (!isLoading && ratio > 0.6 && allData.length < total) {
-          const nextPage = page + 1;
-          setPage((prevPage) => {
-            if (prevPage < lastPage) {
-              return nextPage;
-            } else {
-              return prevPage;
-            }
-          });
-
           setIsLoading(true);
-          const { data } = await api.get(`teams?page=${nextPage}`);
-          setIsLoading(false);
+          const nextPage = page + 1;
+          setPage(nextPage);
 
-          setAllData((prevData) => [...new Set([...prevData, ...data.data])]);
+          await api
+            .get(`${url}?page=${nextPage}`)
+            .then((res) => {
+              setAllData((prevData) => [
+                ...new Set([...prevData, ...res.data.data]),
+              ]);
+              setIsLoading(false);
+            })
+            .catch((error) => {
+              setError(error.message);
+              setIsLoading(false);
+            });
         }
       },
       {
@@ -48,12 +52,13 @@ const useScrollFetch = (
     return () => {
       intersectionObserver.disconnect();
     };
-  }, [allData]);
+  }, [allData, isLoading]);
 
   return {
     allData,
     observerRef,
     isLoading,
+    error,
   };
 };
 

@@ -1,98 +1,27 @@
-import {
-  FunctionComponent,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import useSWR from 'swr';
-
-import { api } from '../../config/api';
-import { PlayersResponse } from '../../types/responses/player/PlayersResponse.type';
+import { FunctionComponent, useContext } from 'react';
 
 import { PlayersCardWrapperProps } from './types';
 
 import PlayersCard from '../PlayersCard/PlayersCard.component';
 import Loading from '../Loading/Loading.component';
-import { GlobalContext } from '../../context/GlobalContext.';
+
+import useScrollFetch from '../../hooks/useScrollFetch';
 
 const PlayersCardWrapper: FunctionComponent<PlayersCardWrapperProps> = ({
   players,
 }) => {
-  const { notificationContext } = useContext(GlobalContext);
-  const { setNotificationStatus, setNewNotification } = notificationContext;
-  const [allPlayers, setAllPlayers] = useState(players.data);
-  const [pageNumber, setPageNumber] = useState(1);
-
-  const fetcher = (url: string) => api.get(url).then((res) => res.data);
-
-  const { data, error, isValidating, mutate } = useSWR<PlayersResponse>(
-    `players?page=${pageNumber}`,
-    fetcher,
-    {
-      initialData: players,
-    }
+  const { allData, isLoading, observerRef, error } = useScrollFetch(
+    1,
+    players.last_page,
+    players.total,
+    'players',
+    players.data
   );
 
-  const observableRef = useRef(null);
-
-  useEffect(() => {
-    // console.log(observableRef.current);
-
-    if (pageNumber === players.last_page) return;
-
-    const intersectionObserver = new IntersectionObserver(
-      async (entries: Array<IntersectionObserverEntry>) => {
-        const ratio = entries[0].intersectionRatio;
-
-        // console.log(ratio);
-        // console.log(entries[0].isIntersecting);
-
-        if (
-          !isValidating &&
-          allPlayers.length <= players.total &&
-          ratio > 0.6
-        ) {
-          setPageNumber((prevPage) => {
-            if (prevPage < players.last_page) {
-              return prevPage + 1;
-            } else {
-              return prevPage;
-            }
-          });
-
-          const { data } = await mutate();
-          setAllPlayers((prevPlayers) => [
-            ...new Set([...prevPlayers, ...data]),
-          ]);
-        }
-      },
-      {
-        threshold: 0.6,
-      }
-    );
-
-    if (observableRef.current)
-      intersectionObserver.observe(observableRef.current);
-
-    return () => {
-      intersectionObserver.disconnect();
-    };
-  }, [allPlayers]);
-
-  if (error) {
-    setNotificationStatus(true);
-    setNewNotification({
-      type: 'error',
-      title: 'Error',
-      message: error,
-    });
-  }
-
-  if (allPlayers?.length > 0) {
+  if (allData?.length > 0) {
     return (
       <>
-        {allPlayers.map((player) => {
+        {allData.map((player) => {
           return (
             <PlayersCard
               key={player.id}
@@ -104,13 +33,14 @@ const PlayersCardWrapper: FunctionComponent<PlayersCardWrapperProps> = ({
             />
           );
         })}
-        <div ref={observableRef} />
+
+        {isLoading && <Loading />}
+
+        {error && <div>Deu ruim!</div>}
+
+        <div ref={observerRef} />
       </>
     );
-  }
-
-  if (isValidating) {
-    return <Loading />;
   }
 
   return <p>There are no players registered yet :(</p>;

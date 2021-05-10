@@ -112,7 +112,7 @@ const TeamCardWrapper: FunctionComponent = () => {
     );
   }
 
-  return <Loading />;
+  return <Loading fullPage={true} />;
 };
 
 export default TeamCardWrapper;
