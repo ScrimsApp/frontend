@@ -1,44 +1,26 @@
-import { FunctionComponent, useContext } from 'react';
-import useSWR from 'swr';
+import { FunctionComponent } from 'react';
 
 import { TeamsCardWrapperProps } from './types';
 
-import { api } from '../../config/api';
-import { TeamsResponse } from '../../types/responses/team/TeamsResponse.type';
-
 import TeamsCard from '../TeamsCard/TeamsCard.component';
 import Loading from '../Loading/Loading.component';
-import { GlobalContext } from '../../context/GlobalContext.';
+
+import useScrollFetch from '../../hooks/useScrollFetch';
 
 const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
   teams,
 }) => {
-  const { notificationContext } = useContext(GlobalContext);
-  const { setNotificationStatus, setNewNotification } = notificationContext;
-
-  const fetcher = (url: string) => api.get(url).then((res) => res.data);
-
-  const { data, error, isValidating } = useSWR<TeamsResponse>(
-    `teams`,
-    fetcher,
-    {
-      initialData: teams,
-    }
+  const { allData, observerRef, isLoading } = useScrollFetch(
+    1,
+    teams.last_page,
+    teams.total,
+    teams.data
   );
 
-  if (error) {
-    setNotificationStatus(true);
-    setNewNotification({
-      type: 'error',
-      title: 'Error',
-      message: error,
-    });
-  }
-
-  if (data?.data?.length > 0) {
+  if (allData?.length > 0) {
     return (
       <>
-        {data.data.map((team) => (
+        {allData.map((team) => (
           <TeamsCard
             id={team.id}
             teamImage={`http://localhost:8000/storage/${team.image}`}
@@ -49,15 +31,16 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
             key={team.name}
           />
         ))}
+        <div ref={observerRef} />
       </>
     );
   }
 
-  if (isValidating) {
+  if (isLoading) {
     return <Loading />;
   }
 
-  return <p>There are no teams yet :(</p>;
+  return <p>There are no registered teams yet :(</p>;
 };
 
 export default TeamsCardWrapper;
