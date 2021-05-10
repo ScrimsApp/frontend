@@ -24,18 +24,22 @@ const useScrollFetch = (
         const ratio = entries[0].intersectionRatio;
 
         if (!isLoading && ratio > 0.6 && allData.length < total) {
+          setIsLoading(true);
           const nextPage = page + 1;
           setPage(nextPage);
 
-          try {
-            setIsLoading(true);
-            const { data } = await api.get(`${url}?page=${nextPage}`);
-
-            setAllData((prevData) => [...new Set([...prevData, ...data.data])]);
-            setIsLoading(false);
-          } catch (error) {
-            setError(error.message);
-          }
+          await api
+            .get(`${url}?page=${nextPage}`)
+            .then((res) => {
+              setAllData((prevData) => [
+                ...new Set([...prevData, ...res.data.data]),
+              ]);
+              setIsLoading(false);
+            })
+            .catch((error) => {
+              setError(error.message);
+              setIsLoading(false);
+            });
         }
       },
       {
@@ -48,7 +52,7 @@ const useScrollFetch = (
     return () => {
       intersectionObserver.disconnect();
     };
-  }, [allData]);
+  }, [allData, isLoading]);
 
   return {
     allData,
