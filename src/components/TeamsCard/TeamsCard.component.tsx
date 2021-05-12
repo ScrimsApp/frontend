@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext } from 'react';
+import { FunctionComponent, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { TeamsCardsProps } from './types';
@@ -29,6 +29,7 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
   const { user } = userContext;
+  const [cardLink, setCardLink] = useState('');
 
   let teamFoundedIndDate = new Date(teamFoundedIn);
 
@@ -39,6 +40,16 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   });
 
   const handleJoin = async () => {
+    if (!cardLink && !user.token) {
+      setCardLink('/signin');
+      return;
+    }
+
+    if (!cardLink && user.token) {
+      setCardLink('#');
+      return;
+    }
+
     if (user.token) {
       let response = await api.post<JoinTeamResponse>(
         '/invite/team',
@@ -66,6 +77,16 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
     }
   };
 
+  useEffect(() => {
+    const { innerWidth } = window;
+
+    if (innerWidth <= 640) {
+      return;
+    } else {
+      setCardLink('/signin');
+    }
+  });
+
   return (
     <TeamsCardWrapper>
       <Link href={`/team/${id}`}>
@@ -88,7 +109,7 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
 
       {!user.teamId ? (
         <TeamsSideOption backgroundColor="#4767f9" onClick={handleJoin}>
-          <Link href={user.token ? '' : '/signin'}>
+          <Link href={user.token ? '' : cardLink}>
             <JoinButton>Join</JoinButton>
           </Link>
         </TeamsSideOption>

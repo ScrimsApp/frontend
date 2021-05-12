@@ -41,6 +41,13 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
   const { setNotificationStatus, setNewNotification } = notificationContext;
   const { user } = userContext;
 
+  let matchDate = new Date(date);
+
+  let formatedMatchDate = matchDate.toLocaleString('en-US', {
+    month: 'long',
+    day: 'numeric',
+  });
+
   const handleAssign = async () => {
     //   Send API Request
     if (user.token) {
@@ -86,7 +93,7 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
         <CardDescription>{description}</CardDescription>
 
         <CardAssignDetailsWrapper>
-          <CardAssignDetail>{date}</CardAssignDetail>
+          <CardAssignDetail>{formatedMatchDate}</CardAssignDetail>
           <CardAssignDetail> {time}</CardAssignDetail>
         </CardAssignDetailsWrapper>
 

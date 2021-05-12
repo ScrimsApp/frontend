@@ -11,23 +11,16 @@ import {
 } from '../TeamMemberCard/teamMemberCard.styles';
 
 export const TeamsCardWrapper = styled(TeamMemberCardWrapper)`
-  height: 110px;
   min-height: 110px;
-
   transition: filter 200ms ease-in-out;
 
   &&:hover {
     filter: brightness(110%);
   }
 
-  @media only screen and (max-width: 690px) {
-    height: 90px;
-    min-height: 90px;
-  }
-
   @media only screen and (max-width: 640px) {
-    height: auto;
-    min-height: 160px;
+    min-height: 380px;
+    flex-direction: column !important;
   }
 `;
 
@@ -43,13 +36,8 @@ export const TeamsCardImage = styled(TeamMemberImage)`
   }
 
   @media only screen and (max-width: 640px) {
-    width: 90px;
-    height: 90px;
-  }
-
-  @media only screen and (max-width: 410px) {
-    width: 60px;
-    height: 60px;
+    width: 100%;
+    height: 200px;
   }
 `;
 
@@ -62,7 +50,13 @@ export const TeamsCardInfo = styled(TeamMemberInfo)`
 
   cursor: pointer;
 
+  box-sizing: border-box;
+
   @media only screen and (max-width: 640px) {
+    flex-direction: column !important;
+    align-items: flex-start;
+
+    padding: 30px 0px;
   }
 
   @media only screen and (max-width: 490px) {
@@ -76,6 +70,11 @@ export const TeamsCardName = styled(TeamMemberName)`
   margin-bottom: 0px;
   margin-right: 15px;
   width: 20%;
+
+  @media only screen and (max-width: 640px) {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 
   @media only screen and (max-width: 490px) {
     margin-bottom: 20px;
