@@ -33,15 +33,6 @@ const Teams: FunctionComponent<TeamsProps> = ({ teams }) => {
       <TeamsWrapper>
         <TeamsCardWrapper teams={teams} />
       </TeamsWrapper>
-
-      {/* <SectionTitle>{teamsContent.joinedTeamsTitle}</SectionTitle> */}
-
-      {/* <RecentJoinedTeamsWrapper>
-        <TeamCard
-          teamName="TEAM Liquid"
-          teamImage="https://static-wp-tor15-prd.torcedores.com/wp-content/uploads/2018/04/Team-liquid.jpg"
-        />
-      </RecentJoinedTeamsWrapper> */}
     </MainWrapper>
   );
 };
