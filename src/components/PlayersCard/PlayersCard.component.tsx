@@ -1,4 +1,4 @@
-import { FunctionComponent, useContext } from 'react';
+import { FunctionComponent, useContext, useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { PlayersCardProps } from './types';
@@ -28,6 +28,7 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
   const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNewNotification, setNotificationStatus } = notificationContext;
   const { user } = userContext;
+  const [cardLink, setCardLink] = useState('');
 
   let playerJoinedDate = new Date(created_at);
 
@@ -38,6 +39,16 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
   });
 
   const handleInvite = async () => {
+    if (!cardLink && !user.token) {
+      setCardLink('/signin');
+      return;
+    }
+
+    if (!cardLink && user.token) {
+      setCardLink('#');
+      return;
+    }
+
     if (user.token) {
       const response = await api.post<InvitePlayerResponse>(
         'invite/player',
@@ -65,6 +76,16 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
     }
   };
 
+  useEffect(() => {
+    const { innerWidth } = window;
+
+    if (innerWidth <= 640) {
+      return;
+    } else {
+      setCardLink('/signin');
+    }
+  });
+
   return (
     <PlayersCardWrapper>
       <PlayersCardImage src={image} />
@@ -77,7 +98,7 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
       </PlayersCardInfo>
       {user.captain && !team_id ? (
         <PlayersSideOption backgroundColor="#4767f9">
-          <Link href={user.token ? '' : '/signin'}>
+          <Link href={user.token ? '' : cardLink}>
             <InviteButton onClick={handleInvite}>Invite</InviteButton>
           </Link>
         </PlayersSideOption>
