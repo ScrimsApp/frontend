@@ -15,7 +15,7 @@ const App: FunctionComponent<AppProps> = ({ Component, pageProps }) => {
     <GlobalContextProvider>
       <ThemeProvider theme={theme}>
         <Head>
-          <title>Scrims App</title>
+          <title>SCRIMS APP </title>
         </Head>
 
         <Component {...pageProps} />
