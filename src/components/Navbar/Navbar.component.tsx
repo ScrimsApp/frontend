@@ -14,7 +14,13 @@ import {
   NavItem,
   NavUserItem,
   NavIcon,
+  LogoWrapper,
+  AppName,
+  Highlight,
+  LogoIconLink,
 } from './navbar.styles';
+
+import LogoIcon from '../../assets/logo/logo.svg';
 
 import { GlobalContext } from '../../context/GlobalContext.';
 
@@ -31,7 +37,17 @@ const Navbar: FunctionComponent = ({ ...props }) => {
 
   return (
     <NavbarWrapper>
-      <span>LOGO</span>
+      <LogoWrapper>
+        <Link href="/" passHref>
+          <LogoIconLink>
+            <LogoIcon />
+          </LogoIconLink>
+        </Link>
+
+        <AppName>
+          SCRIMS<Highlight>APP</Highlight>
+        </AppName>
+      </LogoWrapper>
 
       <Nav className={isNavOpen ? '' : 'hide'}>
         <Link passHref href="/">

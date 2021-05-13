@@ -11,7 +11,7 @@ export const NavbarWrapper = styled.header`
     font-weight: bold;
   }
 
-  @media only screen and (max-width: 1050px) {
+  @media only screen and (max-width: 1120px) {
     .hide {
       display: none;
     }
@@ -56,7 +56,7 @@ export const Nav = styled.nav`
     display: none;
   }
 
-  @media only screen and (max-width: 1050px) {
+  @media only screen and (max-width: 1120px) {
     .active {
       color: ${(props) => props.theme.colors.text.dark};
       transform: scale(1.2);
@@ -100,7 +100,7 @@ export const NavItem = styled.a`
     color: ${(props) => props.theme.colors.text.light};
   }
 
-  @media only screen and (max-width: 1050px) {
+  @media only screen and (max-width: 1120px) {
     margin: 0px 30px;
 
     color: ${(props) => props.theme.colors.text.backup};
@@ -146,11 +146,29 @@ export const NavIcon = styled.div`
     }
   }
 
-  @media only screen and (min-width: 1050px) {
+  @media only screen and (min-width: 1120px) {
     display: none;
   }
 
   @media only screen and (max-width: 750px) {
     right: 36px;
   }
+`;
+
+export const LogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LogoIconLink = styled.a``;
+
+export const AppName = styled.span`
+  text-transform: uppercase;
+  font-size: 22px !important;
+`;
+
+export const Highlight = styled.span`
+  color: ${(props) => props.theme.colors.primary};
+  font-size: 22px !important;
 `;
