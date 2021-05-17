@@ -1,44 +1,34 @@
 import { FunctionComponent, useContext } from 'react';
-import useSWR from 'swr';
 
 import { MatchesCardWrapperProps } from './types';
 
 import MatchCard from '../MatchCard/MatchCard.component';
-import { api } from '../../config/api';
 
-import { MatchesResponse } from '../../types/responses/match/MatchesResponse.type';
 import { GlobalContext } from '../../context/GlobalContext.';
 import Loading from '../Loading/Loading.component';
+
+import useScrollFetch from '../../hooks/useScrollFetch';
+
+import { Match } from '../../types/match/Match.type';
 
 export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
   matches,
 }) => {
-  const { userContext, notificationContext } = useContext(GlobalContext);
+  const { userContext } = useContext(GlobalContext);
   const { user } = userContext;
-  const { setNewNotification, setNotificationStatus } = notificationContext;
 
-  const fetcher = (url: string) => api.get(url).then((res) => res.data);
-  const { data, error, isValidating } = useSWR<MatchesResponse>(
+  const { allData, isLoading, error, observerRef } = useScrollFetch(
+    matches.current_page,
+    matches.last_page,
+    matches.total,
     'match',
-    fetcher,
-    {
-      initialData: matches,
-    }
+    matches.data
   );
 
-  if (error) {
-    setNotificationStatus(true);
-    setNewNotification({
-      type: 'error',
-      title: 'Error',
-      message: error,
-    });
-  }
-
-  if (data.data.length > 0) {
+  if (allData.length > 0) {
     return (
       <>
-        {data.data.map((match) => (
+        {allData.map((match: Match) => (
           <MatchCard
             key={match.id}
             id={match.id}
@@ -51,13 +41,17 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
             captain={user.captain}
           />
         ))}
+
+        {isLoading && <Loading />}
+
+        {error && <div>Deu ruim!</div>}
+
+        <div ref={observerRef} />
       </>
     );
   }
 
-  if (isValidating) {
-    return <Loading fullPage={true} />;
-  }
+  return <p>There are no matches available yet :(</p>;
 };
 
 export default MatchesCardWrapper;
