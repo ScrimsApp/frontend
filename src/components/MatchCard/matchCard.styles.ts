@@ -154,7 +154,7 @@ export const CardAssignDetail = styled.span`
 `;
 
 export const AssignButtonWrapper = styled.div`
-  width: 80%;
+  width: 98%;
 
   display: flex;
   align-items: center;

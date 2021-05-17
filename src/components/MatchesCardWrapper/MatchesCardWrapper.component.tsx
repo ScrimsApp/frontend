@@ -11,6 +11,8 @@ import useScrollFetch from '../../hooks/useScrollFetch';
 
 import { Match } from '../../types/match/Match.type';
 
+import { AllMatchesWrapper } from './matchesCardWrapper.styles';
+
 export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
   matches,
 }) => {
@@ -27,7 +29,7 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
 
   if (allData.length > 0) {
     return (
-      <>
+      <AllMatchesWrapper>
         {allData.map((match: Match) => (
           <MatchCard
             key={match.id}
@@ -46,8 +48,8 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
 
         {error && <div>Deu ruim!</div>}
 
-        <div ref={observerRef} />
-      </>
+        <div style={{ position: 'absolute', bottom: 0 }} ref={observerRef} />
+      </AllMatchesWrapper>
     );
   }
 
