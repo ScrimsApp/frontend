@@ -17,7 +17,7 @@ import { MatchesResponse } from '../types/responses/match/MatchesResponse.type';
 import MatchesCardWrapper from '../components/MatchesCardWrapper/MatchesCardWrapper.component';
 
 interface HomeProps {
-  matches: Array<MatchesResponse>;
+  matches: MatchesResponse;
 }
 
 const Home: FunctionComponent<HomeProps> = ({ matches }) => {
@@ -38,7 +38,7 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const matches = await api
-    .get<Array<MatchesResponse>>('match')
+    .get<MatchesResponse>('match')
     .then((res) => res.data);
 
   return {
