@@ -60,9 +60,17 @@ export const CardInfo = styled.div`
   align-items: flex-start;
   flex-flow: column;
 
+  box-sizing: border-box;
+
   background-color: ${(props) => props.theme.colors.semiDark};
 
   padding: 30px;
+
+  .textStyles {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 `;
 
 export const CardTitle = styled.h3`
@@ -76,6 +84,11 @@ export const CardTitle = styled.h3`
 export const CardDescription = styled.p`
   font-size: 16px;
   color: ${(props) => props.theme.colors.text.light};
+
+  min-height: 40px;
+  max-height: 40px;
+
+  max-width: 90%;
 
   padding-bottom: 10px;
 `;

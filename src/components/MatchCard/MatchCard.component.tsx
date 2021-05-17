@@ -90,11 +90,15 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
 
         <CardTitle>{title}</CardTitle>
 
-        <CardDescription>{description}</CardDescription>
+        <CardDescription
+          className={description?.length >= 60 ? 'textStyles' : ''}
+        >
+          {description}
+        </CardDescription>
 
         <CardAssignDetailsWrapper>
           <CardAssignDetail>{formatedMatchDate}</CardAssignDetail>
-          <CardAssignDetail> {time}</CardAssignDetail>
+          <CardAssignDetail>{time}</CardAssignDetail>
         </CardAssignDetailsWrapper>
 
         {captain ? (
