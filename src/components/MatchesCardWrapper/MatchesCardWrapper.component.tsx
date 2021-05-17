@@ -18,7 +18,7 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
   const { setNewNotification, setNotificationStatus } = notificationContext;
 
   const fetcher = (url: string) => api.get(url).then((res) => res.data);
-  const { data, error, isValidating } = useSWR<Array<MatchesResponse>>(
+  const { data, error, isValidating } = useSWR<MatchesResponse>(
     'match',
     fetcher,
     {
@@ -35,17 +35,17 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
     });
   }
 
-  if (data.length > 0) {
+  if (data.data.length > 0) {
     return (
       <>
-        {data.map((match) => (
+        {data.data.map((match) => (
           <MatchCard
             key={match.id}
             id={match.id}
-            teamImage={match.team_1.image}
-            title={match.team_1.name}
-            description="Partidas em mapas diversos"
-            hashtags={[match.format, match.team_1.tag]}
+            teamImage={match.image}
+            title={match.name}
+            description={match.description}
+            hashtags={[match.format, match.tag]}
             time={match.time}
             date={match.date}
             captain={user.captain}
