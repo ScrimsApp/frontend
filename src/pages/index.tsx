@@ -38,7 +38,7 @@ export default Home;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const matches = await api
-    .get<MatchesResponse>('match')
+    .get<MatchesResponse>('match?page=1')
     .then((res) => res.data);
 
   return {
