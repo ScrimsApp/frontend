@@ -88,14 +88,20 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
 
   return (
     <PlayersCardWrapper>
-      <PlayersCardImage src={image} />
-      <PlayersCardInfo>
-        <PlayersCardName>{name}</PlayersCardName>
+      <Link href={`player/${id}`}>
+        <PlayersCardImage src={image} />
+      </Link>
 
-        <PlayersCardDescriptionsWrapper>
-          <PlayersCardDescription>{`Joined in ${formatedPlayerJoinedDate}`}</PlayersCardDescription>
-        </PlayersCardDescriptionsWrapper>
-      </PlayersCardInfo>
+      <Link href={`player/${id}`}>
+        <PlayersCardInfo>
+          <PlayersCardName>{name}</PlayersCardName>
+
+          <PlayersCardDescriptionsWrapper>
+            <PlayersCardDescription>{`Joined in ${formatedPlayerJoinedDate}`}</PlayersCardDescription>
+          </PlayersCardDescriptionsWrapper>
+        </PlayersCardInfo>
+      </Link>
+
       {user.captain && !team_id ? (
         <PlayersSideOption backgroundColor="#4767f9">
           <Link href={user.token ? '' : cardLink}>
