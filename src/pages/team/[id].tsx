@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticProps } from 'next';
 
 import Navbar from '../../components/Navbar/Navbar.component';
 
@@ -74,7 +74,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
   );
 };
 
-export const getServerSideProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   let id = params.id;
 
   const teamById = await api
