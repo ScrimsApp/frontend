@@ -1,4 +1,5 @@
-import { GetServerSideProps, GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
+import { FunctionComponent } from 'react';
 
 import Navbar from '../../components/Navbar/Navbar.component';
 
@@ -16,7 +17,7 @@ import TeamMemberCard from '../../components/TeamMemberCard/TeamMemberCard.compo
 
 import { TeamResponse } from '../../types/responses/team/TeamResponse.type';
 import { api } from '../../config/api';
-import { FunctionComponent } from 'react';
+
 import Loading from '../../components/Loading/Loading.component';
 
 interface TeamProps {
