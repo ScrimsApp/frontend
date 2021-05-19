@@ -95,7 +95,11 @@ const Navbar: FunctionComponent = ({ ...props }) => {
       </Nav>
 
       <ButtonWrapper className="hide" minWidth="15%">
-        <ButtonOverlay className="overlay" type="primary" />
+        <ButtonOverlay
+          className="overlay"
+          type="primary"
+          sign={pathname === '/profile' ? true : false}
+        />
 
         {/* If NOT logged in -> DESKTOP*/}
         {user.name ? (
