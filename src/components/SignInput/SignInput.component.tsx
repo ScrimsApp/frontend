@@ -22,6 +22,7 @@ interface InputProps {
       ? void
       : (e: string | React.ChangeEvent<any>) => void;
   };
+  initialValue?: string;
 }
 
 const SignInput: FunctionComponent<InputProps> = ({
@@ -33,9 +34,10 @@ const SignInput: FunctionComponent<InputProps> = ({
   name,
   value,
   onChange,
+  initialValue,
 }) => {
   const [active, setActive] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState(initialValue || '');
 
   useEffect(() => {
     inputValue ? setActive(true) : setActive(false);
