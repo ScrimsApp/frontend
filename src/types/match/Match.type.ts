@@ -1,7 +1,7 @@
 export interface Match {
   id: number;
   match_id: number;
-  team_1: number;
+  team_1: { name: string; image: string }; // was number
   team_2: any;
   status: number;
   format: string;
