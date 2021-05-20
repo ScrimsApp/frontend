@@ -28,9 +28,7 @@ const Profile: FunctionComponent = () => {
   } as Player);
 
   useEffect(() => {
-    if (!user.token) {
-      router.back();
-    } else {
+    if (user.token) {
       api
         .get('player', {
           headers: {
@@ -49,8 +47,10 @@ const Profile: FunctionComponent = () => {
             message: error.message,
           });
         });
+    } else {
+      router.back();
     }
-  }, [user]);
+  }, []);
 
   return (
     <MainWrapper>
