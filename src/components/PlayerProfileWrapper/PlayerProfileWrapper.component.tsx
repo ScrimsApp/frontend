@@ -1,4 +1,5 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
+import { useFormik } from 'formik';
 
 import { PlayerProfileWrapperProps } from './types';
 
@@ -9,12 +10,21 @@ import {
 } from '../../styles/shared/Button/Button.styles';
 import SignInput from '../SignInput/SignInput.component';
 
-import { PlayerWrapper, Image, Form } from './playerProfileWrapper.styles';
-import { useFormik } from 'formik';
+import {
+  PlayerWrapper,
+  Image,
+  Form,
+  IconWrapper,
+  FileInput,
+} from './playerProfileWrapper.styles';
+
+import UploadIcon from '../../assets/icons/upload-icon.svg';
 
 const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
   initialPlayer,
 }) => {
+  const [displayImage, setDisplayImage] = useState(initialPlayer.image);
+
   const formik = useFormik({
     initialValues: {
       image: initialPlayer.image,
@@ -32,10 +42,19 @@ const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
 
   return (
     <PlayerWrapper>
-      <Image
-        src={`https://avatars.dicebear.com/api/micah/${formik.values.image}`}
-        alt={formik.values.name}
-      />
+      <Image src={displayImage} alt={formik.values.name} />
+
+      <IconWrapper>
+        <FileInput
+          type="file"
+          name="image"
+          onChange={(event) => {
+            formik.setFieldValue('image', event.currentTarget.files[0]);
+            setDisplayImage(URL.createObjectURL(event.currentTarget.files[0]));
+          }}
+        />
+        <UploadIcon />
+      </IconWrapper>
 
       <Form onSubmit={formik.handleSubmit}>
         <SignInput
