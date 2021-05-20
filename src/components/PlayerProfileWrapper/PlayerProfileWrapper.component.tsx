@@ -1,4 +1,4 @@
-import { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useContext, useState } from 'react';
 import { useFormik } from 'formik';
 
 import { PlayerProfileWrapperProps } from './types';
@@ -19,10 +19,15 @@ import {
 } from './playerProfileWrapper.styles';
 
 import UploadIcon from '../../assets/icons/upload-icon.svg';
+import { GlobalContext } from '../../context/GlobalContext.';
+import { api } from '../../config/api';
 
 const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
   initialPlayer,
 }) => {
+  const { userContext, notificationContext } = useContext(GlobalContext);
+  const { user } = userContext;
+  const { setNewNotification, setNotificationStatus } = notificationContext;
   const [displayImage, setDisplayImage] = useState(initialPlayer.image);
 
   const formik = useFormik({
@@ -31,13 +36,37 @@ const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
       name: initialPlayer.name,
       email: initialPlayer.email,
     },
-    onSubmit: (values) => console.log(values),
+    onSubmit: (values) => handleUpdatePlayer(values),
     enableReinitialize: true,
     validateOnChange: false,
   });
 
-  const handleUpdatePlayer = async () => {
-    // Handle Player Update
+  const handleUpdatePlayer = async (values: any) => {
+    if (user.token) {
+      const formData = new FormData();
+
+      formData.append('name', values.name);
+      //   formData.append('description', values.description)
+      formData.append('email', values.email);
+      formData.append('image', values.image);
+
+      const response = await api.post('player/update', formData, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      const { data, status } = response;
+
+      console.log(data);
+
+      setNotificationStatus(true);
+      setNewNotification({
+        type: status === 200 ? 'success' : 'error',
+        title: status === 200 ? 'Success' : 'Whoops',
+        message: data.message,
+      });
+    }
   };
 
   return (
