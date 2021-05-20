@@ -73,7 +73,7 @@ const MatchesCreated: FunctionComponent<MatchesCreatedProps> = ({
             </MatchesCreatedDescription>
 
             <MatchesCreatedDescription>
-              {match.data} {match.time}
+              {match.date} {match.time}
             </MatchesCreatedDescription>
           </MatchesCreatedInfo>
 

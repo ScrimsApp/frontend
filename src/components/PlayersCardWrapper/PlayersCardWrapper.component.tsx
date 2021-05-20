@@ -27,7 +27,7 @@ const PlayersCardWrapper: FunctionComponent<PlayersCardWrapperProps> = ({
               key={player.id}
               id={player.id}
               name={player.name}
-              image={`https://avatars.dicebear.com/api/micah/${player.image}`}
+              image={player.image}
               created_at={player.created_at}
               team_id={player.team_id}
             />

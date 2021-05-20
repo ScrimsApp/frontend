@@ -79,7 +79,7 @@ const TeamCardWrapper: FunctionComponent = () => {
             {data.players.map((player) => (
               <TeamMemberCard
                 key={player.name}
-                image="https://sm.ign.com/ign_br/screenshot/default/morty_ep2e.jpg"
+                image={player.image}
                 playerName={player.name}
                 playerId={player.id}
                 description1={player.created_at}
@@ -99,7 +99,7 @@ const TeamCardWrapper: FunctionComponent = () => {
             {data.invites_players?.map((invite) => (
               <PlayerRequestCard
                 key={invite.id}
-                playerImage="https://i1.sndcdn.com/avatars-000646875795-8v89iy-t500x500.jpg"
+                playerImage={invite.player.image}
                 playerName={invite.player.name}
                 isCaptain={user.captain}
                 playerId={invite.player.id}

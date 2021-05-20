@@ -28,7 +28,7 @@ const Player: FunctionComponent<PlayerProps> = ({ playerById }) => {
         <PlayerByIdWrapper>
           <PlayerByIdInfoWrapper>
             <PlayerInfoCard
-              image={`https://avatars.dicebear.com/api/micah/${playerById.image}`}
+              image={playerById.image}
               name={playerById.name}
               description={'Um player muito legal muito bacana'}
             />
