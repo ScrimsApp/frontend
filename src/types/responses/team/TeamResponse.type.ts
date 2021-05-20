@@ -67,7 +67,7 @@ export interface MatchInviteSent {
 
 export interface MatchesCreated {
   id: number;
-  data: string;
+  date: string;
   time: string;
   format: string;
   team_1: {
