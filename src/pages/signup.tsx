@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useFormik } from 'formik';
 
@@ -26,9 +26,11 @@ import {
 
 import { api } from '../config/api';
 import { SignUpResponse } from '../types/responses/SignUpResponse.type';
+import { GlobalContext } from '../context/GlobalContext.';
 
 const SignUp = () => {
-  const [responseError, setResponseError] = useState('');
+  const { notificationContext } = useContext(GlobalContext);
+  const { setNotificationStatus, setNewNotification } = notificationContext;
   const router = useRouter();
 
   const formik = useFormik({
@@ -44,18 +46,32 @@ const SignUp = () => {
   });
 
   const handleSignUp = async (values: any) => {
-    const response = await api.post<SignUpResponse>('/auth/register', {
-      name: values.name,
-      email: values.email,
-      password: values.password,
-      password_confirmation: values.password_confirmation,
-    });
+    try {
+      const response = await api.post<SignUpResponse>('/auth/register', {
+        name: values.name,
+        email: values.email,
+        password: values.password,
+        password_confirmation: values.password_confirmation,
+      });
 
-    const { data, status } = response;
+      const { data, status } = response;
 
-    status === 201
-      ? router.push('signin')
-      : setResponseError('Something went wrong!');
+      setNotificationStatus(true);
+      setNewNotification({
+        type: status === 201 ? 'success' : 'error',
+        title: status === 201 ? 'Success' : 'Whoops!',
+        message: data.message,
+      });
+
+      status === 201 ? router.push('signin') : null;
+    } catch (error) {
+      setNotificationStatus(true);
+      setNewNotification({
+        type: 'error',
+        title: 'Whoops!',
+        message: error.message,
+      });
+    }
   };
 
   return (
@@ -67,7 +83,7 @@ const SignUp = () => {
         <SignDescription>{signUpContent.description}</SignDescription>
 
         <ErrorLabel>
-          {Object.values(formik.errors).find((error) => error) || responseError}
+          {Object.values(formik.errors).find((error) => error)}
         </ErrorLabel>
 
         <SignInput
