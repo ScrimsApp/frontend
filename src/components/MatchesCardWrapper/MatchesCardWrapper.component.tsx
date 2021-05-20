@@ -32,8 +32,8 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
       <AllMatchesWrapper>
         {allData.map((match: Match) => (
           <MatchCard
-            key={match.id}
-            id={match.id}
+            key={match.match_id}
+            id={match.match_id}
             teamImage={match.image}
             title={match.name}
             description={match.description}
