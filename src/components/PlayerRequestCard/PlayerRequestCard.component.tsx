@@ -59,7 +59,7 @@ const PlayerRequestCard: FunctionComponent<PlayerRequestCardProps> = ({
 
   return (
     <PlayerRequestCardWrapper>
-      <PlayerRequestCardImage src={playerImage} alt="Team Logo" />
+      <PlayerRequestCardImage src={playerImage} alt={playerName} />
 
       <PlayerNameWrapper>
         <PlayerName>{playerName}</PlayerName>
