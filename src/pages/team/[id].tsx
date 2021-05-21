@@ -20,11 +20,16 @@ import { api } from '../../config/api';
 
 import Loading from '../../components/Loading/Loading.component';
 
+import { BackArrow } from '../../styles/shared/BackArrow/BackArrow.styles';
+
+import { useRouter } from 'next/router';
+
 interface TeamProps {
   teamById: TeamResponse;
 }
 
 const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
+  const router = useRouter();
   let teamFoundedIndDate = new Date(teamById.created_at);
 
   let formatedTeamFoundedIndDate = teamFoundedIndDate.toLocaleString('en-US', {
@@ -39,6 +44,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
 
       {teamById ? (
         <TeamByIdWrapper>
+          <BackArrow onClick={() => router.back()}>&#8592;</BackArrow>
           <TeamByIdInfoWrapper>
             <TeamInfoCard
               teamImage={`http://localhost:8000/storage/${teamById.image}`}
