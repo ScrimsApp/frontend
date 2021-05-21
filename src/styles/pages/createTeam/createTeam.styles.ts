@@ -6,7 +6,6 @@ import {
   SignForm,
   SignTitle,
   SignDescription,
-  ErrorLabel,
 } from '../sign/Sign.styles';
 
 export const CreateTeamWrapper = styled(SignWrapper)``;
@@ -21,19 +20,6 @@ export const CreateTeamGradientLayer = styled(GradientLayer)`
 export const CreateTeamForm = styled(SignForm)``;
 export const CreateTeamTitle = styled(SignTitle)``;
 export const CreateTeamDescription = styled(SignDescription)``;
-
-export const BackArrow = styled.span`
-  color: ${(props) => props.theme.colors.text.backup};
-  font-size: 40px;
-  margin-bottom: 20px;
-
-  cursor: pointer;
-  transition: transform 200ms ease-in-out;
-
-  &&:hover {
-    transform: translateX(-10px);
-  }
-`;
 
 export const FileInput = styled.input`
   position: absolute;
