@@ -29,9 +29,9 @@ import { SignInResponse } from '../types/responses/SignInResponse.type';
 import { GlobalContext } from '../context/GlobalContext.';
 
 const SignIn = () => {
-  const [responseError, setResponseError] = useState('');
-  const { userContext } = useContext(GlobalContext);
+  const { userContext, notificationContext } = useContext(GlobalContext);
   const { storeUserInfo } = userContext;
+  const { setNewNotification, setNotificationStatus } = notificationContext;
 
   const formik = useFormik({
     initialValues: {
@@ -44,24 +44,33 @@ const SignIn = () => {
   });
 
   const handleSignIn = async (values: any) => {
-    const response = await api.post<SignInResponse>('/auth/login', {
-      email: values.email,
-      password: values.password,
-    });
+    try {
+      const response = await api.post<SignInResponse>('/auth/login', {
+        email: values.email,
+        password: values.password,
+      });
 
-    const { data, status } = response;
+      const { data, status } = response;
 
-    storeUserInfo({
-      name: data.username,
-      id: data.user_id,
-      teamId: data.team_id,
-      captain: data.captain,
-      token: data.access_token,
-    });
+      if (data) {
+        storeUserInfo({
+          name: data.username,
+          id: data.user_id,
+          teamId: data.team_id,
+          captain: data.captain,
+          token: data.access_token,
+        });
+      }
 
-    status === 200
-      ? (window.location.href = '/')
-      : setResponseError('Something went wrong!');
+      status === 200 ? (window.location.href = '/') : null;
+    } catch (error) {
+      setNotificationStatus(true);
+      setNewNotification({
+        type: 'error',
+        title: 'Whoops!',
+        message: error.message,
+      });
+    }
   };
 
   return (
@@ -73,7 +82,7 @@ const SignIn = () => {
         <SignDescription>{signInContent.description}</SignDescription>
 
         <ErrorLabel>
-          {Object.values(formik.errors).find((error) => error) || responseError}
+          {Object.values(formik.errors).find((error) => error)}
         </ErrorLabel>
 
         <SignInput

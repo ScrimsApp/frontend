@@ -4,4 +4,5 @@ export interface SignInResponse {
   username: string;
   team_id: number | null;
   captain: boolean;
+  message?: string;
 }

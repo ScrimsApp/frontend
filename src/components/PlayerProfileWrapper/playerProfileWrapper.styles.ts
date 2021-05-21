@@ -18,6 +18,7 @@ export const PlayerWrapper = styled.div`
 export const Image = styled.img`
   width: 100%;
   max-height: 350px;
+  min-height: 350px;
 
   object-fit: cover;
 `;
@@ -43,18 +44,6 @@ export const IconWrapper = styled.div`
   &&:hover {
     background-color: #cccccc44;
   }
-
-  @media only screen and (max-width: 390px) {
-    top: 36%;
-  }
-
-  @media only screen and (max-width: 370px) {
-    top: 34%;
-  }
-
-  @media only screen and (max-width: 340px) {
-    top: 30%;
-  }
 `;
 
 export const Form = styled.form`
@@ -62,6 +51,10 @@ export const Form = styled.form`
 
   box-sizing: border-box;
   padding: 36px 36px 0px 36px;
+
+  @media only screen and (max-width: 390px) {
+    padding: 15px 15px 0px 15px;
+  }
 `;
 
 export const FileInput = styled.input`

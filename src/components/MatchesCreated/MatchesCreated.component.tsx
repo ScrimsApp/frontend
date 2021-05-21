@@ -77,13 +77,15 @@ const MatchesCreated: FunctionComponent<MatchesCreatedProps> = ({
             </MatchesCreatedDescription>
           </MatchesCreatedInfo>
 
-          <MatchesCreatedSideOption backgroundColor="#ED5353">
-            <MatchesCreatedCancelButton
-              onClick={() => handleCancelCreatedMatch(match.id)}
-            >
-              Cancel
-            </MatchesCreatedCancelButton>
-          </MatchesCreatedSideOption>
+          {user.captain ? (
+            <MatchesCreatedSideOption backgroundColor="#ED5353">
+              <MatchesCreatedCancelButton
+                onClick={() => handleCancelCreatedMatch(match.id)}
+              >
+                Cancel
+              </MatchesCreatedCancelButton>
+            </MatchesCreatedSideOption>
+          ) : null}
         </MatchesCreatedCardWrapper>
       ))}
     </MatchesCreatedWrapper>

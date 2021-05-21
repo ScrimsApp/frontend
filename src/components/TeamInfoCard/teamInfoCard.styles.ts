@@ -15,8 +15,8 @@ export const TeamInfoWrapper = styled.div`
 
 export const TeamImage = styled.img`
   width: 40%;
-  height: 100%;
-  max-height: 400px;
+  max-height: 350px;
+  min-height: 350px;
   object-fit: cover;
 
   @media only screen and (max-width: 600px) {

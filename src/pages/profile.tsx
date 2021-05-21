@@ -22,15 +22,14 @@ const Profile: FunctionComponent = () => {
   const router = useRouter();
 
   const [isLoading, setIsloading] = useState(true);
+  const [shouldLoad, setShouldLoad] = useState(true);
   const [player, setPlayer] = useState<Player>({
     name: '',
     email: '',
   } as Player);
 
   useEffect(() => {
-    if (!user.token) {
-      router.back();
-    } else {
+    if (user.token && shouldLoad) {
       api
         .get('player', {
           headers: {
@@ -49,6 +48,9 @@ const Profile: FunctionComponent = () => {
             message: error.message,
           });
         });
+    } else {
+      setShouldLoad(false);
+      router.back();
     }
   }, [user]);
 
