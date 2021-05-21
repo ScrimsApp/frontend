@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next';
 import { FunctionComponent } from 'react';
+import { useRouter } from 'next/router';
 
 import Navbar from '../../components/Navbar/Navbar.component';
 import { MainWrapper } from '../../styles/shared/Wrapper/Wrapper.styles';
@@ -15,17 +16,21 @@ import { PlayerResponse } from '../../types/responses/player/PlayerResponse.type
 
 import PlayerInfoCard from '../../components/PlayerInfocard/PlayerInfoCard.component';
 
+import { BackArrow } from '../../styles/shared/BackArrow/BackArrow.styles';
+
 interface PlayerProps {
   playerById: PlayerResponse;
 }
 
 const Player: FunctionComponent<PlayerProps> = ({ playerById }) => {
+  const router = useRouter();
   return (
     <MainWrapper>
       <Navbar />
 
       {playerById ? (
         <PlayerByIdWrapper>
+          <BackArrow onClick={() => router.back()}>&#8592;</BackArrow>
           <PlayerByIdInfoWrapper>
             <PlayerInfoCard
               image={playerById.image}
