@@ -78,13 +78,15 @@ const MatchInvitesSent: FunctionComponent<MatchInvitesSentProps> = ({
             </MatchInvitesSentDescription>
           </MatchInvitesSentInfo>
 
-          <MatchInvitesSideOption backgroundColor="#ED5353">
-            <MatchInvitesCancelButton
-              onClick={() => handleCancelMatchInviteSent(invite.id)}
-            >
-              Cancel
-            </MatchInvitesCancelButton>
-          </MatchInvitesSideOption>
+          {user.captain ? (
+            <MatchInvitesSideOption backgroundColor="#ED5353">
+              <MatchInvitesCancelButton
+                onClick={() => handleCancelMatchInviteSent(invite.id)}
+              >
+                Cancel
+              </MatchInvitesCancelButton>
+            </MatchInvitesSideOption>
+          ) : null}
         </MatchInvitesSentCardWrapper>
       ))}
     </MatchInvitesSentWrapper>
