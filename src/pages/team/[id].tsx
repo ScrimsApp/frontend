@@ -58,11 +58,11 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
                 <TeamMemberCard
                   isCaptain={false}
                   key={player.name}
-                  image="https://sm.ign.com/ign_br/screenshot/default/morty_ep2e.jpg"
+                  image={player.image}
                   playerName={player.name}
                   playerId={player.id}
                   description1={player.created_at}
-                  description2="5 matches played"
+                  description2={player.description}
                 />
               ))}
             </TeamByIdMembers>
