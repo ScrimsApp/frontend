@@ -25,7 +25,7 @@ export const TeamInfoWrapper = styled.section`
   display: flex;
 
   width: 60%;
-  height: 400px;
+  height: 350px;
 
   margin-bottom: 56px;
 
@@ -134,7 +134,7 @@ export const TeamMembersWrapper = styled.section`
   height: 544px;
 
   padding-top: 36px;
-  margin-top: -600px;
+  margin-top: -650px;
   margin-bottom: 56px;
 
   background-color: #1f2333;
