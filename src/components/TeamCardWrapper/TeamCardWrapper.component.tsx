@@ -90,24 +90,26 @@ const TeamCardWrapper: FunctionComponent = () => {
           </TeamMembers>
         </TeamMembersWrapper>
 
-        <PlayersRequestsWrapper>
-          <PlayersRequestsTitle>
-            {myTeamContent.playersRequestsTitle}
-          </PlayersRequestsTitle>
+        {data.invites_players.length > 0 ? (
+          <PlayersRequestsWrapper>
+            <PlayersRequestsTitle>
+              {myTeamContent.playersRequestsTitle}
+            </PlayersRequestsTitle>
 
-          <PlayersRequests>
-            {data.invites_players?.map((invite) => (
-              <PlayerRequestCard
-                key={invite.id}
-                playerImage={invite.player.image}
-                playerName={invite.player.name}
-                isCaptain={user.captain}
-                playerId={invite.player.id}
-                inviteId={invite.id}
-              />
-            ))}
-          </PlayersRequests>
-        </PlayersRequestsWrapper>
+            <PlayersRequests>
+              {data.invites_players?.map((invite) => (
+                <PlayerRequestCard
+                  key={invite.id}
+                  playerImage={invite.player.image}
+                  playerName={invite.player.name}
+                  isCaptain={user.captain}
+                  playerId={invite.player.id}
+                  inviteId={invite.id}
+                />
+              ))}
+            </PlayersRequests>
+          </PlayersRequestsWrapper>
+        ) : null}
       </TeamWrapper>
     );
   }
