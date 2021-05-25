@@ -35,6 +35,7 @@ const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
       image: initialPlayer.image,
       name: initialPlayer.name,
       email: initialPlayer.email,
+      description: initialPlayer.description,
     },
     onSubmit: (values) => handleUpdatePlayer(values),
     enableReinitialize: true,
@@ -46,7 +47,7 @@ const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
       const formData = new FormData();
 
       formData.append('name', values.name);
-      //   formData.append('description', values.description)
+      formData.append('description', values.description);
       formData.append('email', values.email);
       formData.append('image', values.image);
 
@@ -57,8 +58,6 @@ const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
       });
 
       const { data, status } = response;
-
-      console.log(data);
 
       setNotificationStatus(true);
       setNewNotification({
@@ -106,6 +105,18 @@ const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
           type="email"
           margin={['0px', '0px', '36px', '0px']}
           value={formik.values.email}
+          onChange={formik.handleChange}
+          initialValue={'player'}
+        />
+
+        <SignInput
+          name="description"
+          minWidth="100%"
+          colorType="primary"
+          label="Description"
+          type="text"
+          margin={['0px', '0px', '36px', '0px']}
+          value={formik.values.description}
           onChange={formik.handleChange}
           initialValue={'player'}
         />

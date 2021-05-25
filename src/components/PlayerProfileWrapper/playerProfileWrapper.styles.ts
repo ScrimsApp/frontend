@@ -33,7 +33,7 @@ export const IconWrapper = styled.div`
 
   position: absolute;
   right: 36px;
-  top: 40%;
+  top: 36%;
 
   background-color: #cccccc22;
 
