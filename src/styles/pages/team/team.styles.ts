@@ -131,7 +131,7 @@ export const TeamMembersWrapper = styled.section`
   flex-direction: column;
 
   width: 60%;
-  height: 544px;
+  height: 595px;
 
   padding-top: 36px;
   margin-top: -650px;
