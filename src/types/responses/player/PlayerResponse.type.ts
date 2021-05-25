@@ -1,6 +1,8 @@
 export interface PlayerResponse {
   image: string;
   name: string;
-  person_id: any;
+  description: string;
+  person_id: string;
   team_id: any;
+  created_at: string;
 }

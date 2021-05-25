@@ -50,6 +50,7 @@ const SignUp = () => {
       const response = await api.post<SignUpResponse>('/auth/register', {
         name: values.name,
         email: values.email,
+        description: 'I am the best player',
         password: values.password,
         password_confirmation: values.password_confirmation,
       });

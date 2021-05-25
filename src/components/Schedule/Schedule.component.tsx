@@ -28,8 +28,6 @@ const Schedule: FunctionComponent<ScheduleProps> = ({
 
   const handleSchedule = async (id: number) => {
     if (user.token) {
-      console.log(id);
-
       const response = await api.post<DeleteMatchResponse>(
         'match/delete',
         {
@@ -72,7 +70,7 @@ const Schedule: FunctionComponent<ScheduleProps> = ({
             <ScheduleDescription>{schedule.format}</ScheduleDescription>
 
             <ScheduleDescription>
-              {schedule.data} {schedule.time}
+              {schedule.date} {schedule.time}
             </ScheduleDescription>
           </ScheduleInfo>
 

@@ -20,6 +20,7 @@ import { InvitePlayerResponse } from '../../types/responses/player/InvitePlayerR
 
 const PlayersCard: FunctionComponent<PlayersCardProps> = ({
   id,
+  person_id,
   image,
   name,
   team_id,
@@ -97,12 +98,13 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
           <PlayersCardName>{name}</PlayersCardName>
 
           <PlayersCardDescriptionsWrapper>
+            <PlayersCardDescription>{person_id}</PlayersCardDescription>
             <PlayersCardDescription>{`Joined in ${formatedPlayerJoinedDate}`}</PlayersCardDescription>
           </PlayersCardDescriptionsWrapper>
         </PlayersCardInfo>
       </Link>
 
-      {user.captain && !team_id ? (
+      {user.captain && !team_id && id != user.id ? (
         <PlayersSideOption backgroundColor="#4767f9">
           <Link href={user.token ? '' : cardLink}>
             <InviteButton onClick={handleInvite}>Invite</InviteButton>

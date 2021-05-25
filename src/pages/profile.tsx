@@ -26,6 +26,7 @@ const Profile: FunctionComponent = () => {
   const [player, setPlayer] = useState<Player>({
     name: '',
     email: '',
+    description: '',
   } as Player);
 
   useEffect(() => {

@@ -35,7 +35,9 @@ const Player: FunctionComponent<PlayerProps> = ({ playerById }) => {
             <PlayerInfoCard
               image={playerById.image}
               name={playerById.name}
-              description={'Um player muito legal muito bacana'}
+              person_id={playerById.person_id}
+              description={playerById.description}
+              created_at={playerById.created_at}
             />
           </PlayerByIdInfoWrapper>
         </PlayerByIdWrapper>

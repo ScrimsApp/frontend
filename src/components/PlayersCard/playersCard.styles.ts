@@ -18,6 +18,12 @@ export const PlayersCardName = styled(TeamsCardName)``;
 export const PlayersCardDescriptionsWrapper = styled(
   TeamCardDescriptionsWrapper
 )``;
-export const PlayersCardDescription = styled(TeamsCardDescription)``;
+export const PlayersCardDescription = styled(TeamsCardDescription)`
+  @media only screen and (max-width: 640px) {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+`;
 export const PlayersSideOption = styled(TeamsSideOption)``;
 export const InviteButton = styled(JoinButton)``;
