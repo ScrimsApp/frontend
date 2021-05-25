@@ -35,7 +35,7 @@ export interface MatchInviteReceived {
 }
 
 export interface MatchesScheduled {
-  data: string;
+  date: string;
   format: string;
   id: number;
   team_1: {
