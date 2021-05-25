@@ -20,6 +20,7 @@ import { InvitePlayerResponse } from '../../types/responses/player/InvitePlayerR
 
 const PlayersCard: FunctionComponent<PlayersCardProps> = ({
   id,
+  person_id,
   image,
   name,
   team_id,
@@ -97,6 +98,7 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
           <PlayersCardName>{name}</PlayersCardName>
 
           <PlayersCardDescriptionsWrapper>
+            <PlayersCardDescription>{person_id}</PlayersCardDescription>
             <PlayersCardDescription>{`Joined in ${formatedPlayerJoinedDate}`}</PlayersCardDescription>
           </PlayersCardDescriptionsWrapper>
         </PlayersCardInfo>

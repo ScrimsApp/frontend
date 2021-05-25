@@ -26,6 +26,7 @@ const PlayersCardWrapper: FunctionComponent<PlayersCardWrapperProps> = ({
             <PlayersCard
               key={player.id}
               id={player.id}
+              person_id={player.person_id}
               name={player.name}
               image={player.image}
               created_at={player.created_at}
