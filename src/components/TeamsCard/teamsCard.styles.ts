@@ -11,6 +11,7 @@ import {
 } from '../TeamMemberCard/teamMemberCard.styles';
 
 export const TeamsCardWrapper = styled(TeamMemberCardWrapper)`
+  height: 110px;
   min-height: 110px;
   transition: filter 200ms ease-in-out;
 
