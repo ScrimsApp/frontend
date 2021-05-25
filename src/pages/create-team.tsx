@@ -6,7 +6,6 @@ import {
   CreateTeamForm,
   CreateTeamGradientLayer,
   CreateTeamWrapper,
-  BackArrow,
   CreateTeamTitle,
   CreateTeamDescription,
   FileInput,
@@ -28,6 +27,7 @@ import { GlobalContext } from '../context/GlobalContext.';
 import { ErrorLabel } from '../styles/pages/sign/Sign.styles';
 
 import { createTeamContent } from '../content/createTeam/createTeam.content';
+import { BackArrow } from '../styles/shared/BackArrow/BackArrow.styles';
 
 const CreateTeam = () => {
   const { userContext, notificationContext } = useContext(GlobalContext);
