@@ -17,6 +17,7 @@ import { ScheduleProps } from './types';
 import { GlobalContext } from '../../context/GlobalContext.';
 import { api } from '../../config/api';
 import { DeleteMatchResponse } from '../../types/responses/match/DeleteMatchResponse.type';
+import { parseDate } from '../../utils/functions/parseDate';
 
 const Schedule: FunctionComponent<ScheduleProps> = ({
   visible,
@@ -70,7 +71,7 @@ const Schedule: FunctionComponent<ScheduleProps> = ({
             <ScheduleDescription>{schedule.format}</ScheduleDescription>
 
             <ScheduleDescription>
-              {schedule.date} {schedule.time}
+              {parseDate(schedule.date)} {schedule.time}
             </ScheduleDescription>
           </ScheduleInfo>
 

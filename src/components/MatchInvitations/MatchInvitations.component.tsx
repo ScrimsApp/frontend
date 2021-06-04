@@ -21,6 +21,8 @@ import { InviteMatchResponse } from '../../types/responses/match/InviteMatchResp
 import AcceptIcon from '../../assets/icons/accept-icon.svg';
 import DeclineIcon from '../../assets/icons/decline-icon.svg';
 
+import { parseDate } from '../../utils/functions/parseDate';
+
 const MatchInvitations: FunctionComponent<MatchInvitationsProps> = ({
   visible,
   matchInvites,
@@ -73,7 +75,7 @@ const MatchInvitations: FunctionComponent<MatchInvitationsProps> = ({
               {invite.match.format}
             </MatchInvitationsDescription>
             <MatchInvitationsDescription>
-              {invite.match.date} {invite.match.time}
+              {parseDate(invite.match.date)} {invite.match.time}
             </MatchInvitationsDescription>
           </MatchInvitationsInfo>
 

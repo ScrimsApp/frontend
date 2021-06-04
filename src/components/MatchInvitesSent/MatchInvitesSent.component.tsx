@@ -5,6 +5,8 @@ import { api } from '../../config/api';
 import { GlobalContext } from '../../context/GlobalContext.';
 import { InviteMatchResponse } from '../../types/responses/match/InviteMatchResponse.type';
 
+import { parseDate } from '../../utils/functions/parseDate';
+
 import {
   MatchInvitesSentCardImage,
   MatchInvitesSentCardWrapper,
@@ -74,7 +76,7 @@ const MatchInvitesSent: FunctionComponent<MatchInvitesSentProps> = ({
             </MatchInvitesSentDescription>
 
             <MatchInvitesSentDescription>
-              {invite.match.date} {invite.match.time}
+              {parseDate(invite.match.date)} {invite.match.time}
             </MatchInvitesSentDescription>
           </MatchInvitesSentInfo>
 
