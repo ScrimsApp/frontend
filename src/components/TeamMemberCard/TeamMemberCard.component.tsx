@@ -15,6 +15,8 @@ import {
 } from './teamMemberCard.styles';
 import { TeamMemberCardProps } from './types';
 
+import CrownIcon from '../../assets/icons/crown-icon.svg';
+
 const TeamMemberCard: FunctionComponent<TeamMemberCardProps> = ({
   image,
   playerName,
@@ -22,6 +24,7 @@ const TeamMemberCard: FunctionComponent<TeamMemberCardProps> = ({
   description1,
   description2,
   isCaptain,
+  userId,
 }) => {
   const { userContext, notificationContext } = useContext(GlobalContext);
   const { user } = userContext;
@@ -75,6 +78,12 @@ const TeamMemberCard: FunctionComponent<TeamMemberCardProps> = ({
         <SideOption backgroundColor="#ED5353" onClick={handleTeamMember}>
           <RemoveButton>Remove</RemoveButton>
         </SideOption>
+      ) : null}
+
+      {userId === playerId ? (
+        <div style={{ position: 'absolute', right: '30px', top: '20px' }}>
+          <CrownIcon />
+        </div>
       ) : null}
     </TeamMemberCardWrapper>
   );

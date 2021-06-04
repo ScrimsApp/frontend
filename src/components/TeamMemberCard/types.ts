@@ -5,4 +5,5 @@ export interface TeamMemberCardProps {
   description1: string;
   description2: string;
   isCaptain: boolean;
+  userId: number;
 }
