@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const PlayerWrapper = styled.div`
-  width: 50%;
+  width: 45%;
   position: relative;
 
   display: flex;
@@ -9,8 +9,10 @@ export const PlayerWrapper = styled.div`
 
   box-sizing: border-box;
   background-color: #262a3b;
+  overflow: hidden;
+  border-radius: 12px;
 
-  @media only screen and (max-width: 840px) {
+  @media only screen and (max-width: 1000px) {
     width: 100%;
   }
 `;
