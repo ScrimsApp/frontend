@@ -64,10 +64,12 @@ const Profile: FunctionComponent = () => {
       {!isLoading ? (
         <ProfileWrapper>
           <PlayerProfileWrapper initialPlayer={player} />
-          <PlayerTeamProfileWrapper
-            isCaptain={user.captain}
-            initialTeam={player.team}
-          />
+          {player.team ? (
+            <PlayerTeamProfileWrapper
+              isCaptain={user.captain}
+              initialTeam={player.team}
+            />
+          ) : null}
         </ProfileWrapper>
       ) : (
         <Loading fullPage />
