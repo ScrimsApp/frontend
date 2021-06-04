@@ -7,11 +7,11 @@ export const ProfileWrapper = styled.section`
   margin-top: 56px;
 
   display: flex;
+  justify-content: space-between;
 
-  border-radius: 12px;
   overflow: hidden;
 
-  @media only screen and (max-width: 840px) {
+  @media only screen and (max-width: 1000px) {
     flex-flow: column;
   }
 `;

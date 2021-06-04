@@ -1,3 +1,5 @@
+import { Team } from '../team/Team.type';
+
 export interface Player {
   id: number;
   name: string;
@@ -7,4 +9,5 @@ export interface Player {
   person_id: any;
   team_id: number;
   created_at: string;
+  team?: Team;
 }

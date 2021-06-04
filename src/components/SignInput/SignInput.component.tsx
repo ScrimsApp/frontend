@@ -23,6 +23,7 @@ interface InputProps {
       : (e: string | React.ChangeEvent<any>) => void;
   };
   initialValue?: string;
+  disabled?: boolean;
 }
 
 const SignInput: FunctionComponent<InputProps> = ({
@@ -35,6 +36,7 @@ const SignInput: FunctionComponent<InputProps> = ({
   value,
   onChange,
   initialValue,
+  disabled,
 }) => {
   const [active, setActive] = useState(false);
   const [inputValue, setInputValue] = useState(initialValue || '');
@@ -57,6 +59,7 @@ const SignInput: FunctionComponent<InputProps> = ({
         value={value}
         onChange={(event) => handleInputValue(event)}
         autoComplete="off"
+        disabled={disabled}
       />
       <InputLabel className={active ? 'input-filled' : ''}>{label}</InputLabel>
     </InputWrapper>

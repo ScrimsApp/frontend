@@ -37,6 +37,7 @@ const SignUp = () => {
     initialValues: {
       name: '',
       email: '',
+      description: '',
       password: '',
       password_confirmation: '',
     },
@@ -50,7 +51,7 @@ const SignUp = () => {
       const response = await api.post<SignUpResponse>('/auth/register', {
         name: values.name,
         email: values.email,
-        description: 'I am the best player',
+        description: values.description,
         password: values.password,
         password_confirmation: values.password_confirmation,
       });
@@ -106,6 +107,17 @@ const SignUp = () => {
           type="email"
           margin={['0px', '0px', '36px', '0px']}
           value={formik.values.email}
+          onChange={formik.handleChange}
+        />
+
+        <SignInput
+          name="description"
+          minWidth="100%"
+          colorType="secondary"
+          label="Description"
+          type="text"
+          margin={['0px', '0px', '36px', '0px']}
+          value={formik.values.description}
           onChange={formik.handleChange}
         />
 
