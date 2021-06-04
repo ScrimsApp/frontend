@@ -19,6 +19,8 @@ import { api } from '../../config/api';
 import { InviteMatchResponse } from '../../types/responses/match/InviteMatchResponse.type';
 import { mutate } from 'swr';
 
+import { parseDate } from '../../utils/functions/parseDate';
+
 const MatchesCreated: FunctionComponent<MatchesCreatedProps> = ({
   visible,
   matchesCreated,
@@ -73,7 +75,7 @@ const MatchesCreated: FunctionComponent<MatchesCreatedProps> = ({
             </MatchesCreatedDescription>
 
             <MatchesCreatedDescription>
-              {match.date} {match.time}
+              {parseDate(match.date)} {match.time}
             </MatchesCreatedDescription>
           </MatchesCreatedInfo>
 
