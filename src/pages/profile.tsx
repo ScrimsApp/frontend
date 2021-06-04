@@ -13,7 +13,9 @@ import { api } from '../config/api';
 import { ProfileWrapper } from '../styles/pages/profile/profile.styles';
 
 import Loading from '../components/Loading/Loading.component';
+
 import PlayerProfileWrapper from '../components/PlayerProfileWrapper/PlayerProfileWrapper.component';
+import PlayerTeamProfileWrapper from '../components/PlayerTeamProfileWrapper/PlayerTeamProfileWrapper.component';
 
 const Profile: FunctionComponent = () => {
   const { userContext, notificationContext } = useContext(GlobalContext);
@@ -62,6 +64,10 @@ const Profile: FunctionComponent = () => {
       {!isLoading ? (
         <ProfileWrapper>
           <PlayerProfileWrapper initialPlayer={player} />
+          <PlayerTeamProfileWrapper
+            isCaptain={user.captain}
+            initialTeam={player.team}
+          />
         </ProfileWrapper>
       ) : (
         <Loading fullPage />
