@@ -62,11 +62,11 @@ const Schedule: FunctionComponent<ScheduleProps> = ({
         <ScheduleCardWrapper key={schedule.id}>
           <ScheduleCardImage
             src={`http://localhost:8000/storage/${schedule.team_adversary_image}`}
-            alt={schedule.team_2.name}
+            alt={schedule.team_adversary_name}
           />
 
           <ScheduleInfo>
-            <ScheduleName>{schedule.team_2.name}</ScheduleName>
+            <ScheduleName>{schedule.team_adversary_name}</ScheduleName>
 
             <ScheduleDescription>{schedule.format}</ScheduleDescription>
 
