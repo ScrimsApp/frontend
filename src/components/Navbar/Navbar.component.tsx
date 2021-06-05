@@ -72,11 +72,13 @@ const Navbar: FunctionComponent = ({ ...props }) => {
           </NavItem>
         </Link>
 
-        <Link passHref href="/match">
-          <NavItem className={pathname === '/match' ? 'active' : ''}>
-            Match
-          </NavItem>
-        </Link>
+        {user.teamId ? (
+          <Link passHref href="/match">
+            <NavItem className={pathname === '/match' ? 'active' : ''}>
+              Match
+            </NavItem>
+          </Link>
+        ) : null}
 
         {user.name ? (
           <NavItem onClick={() => logoutUser()}>Logout</NavItem>
