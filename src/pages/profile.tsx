@@ -16,6 +16,7 @@ import Loading from '../components/Loading/Loading.component';
 
 import PlayerProfileWrapper from '../components/PlayerProfileWrapper/PlayerProfileWrapper.component';
 import PlayerTeamProfileWrapper from '../components/PlayerTeamProfileWrapper/PlayerTeamProfileWrapper.component';
+import ProfileTeamInvites from '../components/ProfileTeamInvites/ProfileTeamInvites.component';
 
 const Profile: FunctionComponent = () => {
   const { userContext, notificationContext } = useContext(GlobalContext);
@@ -62,15 +63,20 @@ const Profile: FunctionComponent = () => {
       <Navbar />
 
       {!isLoading ? (
-        <ProfileWrapper>
-          <PlayerProfileWrapper initialPlayer={player} />
-          {player.team ? (
-            <PlayerTeamProfileWrapper
-              isCaptain={user.captain}
-              initialTeam={player.team}
-            />
+        <>
+          <ProfileWrapper>
+            <PlayerProfileWrapper initialPlayer={player} />
+            {player.team ? (
+              <PlayerTeamProfileWrapper
+                isCaptain={user.captain}
+                initialTeam={player.team}
+              />
+            ) : null}
+          </ProfileWrapper>
+          {player.invites.length > 0 ? (
+            <ProfileTeamInvites invites={player.invites} />
           ) : null}
-        </ProfileWrapper>
+        </>
       ) : (
         <Loading fullPage />
       )}
