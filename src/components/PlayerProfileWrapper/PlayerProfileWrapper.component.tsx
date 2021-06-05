@@ -49,7 +49,10 @@ const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
       formData.append('name', values.name);
       formData.append('description', values.description);
       formData.append('email', values.email);
-      formData.append('image', values.image);
+
+      if (typeof values.image !== 'string') {
+        formData.append('image', values.image);
+      }
 
       const response = await api.post('player/update', formData, {
         headers: {
