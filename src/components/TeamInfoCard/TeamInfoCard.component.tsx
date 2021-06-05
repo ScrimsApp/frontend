@@ -13,13 +13,15 @@ import {
 
 import { TeamInfoCardProps } from './types';
 
+import { parseDate } from '../../utils/functions/parseDate';
+
 const TeamInfoCard: FunctionComponent<TeamInfoCardProps> = ({
   teamImage,
   teamName,
   about,
   description,
-  description2,
-  description3,
+  date,
+  time,
   isMatch,
   isCaptain,
 }) => {
@@ -34,9 +36,7 @@ const TeamInfoCard: FunctionComponent<TeamInfoCardProps> = ({
 
         <TeamDescription>{description}</TeamDescription>
 
-        <TeamDescription>{description2}</TeamDescription>
-
-        <TeamDescription>{description3}</TeamDescription>
+        <TeamDescription>{`${parseDate(date)} ${time}`}</TeamDescription>
       </TeamInfoContent>
 
       {isMatch && isCaptain ? (

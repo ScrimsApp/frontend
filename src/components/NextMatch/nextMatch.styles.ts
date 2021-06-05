@@ -7,7 +7,6 @@ import {
 
 export const NextMatchWrapper = styled(TeamWrapper)`
   flex-wrap: nowrap;
-  /* align-items: center; */
 
   margin-bottom: 56px;
 
@@ -22,7 +21,7 @@ export const NextMatchWrapper = styled(TeamWrapper)`
 
 export const NextMatchCardWrapper = styled(TeamInfoWrapper)`
   width: 60%;
-  height: auto;
+  height: 275px;
   max-height: 291px;
 
   margin-bottom: 0px;
@@ -35,4 +34,11 @@ export const NextMatchCardWrapper = styled(TeamInfoWrapper)`
   @media only screen and (max-width: 600px) {
     max-height: 550px;
   }
+`;
+
+export const NoMatchScheduled = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
