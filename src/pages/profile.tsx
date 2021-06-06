@@ -53,6 +53,11 @@ const Profile: FunctionComponent = () => {
             message: error.message,
           });
         });
+    } else {
+      const userInfo = window.localStorage.getItem('user');
+      if (!userInfo) {
+        router.push('/');
+      }
     }
   }, [user]);
 

@@ -38,6 +38,11 @@ const Match = () => {
         .catch((error) => {
           setIsLoading(false);
         });
+    } else {
+      const userInfo = window.localStorage.getItem('user');
+      if (!userInfo) {
+        router.push('/');
+      }
     }
   }, [user]);
 
