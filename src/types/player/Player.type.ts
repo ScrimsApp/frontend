@@ -10,4 +10,10 @@ export interface Player {
   team_id: number;
   created_at: string;
   team?: Team;
+  invites?: Array<TeamInvites>;
+}
+
+export interface TeamInvites {
+  id: number;
+  team: Team;
 }

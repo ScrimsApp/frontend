@@ -1,10 +1,5 @@
-interface NextMatchData {
-  teamImage: string;
-  teamName: string;
-  matchInfo: string;
-  date: string;
-}
+import { NextMatchResponse } from '../../types/responses/match/NextMatchResponse.type';
 
 export interface NextMatchProps {
-  data?: NextMatchData;
+  nextMatch: NextMatchResponse;
 }

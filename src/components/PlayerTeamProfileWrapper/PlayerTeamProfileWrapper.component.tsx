@@ -51,7 +51,6 @@ const PlayerTeamProfileWrapper: FunctionComponent<PlayerTeamProfileWrapperProps>
         formData.append('name', values.name);
         formData.append('description', values.description);
         formData.append('tag', values.tag);
-        formData.append('image', values.image);
 
         if (typeof values.image !== 'string') {
           formData.append('image', values.image);

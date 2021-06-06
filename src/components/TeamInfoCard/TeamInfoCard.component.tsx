@@ -7,8 +7,6 @@ import {
   TeamName,
   TeamAbout,
   TeamDescription,
-  SideOption,
-  CancelButton,
 } from './teamInfoCard.styles';
 
 import { TeamInfoCardProps } from './types';
@@ -20,8 +18,6 @@ const TeamInfoCard: FunctionComponent<TeamInfoCardProps> = ({
   description,
   description2,
   description3,
-  isMatch,
-  isCaptain,
 }) => {
   return (
     <TeamInfoWrapper>
@@ -38,12 +34,6 @@ const TeamInfoCard: FunctionComponent<TeamInfoCardProps> = ({
 
         <TeamDescription>{description3}</TeamDescription>
       </TeamInfoContent>
-
-      {isMatch && isCaptain ? (
-        <SideOption backgroundColor="#ED5353">
-          <CancelButton>Cancel</CancelButton>
-        </SideOption>
-      ) : null}
     </TeamInfoWrapper>
   );
 };
