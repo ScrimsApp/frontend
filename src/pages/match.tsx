@@ -32,14 +32,12 @@ const Match = () => {
         })
         .then((res) => {
           setNextMatch(res.data);
+          setShouldLoad(false);
           setIsLoading(false);
         })
         .catch((error) => {
           setIsLoading(false);
         });
-    } else {
-      setShouldLoad(false);
-      router.back();
     }
   }, [user]);
 
