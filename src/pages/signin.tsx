@@ -68,7 +68,7 @@ const SignIn = () => {
       setNewNotification({
         type: 'error',
         title: 'Whoops!',
-        message: error.message,
+        message: error.response.data.message,
       });
     }
   };
