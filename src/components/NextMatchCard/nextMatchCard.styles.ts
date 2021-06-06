@@ -10,7 +10,10 @@ import {
 } from '../TeamInfoCard/teamInfoCard.styles';
 
 export const MatchInfoWrapper = styled(TeamInfoWrapper)``;
-export const MatchTeamImage = styled(TeamImage)``;
+export const MatchTeamImage = styled(TeamImage)`
+  max-height: 300px;
+  min-height: 300px;
+`;
 export const MatchInfoContent = styled(TeamInfoContent)``;
 export const MatchTeamName = styled(TeamName)``;
 export const MatchTeamAbout = styled(TeamAbout)``;
