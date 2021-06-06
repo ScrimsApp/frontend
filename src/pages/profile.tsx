@@ -42,6 +42,7 @@ const Profile: FunctionComponent = () => {
         })
         .then((res) => {
           setPlayer(res.data);
+          setShouldLoad(false);
           setIsloading(false);
         })
         .catch((error) => {
@@ -53,8 +54,10 @@ const Profile: FunctionComponent = () => {
           });
         });
     } else {
-      setShouldLoad(false);
-      router.back();
+      const userInfo = window.localStorage.getItem('user');
+      if (!userInfo) {
+        router.push('/');
+      }
     }
   }, [user]);
 
