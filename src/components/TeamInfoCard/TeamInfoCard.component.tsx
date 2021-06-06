@@ -7,23 +7,17 @@ import {
   TeamName,
   TeamAbout,
   TeamDescription,
-  SideOption,
-  CancelButton,
 } from './teamInfoCard.styles';
 
 import { TeamInfoCardProps } from './types';
-
-import { parseDate } from '../../utils/functions/parseDate';
 
 const TeamInfoCard: FunctionComponent<TeamInfoCardProps> = ({
   teamImage,
   teamName,
   about,
   description,
-  date,
-  time,
-  isMatch,
-  isCaptain,
+  description2,
+  description3,
 }) => {
   return (
     <TeamInfoWrapper>
@@ -36,14 +30,10 @@ const TeamInfoCard: FunctionComponent<TeamInfoCardProps> = ({
 
         <TeamDescription>{description}</TeamDescription>
 
-        <TeamDescription>{`${parseDate(date)} ${time}`}</TeamDescription>
-      </TeamInfoContent>
+        <TeamDescription>{description2}</TeamDescription>
 
-      {isMatch && isCaptain ? (
-        <SideOption backgroundColor="#ED5353">
-          <CancelButton>Cancel</CancelButton>
-        </SideOption>
-      ) : null}
+        <TeamDescription>{description3}</TeamDescription>
+      </TeamInfoContent>
     </TeamInfoWrapper>
   );
 };

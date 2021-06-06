@@ -69,6 +69,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
                   playerId={player.id}
                   description1={player.created_at}
                   description2="5 matches played"
+                  userId={player.person_id}
                 />
               ))}
             </TeamByIdMembers>
