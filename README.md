@@ -21,7 +21,7 @@ First clone this repo
 
 ```
 
-    git clone https://github.com/adrianoaclina1/frontend.git
+    git clone https://github.com/ScrimsApp/frontend.git
 
 ```
 
@@ -41,4 +41,4 @@ Now you are good to:
 
 ## Issues
 
-Have you found any fuzzy behavior? Please let us know [here](https://github.com/adrianoaclina1/frontend/issues)
+Have you found any fuzzy behavior? Please let us know [here](https://github.com/ScrimsApp/frontend/issues)
