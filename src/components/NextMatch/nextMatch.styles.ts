@@ -32,7 +32,8 @@ export const NextMatchCardWrapper = styled(TeamInfoWrapper)`
   }
 
   @media only screen and (max-width: 600px) {
-    max-height: 550px;
+    height: 650px;
+    max-height: 650px;
   }
 `;
 
