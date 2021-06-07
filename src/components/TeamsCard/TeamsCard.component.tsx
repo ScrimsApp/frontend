@@ -98,7 +98,7 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
           <TeamsCardName>{teamName}</TeamsCardName>
 
           <TeamCardDescriptionsWrapper>
-            <TeamsCardDescription>{teamMembers}</TeamsCardDescription>
+            {/* <TeamsCardDescription>{teamMembers}</TeamsCardDescription> */}
 
             <TeamsCardDescription>{teamMatchesPlayed}</TeamsCardDescription>
 

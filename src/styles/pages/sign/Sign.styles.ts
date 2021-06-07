@@ -74,10 +74,19 @@ export const SignDescription = styled.h2`
   font-weight: 500;
 `;
 
-export const AccountLinkWrapper = styled.span`
+interface AccountLinkWrapperProps {
+  margin?: string;
+  fontSize?: string;
+  color?: string;
+}
+
+export const AccountLinkWrapper = styled.span<AccountLinkWrapperProps>`
   width: 100%;
   text-align: center;
   font-weight: 500;
+  margin: ${(props) => (props.margin ? props.margin : '')};
+  font-size: ${(props) => (props.fontSize ? props.fontSize : '16px')};
+  color: ${(props) => (props.color ? props.color : '#ffffff')};
 `;
 
 export const AccountLink = styled.a`

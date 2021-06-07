@@ -11,8 +11,8 @@ import {
 
 export const MatchInfoWrapper = styled(TeamInfoWrapper)``;
 export const MatchTeamImage = styled(TeamImage)`
-  max-height: 300px;
-  min-height: 300px;
+  max-height: 350px;
+  min-height: 350px;
 `;
 export const MatchInfoContent = styled(TeamInfoContent)``;
 export const MatchTeamName = styled(TeamName)``;

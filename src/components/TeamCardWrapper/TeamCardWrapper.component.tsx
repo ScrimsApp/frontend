@@ -59,7 +59,7 @@ const TeamCardWrapper: FunctionComponent = () => {
             teamImage={`https://scrimsapp.tech/storage/${data.image}`}
             teamName={data.name}
             about={data.description}
-            description="7 matches played"
+            description="No matches played"
             description2={`${data.players?.length || 1} members`}
             description3={data.created_at}
           />

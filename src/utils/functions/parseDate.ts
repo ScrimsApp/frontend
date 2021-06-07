@@ -10,6 +10,7 @@ export const parseDate = (date: string) => {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
+    timeZone: 'UTC',
   });
 
   return parsedDate;
