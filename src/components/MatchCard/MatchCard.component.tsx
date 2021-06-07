@@ -46,10 +46,10 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
   let formatedMatchDate = matchDate.toLocaleString('en-US', {
     month: 'long',
     day: 'numeric',
+    timeZone: 'UTC',
   });
 
   const handleAssign = async () => {
-    //   Send API Request
     if (user.token) {
       const response = await api.post<InviteMatchResponse>(
         'invite/match',
