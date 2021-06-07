@@ -50,7 +50,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
               teamImage={`https://scrimsapp.tech/storage/${teamById.image}`}
               teamName={teamById.name}
               about={teamById.description}
-              description="7 matches played"
+              description="No matches played"
               description2={`${teamById.players.length || 1} members`}
               description3={`Founded in ${formatedTeamFoundedIndDate}`}
             />
@@ -68,7 +68,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
                   playerName={player.name}
                   playerId={player.id}
                   description1={player.created_at}
-                  description2="5 matches played"
+                  description2="No matches played"
                   userId={player.person_id}
                 />
               ))}
