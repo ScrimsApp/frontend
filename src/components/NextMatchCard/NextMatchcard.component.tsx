@@ -22,6 +22,11 @@ const NextMatchCard: FunctionComponent<NextMatchCardProps> = ({
   format,
   id,
 }) => {
+  const matchDate = new Date(`${date} ${time}`);
+  const matchTimeInSeconds = matchDate.getTime() - Date.now();
+  console.log('30 minutos em segundos: 1800');
+  console.log('segundos para a partida: ', matchTimeInSeconds);
+
   return (
     <MatchInfoWrapper>
       <MatchTeamImage src={teamImage} alt={teamName} />
