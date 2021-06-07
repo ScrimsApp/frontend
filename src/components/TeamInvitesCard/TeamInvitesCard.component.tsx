@@ -16,6 +16,7 @@ import { api } from '../../config/api';
 import { GlobalContext } from '../../context/GlobalContext.';
 
 import { TeamRequestResponse } from '../../types/responses/player/TeamRequestResponse.type';
+import { useRouter } from 'next/router';
 
 const TeamRequestCard: FunctionComponent<TeamInvitesCardProps> = ({
   teamImage,
@@ -26,6 +27,7 @@ const TeamRequestCard: FunctionComponent<TeamInvitesCardProps> = ({
   const { userContext, notificationContext } = useContext(GlobalContext);
   const { setNotificationStatus, setNewNotification } = notificationContext;
   const { user, updateUserInfo } = userContext;
+  const router = useRouter();
 
   const handleTeamRequest = async (option: 'accept' | 'decline') => {
     let response = await api.post<TeamRequestResponse>(
@@ -55,7 +57,7 @@ const TeamRequestCard: FunctionComponent<TeamInvitesCardProps> = ({
     }
 
     if (status === 200) {
-      mutate('player');
+      router.reload();
     }
   };
 
