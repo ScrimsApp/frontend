@@ -78,7 +78,7 @@ const MatchCard: FunctionComponent<MatchCardProps> = ({
     <CardWrapper>
       <CardImage
         alt="team"
-        src={`http://localhost:8000/storage/${teamImage}`}
+        src={`http://scrimsapp.tech/storage/public/${teamImage}`}
       />
 
       <CardInfo>

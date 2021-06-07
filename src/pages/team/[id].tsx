@@ -47,7 +47,7 @@ const Team: FunctionComponent<TeamProps> = ({ teamById }) => {
           <BackArrow onClick={() => router.back()}>&#8592;</BackArrow>
           <TeamByIdInfoWrapper>
             <TeamInfoCard
-              teamImage={`http://localhost:8000/storage/${teamById.image}`}
+              teamImage={`http://scrimsapp.tech/storage/public/${teamById.image}`}
               teamName={teamById.name}
               about={teamById.description}
               description="7 matches played"
