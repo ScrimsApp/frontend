@@ -27,7 +27,7 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
             teamImage={`https://scrimsapp.tech/storage/${team.image}`}
             teamName={team.name}
             teamMembers={`${1} members`}
-            teamMatchesPlayed="7 matches played"
+            teamMatchesPlayed="No matches played"
             teamFoundedIn={team.created_at}
             key={team.name}
           />
