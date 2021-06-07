@@ -20,7 +20,7 @@ const MatchTeam: FunctionComponent<MatchTeamProps> = ({
 }) => {
   return (
     <MatchTeamWrapper>
-      <Image src={`http://scrimsapp.tech/storage/public/${image}`} alt={name} />
+      <Image src={`https://scrimsapp.tech/storage/${image}`} alt={name} />
 
       <TeamMembersWrapper>
         <TeamName>{name}</TeamName>

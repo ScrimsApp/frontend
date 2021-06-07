@@ -24,7 +24,7 @@ const TeamsCardWrapper: FunctionComponent<TeamsCardWrapperProps> = ({
         {allData.map((team) => (
           <TeamsCard
             id={team.id}
-            teamImage={`http://scrimsapp.tech/storage/public/${team.image}`}
+            teamImage={`https://scrimsapp.tech/storage/${team.image}`}
             teamName={team.name}
             teamMembers={`${1} members`}
             teamMatchesPlayed="7 matches played"

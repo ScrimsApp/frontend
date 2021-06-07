@@ -56,7 +56,7 @@ const TeamCardWrapper: FunctionComponent = () => {
         <TeamInfoWrapper>
           <TeamInfoCardWrapper
             key={data.name}
-            teamImage={`http://scrimsapp.tech/storage/public/${data.image}`}
+            teamImage={`https://scrimsapp.tech/storage/${data.image}`}
             teamName={data.name}
             about={data.description}
             description="7 matches played"
