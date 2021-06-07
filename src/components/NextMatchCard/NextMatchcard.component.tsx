@@ -1,4 +1,4 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect, useState } from 'react';
 
 import {
   MatchInfoWrapper,
@@ -12,6 +12,12 @@ import {
 import { NextMatchCardProps } from './types';
 
 import { parseDate } from '../../utils/functions/parseDate';
+import {
+  Button,
+  ButtonOverlay,
+  ButtonWrapper,
+} from '../../styles/shared/Button/Button.styles';
+import Link from 'next/link';
 
 const NextMatchCard: FunctionComponent<NextMatchCardProps> = ({
   teamName,
@@ -22,10 +28,15 @@ const NextMatchCard: FunctionComponent<NextMatchCardProps> = ({
   format,
   id,
 }) => {
-  const matchDate = new Date(`${date} ${time}`);
-  const matchTimeInSeconds = matchDate.getTime() - Date.now();
-  console.log('30 minutos em segundos: 1800');
-  console.log('segundos para a partida: ', matchTimeInSeconds);
+  const [timeLeft, setTimeLeft] = useState(0);
+
+  useEffect(() => {
+    const matchDate = new Date(`${date} ${time}`);
+    const matchTimeInMilliseconds = matchDate.getTime() - Date.now();
+    const matchTimeInSeconds = Math.floor(matchTimeInMilliseconds / 1000);
+
+    setTimeLeft(matchTimeInSeconds);
+  }, []);
 
   return (
     <MatchInfoWrapper>
@@ -38,9 +49,23 @@ const NextMatchCard: FunctionComponent<NextMatchCardProps> = ({
 
         <MatchTeamDescription>{format}</MatchTeamDescription>
 
-        <MatchTeamDescription>{`${parseDate(
-          date
-        )} ${time}`}</MatchTeamDescription>
+        <MatchTeamDescription>
+          {`${parseDate(date)} ${time}`}
+        </MatchTeamDescription>
+
+        {timeLeft <= 1800 ? (
+          <Link href={`/match/${id}`}>
+            <ButtonWrapper
+              minWidth="100%"
+              margin={['0px', '0px', '0px', '0px']}
+            >
+              <ButtonOverlay className="overlay" type="primary" sign />
+              <Button type={'button'}>Play now!</Button>
+
+              <Button type="button">Ask captain</Button>
+            </ButtonWrapper>
+          </Link>
+        ) : null}
       </MatchInfoContent>
     </MatchInfoWrapper>
   );

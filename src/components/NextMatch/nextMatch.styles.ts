@@ -21,8 +21,8 @@ export const NextMatchWrapper = styled(TeamWrapper)`
 
 export const NextMatchCardWrapper = styled(TeamInfoWrapper)`
   width: 60%;
-  height: 275px;
-  max-height: 291px;
+  height: 350px;
+  max-height: 350px;
 
   margin-bottom: 0px;
 
@@ -32,8 +32,8 @@ export const NextMatchCardWrapper = styled(TeamInfoWrapper)`
   }
 
   @media only screen and (max-width: 600px) {
-    height: 650px;
-    max-height: 650px;
+    height: 700px;
+    max-height: 700px;
   }
 `;
 
