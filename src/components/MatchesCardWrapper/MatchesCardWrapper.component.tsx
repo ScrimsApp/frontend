@@ -23,7 +23,7 @@ export const MatchesCardWrapper: FunctionComponent<MatchesCardWrapperProps> = ({
     matches.current_page,
     matches.last_page,
     matches.total,
-    '/',
+    'index',
     matches.data
   );
 
