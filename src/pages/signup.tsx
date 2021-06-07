@@ -143,6 +143,21 @@ const SignUp = () => {
           onChange={formik.handleChange}
         />
 
+        <AccountLinkWrapper
+          margin={'0px 0px 36px 0px'}
+          color={'#E1E1E1'}
+          fontSize={'14px'}
+        >
+          Make sure you read our privacy policy and terms of use {''}
+          <a
+            href="https://github.com/ScrimsApp/frontend/blob/master/policies/service-terms.md"
+            target="_blank"
+            style={{ textDecoration: 'underline' }}
+          >
+            <AccountLink>here</AccountLink>
+          </a>
+        </AccountLinkWrapper>
+
         <ButtonWrapper minWidth="100%" margin={['0px', '0px', '36px', '0px']}>
           <ButtonOverlay className="overlay" type="secondary" sign />
           <Button type="submit">Sign up</Button>
