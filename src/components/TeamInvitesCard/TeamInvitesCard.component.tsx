@@ -62,7 +62,7 @@ const TeamRequestCard: FunctionComponent<TeamInvitesCardProps> = ({
   return (
     <TeamRequestCardWrapper>
       <TeamRequestCardImage
-        src={`http://localhost:8000/storage/${teamImage}`}
+        src={`https://scrimsapp.tech/storage/${teamImage}`}
         alt={teamName}
       />
 

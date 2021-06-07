@@ -62,7 +62,7 @@ const MatchInvitesSent: FunctionComponent<MatchInvitesSentProps> = ({
       {matchInvitesSent?.map((invite) => (
         <MatchInvitesSentCardWrapper key={invite.id}>
           <MatchInvitesSentCardImage
-            src={`http://localhost:8000/storage/${invite.match.team_1.image}`}
+            src={`https://scrimsapp.tech/storage/${invite.match.team_1.image}`}
             alt={invite.match.team_1.name}
           />
 

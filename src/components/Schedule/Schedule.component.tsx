@@ -61,7 +61,7 @@ const Schedule: FunctionComponent<ScheduleProps> = ({
       {matchesSchedule?.map((schedule) => (
         <ScheduleCardWrapper key={schedule.id}>
           <ScheduleCardImage
-            src={`http://localhost:8000/storage/${schedule.team_adversary_image}`}
+            src={`https://scrimsapp.tech/storage/${schedule.team_adversary_image}`}
             alt={schedule.team_adversary_name}
           />
 

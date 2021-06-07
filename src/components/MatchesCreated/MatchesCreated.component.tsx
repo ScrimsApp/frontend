@@ -64,7 +64,7 @@ const MatchesCreated: FunctionComponent<MatchesCreatedProps> = ({
         <MatchesCreatedCardWrapper key={match.id}>
           <MatchesCreatedCardImage
             alt={match.team_1.name}
-            src={`http://localhost:8000/storage/${match.team_1.image}`}
+            src={`https://scrimsapp.tech/storage/${match.team_1.image}`}
           />
 
           <MatchesCreatedInfo>

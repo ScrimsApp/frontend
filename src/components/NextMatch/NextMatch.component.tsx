@@ -18,7 +18,7 @@ const NextMatch: FunctionComponent<NextMatchProps> = ({ nextMatch }) => {
         {nextMatch.team ? (
           <NextMatchCard
             id={nextMatch.id}
-            teamImage={`http://localhost:8000/storage/${nextMatch.team.image}`}
+            teamImage={`https://scrimsapp.tech/storage/${nextMatch.team.image}`}
             teamName={nextMatch.team.name}
             description={nextMatch.team.description}
             date={nextMatch.date}
