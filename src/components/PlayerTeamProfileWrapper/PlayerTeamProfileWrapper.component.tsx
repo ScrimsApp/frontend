@@ -29,7 +29,7 @@ const PlayerTeamProfileWrapper: FunctionComponent<PlayerTeamProfileWrapperProps>
     const { user } = userContext;
     const { setNewNotification, setNotificationStatus } = notificationContext;
     const [displayImage, setDisplayImage] = useState(
-      `http://localhost:8000/storage/${initialTeam.image}`
+      `http://scrimsapp.tech/storage/public/${initialTeam.image}`
     );
 
     const formik = useFormik({
