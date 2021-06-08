@@ -46,7 +46,7 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
     }
 
     if (!cardLink && user.token) {
-      setCardLink('#');
+      setCardLink(`#${id}`);
       return;
     }
 
@@ -88,7 +88,7 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
   });
 
   return (
-    <TeamsCardWrapper>
+    <TeamsCardWrapper id={`${id}`}>
       <Link href={`/team/${id}`}>
         <TeamsCardImage src={teamImage} key={teamName} alt={teamName} />
       </Link>
@@ -109,7 +109,7 @@ const TeamsCard: FunctionComponent<TeamsCardsProps> = ({
 
       {!user.teamId ? (
         <TeamsSideOption backgroundColor="#4767f9" onClick={handleJoin}>
-          <Link href={user.token ? '' : cardLink}>
+          <Link href={user.token ? `#${id}` : cardLink}>
             <JoinButton>Join</JoinButton>
           </Link>
         </TeamsSideOption>
