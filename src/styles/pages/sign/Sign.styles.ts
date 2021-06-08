@@ -12,6 +12,7 @@ export const SignWrapper = styled.div`
 
 export const GradientLayer = styled.div`
   width: 65%;
+  min-height: 850px;
   background: linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.21),
@@ -28,6 +29,7 @@ export const GradientLayer = styled.div`
 
   @media only screen and (max-width: 750px) {
     width: 100%;
+    min-height: 15px;
     height: 15px;
     padding: 0px;
   }
@@ -35,6 +37,7 @@ export const GradientLayer = styled.div`
 
 export const SignForm = styled.form`
   width: 45%;
+  min-height: 850px;
   max-width: 600px;
 
   display: flex;
@@ -47,12 +50,13 @@ export const SignForm = styled.form`
 
   box-sizing: border-box;
 
-  @media only screen and (max-width: 1000px) {
+  @media only screen and (max-width: 1100px) {
     width: 50%;
   }
 
   @media only screen and (max-width: 750px) {
     width: 100%;
+    min-height: auto;
   }
 
   @media only screen and (max-width: 500px) {

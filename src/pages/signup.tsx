@@ -158,7 +158,11 @@ const SignUp = () => {
           </a>
         </AccountLinkWrapper>
 
-        <ButtonWrapper minWidth="100%" margin={['0px', '0px', '36px', '0px']}>
+        <ButtonWrapper
+          style={{ minHeight: '45px' }}
+          minWidth="100%"
+          margin={['0px', '0px', '36px', '0px']}
+        >
           <ButtonOverlay className="overlay" type="secondary" sign />
           <Button type="submit">Sign up</Button>
         </ButtonWrapper>
