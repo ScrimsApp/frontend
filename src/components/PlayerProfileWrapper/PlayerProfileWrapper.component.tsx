@@ -26,7 +26,7 @@ const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
   initialPlayer,
 }) => {
   const { userContext, notificationContext } = useContext(GlobalContext);
-  const { user } = userContext;
+  const { user, updateUserInfo } = userContext;
   const { setNewNotification, setNotificationStatus } = notificationContext;
   const [displayImage, setDisplayImage] = useState(initialPlayer.image);
 
@@ -61,6 +61,10 @@ const PlayerProfileWrapper: FunctionComponent<PlayerProfileWrapperProps> = ({
       });
 
       const { data, status } = response;
+
+      if (status === 200) {
+        updateUserInfo({ ...user, name: values.name });
+      }
 
       setNotificationStatus(true);
       setNewNotification({

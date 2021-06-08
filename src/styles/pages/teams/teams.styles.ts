@@ -5,7 +5,6 @@ import { scrollStyles } from '../team/team.styles';
 export const TeamsWrapper = styled.section`
   width: 100%;
   height: auto;
-  max-height: 700px;
 
   display: flex;
   flex-direction: column;
@@ -14,9 +13,13 @@ export const TeamsWrapper = styled.section`
 
   box-sizing: border-box;
 
-  ${scrollStyles}
+  @media only screen and (min-width: 640px) {
+    ${scrollStyles}
+    max-height: 700px;
+  }
 
   @media only screen and (max-width: 640px) {
+    max-height: auto !important;
   }
 `;
 
