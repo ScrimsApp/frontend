@@ -46,32 +46,39 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
     }
 
     if (!cardLink && user.token) {
-      setCardLink('#');
+      setCardLink(`${id}`);
       return;
     }
 
     if (user.token) {
-      const response = await api.post<InvitePlayerResponse>(
-        'invite/player',
-        {
-          type: 'team',
-          user_id: id,
-        },
-        {
-          headers: {
-            Authorization: 'Bearer ' + user.token,
+      try {
+        const response = await api.post<InvitePlayerResponse>(
+          'invite/player',
+          {
+            type: 'team',
+            user_id: id,
           },
-        }
-      );
+          {
+            headers: {
+              Authorization: 'Bearer ' + user.token,
+            },
+          }
+        );
 
-      const { data, status } = response;
+        const { data, status } = response;
 
-      if (data) {
         setNotificationStatus(true);
         setNewNotification({
           type: status === 200 ? 'success' : 'error',
           title: status === 200 ? 'Success' : 'Whoops',
           message: data.message,
+        });
+      } catch (error) {
+        setNotificationStatus(true);
+        setNewNotification({
+          type: 'error',
+          title: 'Whoops',
+          message: error.response.data.message,
         });
       }
     }
@@ -88,7 +95,7 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
   });
 
   return (
-    <PlayersCardWrapper>
+    <PlayersCardWrapper id={`${id}`}>
       <Link href={`player/${id}`}>
         <PlayersCardImage src={image} />
       </Link>
@@ -106,7 +113,7 @@ const PlayersCard: FunctionComponent<PlayersCardProps> = ({
 
       {user.captain && !team_id && id != user.id ? (
         <PlayersSideOption backgroundColor="#4767f9">
-          <Link href={user.token ? '' : cardLink}>
+          <Link href={user.token ? `#${id}` : cardLink}>
             <InviteButton onClick={handleInvite}>Invite</InviteButton>
           </Link>
         </PlayersSideOption>
