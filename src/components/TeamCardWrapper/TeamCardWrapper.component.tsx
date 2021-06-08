@@ -83,7 +83,7 @@ const TeamCardWrapper: FunctionComponent = () => {
                 playerName={player.name}
                 playerId={player.id}
                 description1={player.created_at}
-                description2="5 matches played"
+                description2="No matches played"
                 isCaptain={user.captain}
                 userId={data.user_id}
               />
